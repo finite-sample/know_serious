@@ -1,0 +1,5 @@
+comparison,valid_responses,changed_classification,before_correct,after_correct,newly_correct,newly_incorrect
+uninsured_23_symmetric,1482,8,353,357,6,2
+gas_auxiliary_symmetric,1488,268,421,689,268,0
+unemployment_dated,1486,6,498,502,5,1
+gas_dated,1488,38,484,462,8,30

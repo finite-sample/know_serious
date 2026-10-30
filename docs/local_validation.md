@@ -59,3 +59,20 @@ all five models. Every alternative passes the optimizer, Hessian, gradient, and
 against an analytic multinomial derivative. The Table B3 render preserves small
 coefficients (including 0.004), and the booklet includes counts and equality-test
 and fit-statistic rows. Full GitHub container execution is still pending.
+
+## Correctness audit (October 30, 2026)
+
+`make lint test` passes 204 assertions with no warnings or skips. All 77 public
+input hashes verify. The six alternative outcome fits retain 1,260 respondents
+and 6,233 responses, converge with positive Hessians, and pass gradient and
+31/61-node integration gates. An independent read-only calculation reproduced
+all saved descriptive treatment effects and cluster standard errors, then all
+nine contrasts for seven model definitions using a separate multinomial formula,
+101-node integration, and finite-difference delta uncertainty; the largest SE
+difference was 1.8e-9 percentage points. The original published recode checkpoints
+still reproduce exactly. The correctness report is generated from its CSV outputs.
+
+A new public-only copy also passed preparation, the item-level correctness checks,
+report regeneration, all 77 source hashes, lint, and 204 test assertions. This copy
+uses the existing locked library; alternative models were fitted locally from the
+same public inputs, not refitted again in this copy. Full container CI remains pending.

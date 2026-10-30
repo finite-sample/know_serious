@@ -121,14 +121,59 @@ recode_published <- function(wide) {
   list(wide = wide, long = long)
 }
 
-classify_responses <- function(response, item_index, window = "33") {
-  windows <- list(
+economic_answer_windows <- function() {
+  list(
     "33" = c(4.2, 5.4, 12.6, 19, 3.22, 3.32, 2, 29.2, 4.5, 20.5),
     "23" = c(4.6, 5, 13.59, 17, 3.25, 3.29, 6.6, 24.6, 6.5, 18.5),
     "10" = c(4.32, 5.28, 14.22, 17.38, 2.943, 3.597, 14.04, 17.16, 11.25, 13.75),
     "po" = c(3.8, 5.8, 14.8, 16.8, 3.17, 3.37, 12.6, 18.6, 9.5, 15.5),
     "pp" = c(3.8, 5.8, 14.8, 16.8, 3.17, 3.27, 14.6, 16.6, 11.5, 13.5)
   )
+}
+
+classify_interval <- function(response, lower, upper) {
+  stopifnot(all(lower <= upper, na.rm = TRUE))
+  ifelse(is.na(response), NA_real_, ifelse(response < lower, 0, ifelse(response > upper, 2, 1)))
+}
+
+partisan_response_code <- function(classification, party, item_index, reverse_estate = TRUE) {
+  direction <- if (reverse_estate) ifelse(item_index %in% c(4, 7), -1, 1) else 1
+  (classification - 1) * (2 * party - 1) * direction
+}
+
+correctness_variants <- function(responses, references) {
+  variants <- list(
+    published_33 = classify_responses(responses$l, responses$seq, "33"),
+    published_23 = classify_responses(responses$l, responses$seq, "23"),
+    relative_10 = classify_responses(responses$l, responses$seq, "10"),
+    payout = classify_responses(responses$l, responses$seq, "po"),
+    one_point_symmetric = classify_responses(responses$l, responses$seq, "pp")
+  )
+  gas <- which(responses$seq == 5)
+  variants$one_point_symmetric[gas] <- classify_interval(responses$l[gas], 3.17, 3.37)
+  variants$worksheet_23_symmetric <- variants$published_23
+  uninsured <- which(responses$seq == 3)
+  variants$worksheet_23_symmetric[uninsured] <- classify_interval(responses$l[uninsured], 14, 17.6)
+  stopifnot(!anyDuplicated(references$caseid))
+  reference <- references[match(responses$caseid, references$caseid), ]
+  unemployment <- which(responses$seq == 2)
+  stopifnot(all(is.finite(reference$gas_reference[gas])))
+  stopifnot(all(is.finite(reference$unemployment_reference[unemployment])))
+  variants$dated_33 <- variants$published_33
+  variants$dated_33[gas] <- classify_interval(
+    responses$l[gas], round(reference$gas_reference[gas] - .05, 10),
+    round(reference$gas_reference[gas] + .05, 10)
+  )
+  variants$dated_33[unemployment] <- classify_interval(
+    responses$l[unemployment], round(reference$unemployment_reference[unemployment] - .6, 10),
+    round(reference$unemployment_reference[unemployment] + .6, 10)
+  )
+  stopifnot(all(vapply(variants, function(value) identical(is.na(value), is.na(variants$published_33)), logical(1))))
+  variants
+}
+
+classify_responses <- function(response, item_index, window = "33") {
+  windows <- economic_answer_windows()
   stopifnot(window %in% names(windows), length(response) == length(item_index))
   score <- rep(NA_real_, length(response))
   debt <- item_index %in% c(1, 8)

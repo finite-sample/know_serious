@@ -1,0 +1,26 @@
+window,item_id,item,factual_key,unit,lower_inclusive,upper_inclusive,center_offset_from_key
+33,2,Unemployment 2008,4.8,percent,4.2,5.4,8.881784197001252e-16
+33,3,Uninsured 2008,15.8,percent,12.6,19,0
+33,5,Gas Price 2008,3.27,dollars_per_gallon,3.22,3.32,0
+33,9,Uninsured 2004,15.6,percent,2,29.2,0
+33,10,Poverty 2004,12.5,percent,4.5,20.5,0
+23,2,Unemployment 2008,4.8,percent,4.6,5,0
+23,3,Uninsured 2008,15.8,percent,13.59,17,-0.5050000000000008
+23,5,Gas Price 2008,3.27,dollars_per_gallon,3.25,3.29,0
+23,9,Uninsured 2004,15.6,percent,6.6,24.6,1.7763568394002505e-15
+23,10,Poverty 2004,12.5,percent,6.5,18.5,0
+10,2,Unemployment 2008,4.8,percent,4.32,5.28,8.881784197001252e-16
+10,3,Uninsured 2008,15.8,percent,14.22,17.38,0
+10,5,Gas Price 2008,3.27,dollars_per_gallon,2.943,3.597,0
+10,9,Uninsured 2004,15.6,percent,14.04,17.16,0
+10,10,Poverty 2004,12.5,percent,11.25,13.75,0
+po,2,Unemployment 2008,4.8,percent,3.8,5.8,0
+po,3,Uninsured 2008,15.8,percent,14.8,16.8,0
+po,5,Gas Price 2008,3.27,dollars_per_gallon,3.17,3.37,0
+po,9,Uninsured 2004,15.6,percent,12.6,18.6,1.7763568394002505e-15
+po,10,Poverty 2004,12.5,percent,9.5,15.5,0
+pp,2,Unemployment 2008,4.8,percent,3.8,5.8,0
+pp,3,Uninsured 2008,15.8,percent,14.8,16.8,0
+pp,5,Gas Price 2008,3.27,dollars_per_gallon,3.17,3.27,-0.050000000000000266
+pp,9,Uninsured 2004,15.6,percent,14.6,16.6,1.7763568394002505e-15
+pp,10,Poverty 2004,12.5,percent,11.5,13.5,0

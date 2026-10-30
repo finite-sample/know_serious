@@ -200,6 +200,7 @@ if (file.exists("tabs/knowledge_sensitivity_interactions.csv")) {
     "`make audit` computes the original-score contrasts alone. All alternative fits",
     "pass convergence, positive-Hessian, gradient, and 31/61-node quadrature checks.",
     "The baseline coefficients, tables, and historical figures are preserved.", "",
+    "- [Correctness-coding audit](correctness_audit.md): factual keys, answer windows, units, and nonresponse",
     "- [Retrospective plan](sensitivity_plan.md)",
     "- [Score comparisons and intervals](../tabs/knowledge_sensitivity.csv)",
     "- [Score changes](../tabs/knowledge_score_changes.csv)",

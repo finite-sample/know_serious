@@ -1,0 +1,9 @@
+rule,count
+gas_cents_divided_100,132
+source_gas_above_500,1
+source_gas_negative,1
+uninsured_2004_above_100,2
+dated_unemployment_valid,92
+dated_unemployment_answer_5_1,8
+economic_recorded_minus_one,230
+six_decimal_rounding_changes,0

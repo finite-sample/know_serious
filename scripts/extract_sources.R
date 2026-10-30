@@ -38,3 +38,18 @@ for (study in names(sources)) {
   }))
 }
 readr::write_csv(do.call(rbind, inventory), "docs/source_columns.csv")
+gas_path <- "data/raw/upstream/KN2008 and Gas/gasprice2.dta"
+expected <- private_manifest$sha256[match(gas_path, private_manifest$path)]
+stopifnot(identical(digest::digest(file = gas_path, algo = "sha256"), expected))
+gas <- haven::read_dta(gas_path)
+survey <- haven::read_dta(sources[["2008"]])
+stopifnot(!anyDuplicated(gas$caseid), setequal(gas$caseid, survey$caseid))
+gas <- gas[match(survey$caseid, gas$caseid), ]
+after_release <- !is.na(survey$tm_start) & as.Date(survey$tm_start, tz = "UTC") >= as.Date("2008-04-05")
+references <- data.frame(
+  caseid = as.numeric(survey$caseid),
+  unemployment_reference = ifelse(after_release, 5.1, 4.8),
+  gas_reference = as.numeric(gas$avgprice)
+)
+stopifnot(all(references$gas_reference > 3 & references$gas_reference < 4))
+readr::write_csv(references, "data/extracted/economic_references_2008.csv")

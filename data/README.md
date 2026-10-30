@@ -37,3 +37,15 @@ Respondent counts and usable-answer counts are different quantities. Some
 participants contribute no classifiable economic answer; see the generated
 Table 1 count comparisons. Treatment and knowledge missingness are reported
 explicitly rather than converted to zero without a published coding rule.
+
+The separate correctness audit uses `economic_references_2008.csv` (under
+`data/extracted/`): respondent IDs, a conservative date-dependent unemployment key,
+and the existing respondent-linked national gas reference. It publishes no actual
+calendar timestamps, state prices, or geography. Unemployment changes to 5.1 only
+for interviews starting April 5, 2008 or later. Gas references follow interview
+finish date and are labeled previous-day prices; the original download and exact
+item timestamps are unavailable. These references are sensitivity targets, not
+recovered payment rules. `scripts/extract_sources.R` produces them from pinned
+local originals. Two aggregate window-provenance files are preserved under
+`data/raw/window_provenance/`; their original bytes are hash-pinned in the archive
+manifest. They contain historical definitions and summaries, not microdata.

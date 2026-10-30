@@ -45,6 +45,8 @@ make check
 `make check` runs the analysis, lints the R code, and runs substantive tests.
 `make test` rebuilds the analysis datasets and runs the tests without rerunning
 the full model estimation and MCMC. `make prepare` rebuilds those datasets alone.
+`make correctness` audits factual keys, correctness windows, units, and nonresponse,
+then refits outcome-coding alternatives and generates the [correctness audit](docs/correctness_audit.md).
 `make audit` computes direct knowledge contrasts from fitted models.
 `make sensitivity` fits the separate scoring alternatives and economic-item checks
 after model estimation. `make ci-docker` uses the standard Rocker image and installs JAGS. The full analysis
@@ -118,6 +120,7 @@ chains added for reproducibility and convergence assessment.
 - [Local validation and execution limits](docs/local_validation.md)
 - [Exhibit and claim inventory](docs/exhibits.csv)
 - [Verified code corrections](tabs/corrections.csv)
+- [Correctness-coding audit](docs/correctness_audit.md)
 - [Knowledge and item-selection audit](docs/knowledge_audit.md)
 - [Retrospective sensitivity plan](docs/sensitivity_plan.md)
 

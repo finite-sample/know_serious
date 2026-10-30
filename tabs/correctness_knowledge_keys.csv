@@ -1,0 +1,19 @@
+item,correct_code,correct_answer,included_in_published_score,correct_responses,raw_missing,explicit_refusal,explicit_dont_know,checkpoint_missing,missing_answer_scored_zero,observed_score_mismatches,key_type
+e1,3,Robert Gates,TRUE,651,106,0,144,81,25,0,historical_fact
+e2,1,Nancy Pelosi,TRUE,1137,99,0,183,82,17,0,historical_fact
+e3,2,John Roberts,TRUE,495,102,0,260,84,18,0,historical_fact
+e4,1,Mahmoud Ahmadinejad,TRUE,892,99,0,245,86,13,0,historical_fact
+e5,3,Secretary of State,TRUE,1109,97,0,71,84,13,0,historical_fact
+e6,2,Ben Bernanke,TRUE,576,100,0,421,86,14,0,historical_fact
+e7,1,Michael Mukasey,TRUE,342,106,0,546,86,20,0,historical_fact
+e8,1,Nicolas Sarkozy,TRUE,605,103,0,440,89,14,0,historical_fact
+e9_1,2,Democrat,TRUE,750,106,0,362,85,21,0,historical_fact
+e9_2,1,Republican,TRUE,1044,104,0,209,85,19,0,historical_fact
+e9_3,1,Republican,TRUE,1110,106,0,171,85,21,0,historical_fact
+e9_4,1,Republican,TRUE,660,101,0,341,85,16,0,historical_fact
+e10_1,4,Not a US senator in 2002,FALSE,281,117,0,224,88,29,0,historical_fact
+e10_2,1,For the bill,FALSE,1025,114,0,160,88,26,0,historical_fact
+e10_3,1,For the bill,FALSE,592,120,0,325,88,32,0,historical_fact
+e10_4,1,For the bill,FALSE,598,113,0,459,88,25,0,historical_fact
+e11,1,Newt Gingrich,FALSE,781,100,0,185,89,11,0,ideological_ranking
+e12,4,John Kerry,FALSE,837,104,0,171,89,15,0,ideological_ranking

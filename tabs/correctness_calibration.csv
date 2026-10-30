@@ -1,0 +1,5 @@
+item,frame,valid_responses,correct_responses,correct_percent
+Uninsured 2004,full_2004_nonnegative,1175,382,32.51063829787234
+Uninsured 2004,published_2004_valid,591,176,29.780033840947546
+Poverty 2004,full_2004_nonnegative,1176,433,36.81972789115646
+Poverty 2004,published_2004_valid,601,211,35.108153078202996
