@@ -156,4 +156,14 @@ Original materials retain their existing rights.
 
 <!-- adjacent:start -->
 
+## 🔗 Adjacent Repositories
+
+- [finite-sample/know_motivated](https://github.com/finite-sample/know_motivated) — Replication materials for Motivated Responding in Studies of Factual Learning \(Political Behavior 2018\)
+- [finite-sample/total_error](https://github.com/finite-sample/total_error) — total error
+- [finite-sample/benchmarking-benchmarks](https://github.com/finite-sample/benchmarking-benchmarks) — Benchmarking Benchmarks
+- [finite-sample/know_hidden](https://github.com/finite-sample/know_hidden) — Mis-measuring Political Knowledge? Do People Know More—or Even Less—about Politics than Commonly Thought?
+- [finite-sample/know_gains](https://github.com/finite-sample/know_gains) — Measuring Learning in Informative Processes \(Luskin, Helfer, Sood\)
+
+_Powered by [Adjacent](https://github.com/gojiplus/adjacent)_
+
 <!-- adjacent:end -->
