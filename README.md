@@ -9,7 +9,7 @@ alongside `know_hidden` and `know_motivated`.
 
 The experiments ask whether accuracy incentives change partisan reports of economic
 conditions. This repository reconstructs the published definitions and item selection;
-a separate follow-up will revisit knowledge measurement and item inclusion.
+a separate sensitivity audit revisits knowledge measurement and item inclusion.
 
 ## Results and audit
 
@@ -23,7 +23,8 @@ These findings do not establish a change in the reproduced treatment coefficient
 
 The original 2008 delivery is absent; preparation starts from its earliest available checkpoint.
 Exact Stata bootstrap-wrapper behavior and clean-container execution remain unverified.
-Knowledge scoring and item-selection alternatives are reserved for the separate follow-up.
+Knowledge scoring and item-selection sensitivities are reported separately in the
+[knowledge audit](docs/knowledge_audit.md); the publication baseline is preserved.
 <!-- results:end -->
 
 See the [table-by-table and figure-by-figure status](docs/exhibit_status.md) for
@@ -44,7 +45,9 @@ make check
 `make check` runs the analysis, lints the R code, and runs substantive tests.
 `make test` rebuilds the analysis datasets and runs the tests without rerunning
 the full model estimation and MCMC. `make prepare` rebuilds those datasets alone.
-`make ci-docker` uses the standard Rocker image and installs JAGS. The full analysis
+`make audit` computes direct knowledge contrasts from fitted models.
+`make sensitivity` fits the separate scoring alternatives and economic-item checks
+after model estimation. `make ci-docker` uses the standard Rocker image and installs JAGS. The full analysis
 includes repeated numerical optimization and four-chain MCMC, so it is not a smoke test.
 `make tables-pdf` builds a standalone table booklet when XeLaTeX and latexmk are installed.
 Generated estimates, comparisons, and diagnostics are CSV files in `tabs/`; figures
@@ -115,7 +118,8 @@ chains added for reproducibility and convergence assessment.
 - [Local validation and execution limits](docs/local_validation.md)
 - [Exhibit and claim inventory](docs/exhibits.csv)
 - [Verified code corrections](tabs/corrections.csv)
-- [Deferred knowledge and item-selection review](docs/follow_up.md)
+- [Knowledge and item-selection audit](docs/knowledge_audit.md)
+- [Retrospective sensitivity plan](docs/sensitivity_plan.md)
 
 Numerical reproduction, implementation corrections, and alternative analytical
 choices are separate. Corrections do not overwrite the historical specification.

@@ -68,7 +68,7 @@ The estimators also use different priors on the random-effect scale, as in the
 original scripts. Differences between their outputs cannot be attributed solely
 to conditioning versus integration.
 
-## Source limits and deferred work
+## Source limits and separate sensitivity audit
 
 The original 2008 delivery and visual-recoding script are absent; the available
 checkpoint already contains some upstream coding. Exact Stata bootstrap-wrapper
@@ -79,4 +79,4 @@ within three approximate Monte Carlo standard errors in all 44 comparisons.
 An older extracted July 15 folder has stale intervals, dropout code, and comments.
 Those differences are superseded in the July 29 bundle and are not findings about
 the published archive. Knowledge scoring and item inclusion remain unchanged;
-their reassessment is recorded in [the separate follow-up](follow_up.md).
+their reassessment is recorded in [the separate knowledge audit](knowledge_audit.md).

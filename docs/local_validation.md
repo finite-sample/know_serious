@@ -17,7 +17,7 @@ a claim that a fresh container completed `make check` in one invocation.
   table generation were rerun after migration to `readr` CSV input and output.
 - `make lint test` passed with 144 assertions, no failures, no warnings, and no skips.
 - `actionlint .github/workflows/check.yml` passed.
-- `make tables-pdf` built the eight-page table booklet with XeLaTeX.
+- `make tables-pdf` built the nine-page table booklet with XeLaTeX.
 - A relocated copy passed source-hash verification, model-output
   validation, and all 144 test assertions using the existing locked library.
   Saved posterior draws also reproduce their diagnostics in a fresh R process.
@@ -51,3 +51,11 @@ intended public files passes source verification (74 files), lint, and all 156
 test assertions using the existing locked R library. It contains no full upstream
 directory or historical project. This verifies input completeness without claiming
 a clean operating-system dependency installation or a new full MCMC run.
+
+The direct knowledge-contrast and scoring tests bring the local test total to 166.
+The separate sensitivity family retains 1,260 respondents and 6,233 responses in
+all five models. Every alternative passes the optimizer, Hessian, gradient, and
+31/61-node quadrature gates. Original-score delta uncertainty is also checked
+against an analytic multinomial derivative. The Table B3 render preserves small
+coefficients (including 0.004), and the booklet includes counts and equality-test
+and fit-statistic rows. Full GitHub container execution is still pending.

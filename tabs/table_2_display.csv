@@ -7,3 +7,6 @@ Random-intercept variance,0.07 (0.04),0.06 (0.04),0.06 (0.04),0.11 (0.05),0.11 (
 Responses,4324,3276,3276,2614,2614
 Respondents,878,660,660,525,525
 Log likelihood,-4685,-3579,-3579,-2815,-2815
+Incentive equality: chi-square,—,0.02,—,0.19,—
+Degrees of freedom,—,1,—,1,—
+Equality-test p,—,0.892,—,0.663,—

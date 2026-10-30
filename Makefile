@@ -1,4 +1,4 @@
-.PHONY: restore extract prepare analysis models lint test check ci-docker format tables-pdf
+.PHONY: restore extract prepare analysis models audit sensitivity lint test check ci-docker format tables-pdf
 restore:
 	Rscript -e 'if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv", repos = "https://cloud.r-project.org"); dir.create(".library", showWarnings = FALSE); renv::restore(library = ".library", prompt = FALSE)'
 extract:
@@ -10,6 +10,10 @@ analysis:
 	Rscript scripts/99_run_all.R
 models:
 	Rscript scripts/02_models.R
+audit:
+	Rscript scripts/10_knowledge_audit.R
+sensitivity:
+	Rscript scripts/11_sensitivity.R
 lint:
 	Rscript -e 'l <- unlist(lapply(c("R", "scripts", "tests"), lintr::lint_dir), recursive = FALSE); print(l); quit(status = as.integer(length(l) > 0))'
 test: prepare

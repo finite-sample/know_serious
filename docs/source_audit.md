@@ -112,4 +112,4 @@ Completing the provenance chain requires the missing 2008 survey delivery and
 `KN2008visual.recoding.do`; the historical assembly script would additionally
 confirm the reconstructed mappings. These missing files do not prevent exact
 replication from the available checkpoint. They do limit an audit of original
-knowledge coding, which remains a separately deferred investigation.
+knowledge coding, assessed in the [separate sensitivity audit](knowledge_audit.md).

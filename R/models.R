@@ -595,3 +595,52 @@ validate_model_outputs <- function() {
   }
   invisible(TRUE)
 }
+
+knowledge_interaction_test <- function(fit) {
+  indices <- match(c("correct_accxpk", "uncongenial_accxpk"), names(fit$parameters))
+  stopifnot(!anyNA(indices))
+  parameters <- fit$parameters[indices]
+  statistic <- drop(crossprod(parameters, solve(fit$covariance[indices, indices], parameters)))
+  data.frame(statistic = statistic, degrees_freedom = 2, p_value = pchisq(statistic, 2, lower.tail = FALSE))
+}
+
+knowledge_bias_contrasts <- function(fit, item_rows, low = 4.5, high = 9.5) {
+  stopifnot(fit$family == "multinomial", nrow(item_rows) == 5L, low < high)
+  quantities <- function(parameters) {
+    candidate <- fit
+    candidate$parameters <- parameters
+    bias <- function(knowledge, incentive) {
+      sample <- item_rows
+      sample$pk <- knowledge
+      sample$acc <- incentive
+      sample$accxpk <- knowledge * incentive
+      probability <- predict_published_model(candidate, sample)
+      mean(probability[, "congenial"] - probability[, "uncongenial"]) * 100
+    }
+    control_low <- bias(low, 0)
+    incentive_low <- bias(low, 1)
+    control_high <- bias(high, 0)
+    incentive_high <- bias(high, 1)
+    c(
+      control_low = control_low, incentive_low = incentive_low,
+      control_high = control_high, incentive_high = incentive_high,
+      treatment_low = incentive_low - control_low,
+      treatment_high = incentive_high - control_high,
+      moderation = (incentive_high - control_high) - (incentive_low - control_low),
+      control_gradient = control_high - control_low,
+      incentive_gradient = incentive_high - incentive_low
+    )
+  }
+  estimate <- quantities(fit$parameters)
+  gradient <- numDeriv::jacobian(quantities, fit$parameters)
+  covariance <- gradient %*% fit$covariance %*% t(gradient)
+  stopifnot(all(diag(covariance) >= 0))
+  standard_error <- sqrt(diag(covariance))
+  data.frame(
+    contrast = names(estimate), knowledge_low = low, knowledge_high = high,
+    estimate_pp = unname(estimate), standard_error_pp = standard_error,
+    lower_95_pp = unname(estimate) - qnorm(.975) * standard_error,
+    upper_95_pp = unname(estimate) + qnorm(.975) * standard_error,
+    observations = fit$observations, respondents = fit$respondents
+  )
+}

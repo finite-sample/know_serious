@@ -1,6 +1,10 @@
 estimates <- readr::read_csv("tabs/model_estimates.csv", show_col_types = FALSE)
 fits <- readr::read_csv("tabs/model_fit_statistics.csv", show_col_types = FALSE)
-format_cell <- function(estimate, standard_error) sprintf("%.2f (%.2f)", estimate, standard_error)
+wald <- readr::read_csv("tabs/model_wald_tests.csv", show_col_types = FALSE)
+format_cell <- function(estimate, standard_error) {
+  digits <- ifelse(abs(estimate) > 0 & abs(estimate) < 0.01, 3L, 2L)
+  sprintf("%.*f (%.*f)", digits, estimate, digits, standard_error)
+}
 write_display <- function(table, name) {
   readr::write_csv(table, paste0("tabs/", name, "_display.csv"))
   escape_tex <- function(value) {
@@ -35,6 +39,18 @@ format_regression <- function(models, terms, labels, columns = models) {
       fit$observations, fit$respondents, sprintf("%.0f", fit$log_likelihood)
     )
   }
+  if (any(models %in% wald$model)) {
+    diagnostics <- data.frame(quantity = c("Incentive equality: chi-square", "Degrees of freedom", "Equality-test p"))
+    for (index in seq_along(models)) {
+      row <- wald[wald$model == models[index], ]
+      diagnostics[[columns[index]]] <- if (nrow(row) == 0) {
+        rep("—", 3)
+      } else {
+        c(sprintf("%.2f", row$statistic), row$degrees_freedom, sprintf("%.3f", row$p_value))
+      }
+    }
+    table <- rbind(table, diagnostics)
+  }
   table
 }
 terms <- c("pay", "mon", "app", "acc")
@@ -67,6 +83,11 @@ nominal <- rbind(nominal, data.frame(
   ),
   uncongenial = "—"
 ))
+iia <- readr::read_csv("tabs/model_iia_diagnostics.csv", show_col_types = FALSE)
+nominal <- rbind(nominal, data.frame(
+  quantity = paste0("IIA statistic (omit category ", iia$omitted_category, "; invalid chi-square inference)"),
+  correct = sprintf("%.3f", iia$statistic), uncongenial = "—"
+))
 write_display(nominal, "table_4")
 write_display(format_regression(
   c("table_2_2a", paste0("table_b1_", c(60, 45, 40, 35))), c("mon", "app"),
@@ -79,20 +100,40 @@ write_display(format_regression(models, terms[1:3], labels[1:3], as.character(1:
 items <- readr::read_csv("tabs/table_b3.csv", show_col_types = FALSE)
 items <- items[items$term %in% c("pay", "mon", "app"), ]
 items$coefficient_se <- format_cell(items$estimate, items$standard_error)
-write_display(as.data.frame(items[c("item", "term", "coefficient_se", "observations")]), "table_b3")
+item_fits <- readr::read_csv("tabs/table_b3_fit_statistics.csv", show_col_types = FALSE)
+item_wald <- readr::read_csv("tabs/table_b3_wald_tests.csv", show_col_types = FALSE)
+matched_fit <- item_fits[match(items$item, item_fits$item), ]
+matched_wald <- item_wald[match(items$item, item_wald$item), ]
+items$log_likelihood <- sprintf("%.2f", matched_fit$log_likelihood)
+items$model_lr <- sprintf("%.2f", matched_fit$likelihood_ratio)
+items$model_df <- matched_fit$degrees_freedom
+items$model_p <- sprintf("%.3f", matched_fit$p_value)
+items$equality_chisq <- ifelse(is.na(matched_wald$statistic), "—", sprintf("%.2f", matched_wald$statistic))
+items$equality_p <- ifelse(is.na(matched_wald$p_value), "—", sprintf("%.3f", matched_wald$p_value))
+write_display(as.data.frame(items[c(
+  "item", "term", "coefficient_se", "observations", "log_likelihood", "model_lr", "model_df",
+  "model_p", "equality_chisq", "equality_p"
+)]), "table_b3")
 observed <- readr::read_csv("tabs/table_1.csv", show_col_types = FALSE)
 observed$estimate_se_pct <- sprintf("%.1f (%.1f)", 100 * observed$estimate, 100 * observed$standard_error)
 write_display(as.data.frame(observed[c("study", "statistic", "estimate_se_pct")]), "table_1")
+counts <- readr::read_csv("tabs/table_1_count_benchmarks.csv", show_col_types = FALSE)
+write_display(as.data.frame(counts[c(
+  "study", "treatment", "reproduced_respondents", "usable_respondents", "reproduced_responses"
+)]), "table_1_counts")
 writeLines(c(
   "\\documentclass[10pt]{article}", "\\usepackage[landscape,margin=1.5cm]{geometry}",
   "\\usepackage{booktabs,graphicx,fontspec,adjustbox}", "\\begin{document}",
   "\\section*{Published-specification replication tables}",
   "Coefficients and standard errors are regenerated. Table 1 shares are percentages; contrasts are percentage points.",
   "See the audit report for bootstrap sampling-frame limits. Significance symbols are omitted.",
-  "The complete numerical exports include Wald tests and fit diagnostics.",
-  unlist(lapply(c("table_1", "table_2", "table_3", "table_4", "table_b1", "table_b2", "table_b3"), function(name) {
+  "Equality tests are Wald tests. IIA statistics are historical diagnostics with invalid chi-square inference.",
+  "The Table 1 count supplement distinguishes published participation counts from usable respondents.",
+  unlist(lapply(c(
+    "table_1", "table_1_counts", "table_2", "table_3", "table_4", "table_b1", "table_b2", "table_b3"
+  ), function(name) {
     c(
-      "\\clearpage", paste0("\\section*{", paste("Table", toupper(sub("table_", "", name, fixed = TRUE))), "}"),
+      "\\clearpage", paste0("\\section*{", paste("Table", toupper(gsub("_", " ", sub("table_", "", name)))), "}"),
       paste0(
         "\\begin{adjustbox}{max width=\\textwidth,max totalheight=\\dimexpr\\textheight-3cm\\relax}",
         "\\input{tabs/", name, ".tex}\\end{adjustbox}"

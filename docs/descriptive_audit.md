@@ -100,7 +100,7 @@ the archive keeps its explicit one-point bins and discloses the difference.
 - H3's knowledge moderation requires validation of the multinomial fit and its
   predictions. Reproducing the published knowledge score and smoothing formula
   does not validate that measurement as the only defensible knowledge construct.
-  Alternative scoring and item inclusion remain deferred as requested.
+  Alternative scoring and item inclusion are examined in the separate knowledge audit.
 - The final July 29 recode explicitly derives post-randomization dropout and
   reproduces the appendix’s eight Study 2 dropouts. The earlier July 15
   13-versus-eight discrepancy is superseded, not an error in the canonical release.
