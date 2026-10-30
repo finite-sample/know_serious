@@ -4,31 +4,47 @@ Replication and audit of Markus Prior, Gaurav Sood, and Kabir Khanna (2015),
 *The Impact of Accuracy Incentives on Partisan Bias in Reports of Economic Perceptions*,
 [Quarterly Journal of Political Science, 10(4), 489–518](https://doi.org/10.1561/100.00014127).
 
-Repository name: `know_serious`, in the `finite-sample` political-knowledge family
-alongside `know_hidden` and `know_motivated`.
-
-The experiments ask whether accuracy incentives change partisan reports of economic
-conditions. This repository reconstructs the published definitions and item selection;
-a separate sensitivity audit revisits knowledge measurement and item inclusion.
+This R archive reproduces the published model estimates and audits how the experiments
+measure accuracy and partisan bias. Separate analyses examine correctness coding,
+knowledge scores, and item selection. The historical specification remains the
+replication baseline. `know_serious` belongs to the `finite-sample` political-knowledge
+family, alongside `know_hidden` and `know_motivated`.
 
 ## Results and audit
 
 <!-- results:start -->
-Monetary incentives reduce congenial answers from 39.6% to 34.8% across the two studies (4.8 percentage points). The congenial-minus-uncongenial gap falls from 11.5 to 6.1 points.
+All 304 checked model benchmarks reproduce at published precision.
+Bootstrap standard errors and some figure details do not match exactly;
+see the [exhibit status](docs/exhibit_status.md). Under the published correctness definition,
+monetary incentives reduce partisan-congenial errors from 39.6% to 34.8% across the two studies (4.8 percentage points). The congenial-minus-uncongenial gap falls from 11.5 to 6.1 points.
 
-All 304 checked model benchmarks reproduce at published precision. The audit identifies a prose p-value threshold
-inconsistent with Table 1, a small completion-definition discrepancy, and invalid IIA diagnostic inference.
-These findings do not establish a change in the reproduced treatment coefficients. See the
+The definition of correctness affects the estimates and their uncertainty. The main analysis
+counts 2% to 29.2% uninsured as correct around a 15.6% factual key in Study 1. The
+[correctness audit](docs/correctness_audit.md) traces factual keys, answer windows, units,
+missing answers, and partisan-error coding, then estimates their consequences. The
+[knowledge audit](docs/knowledge_audit.md) separately examines score construction and item selection.
+
+For example, the estimated change in the incentive effect on bias between knowledge
+scores 4.5 and 9.5 is:
+
+| Correctness definition | Difference in effects, percentage points [95% CI] |
+| --- | --- |
+| Published 33% windows | -7.82 [-14.70, -0.93] |
+| Within 10% of the factual key | -5.02 [-11.46, 1.42] |
+
+Negative values mean a larger bias reduction at higher knowledge. Both estimates use
+the same 1,260 respondents and 6,233 responses, with appeal and monetary incentives pooled.
+The intervals are pointwise; a difference in significance is not a test of the difference
+between definitions.
+
+The audit also identifies a prose p-value threshold inconsistent with Table 1, a small
+completion-definition discrepancy, and an invalid test of independence of irrelevant alternatives.
+Those findings do not establish a change in the reproduced treatment coefficients. See the
 [published-article verification](docs/publication_verification.md) and [model audit](docs/model_audit.md).
 
-The original 2008 delivery is absent; preparation starts from its earliest available checkpoint.
-Exact Stata bootstrap-wrapper behavior and clean-container execution remain unverified.
-Knowledge scoring and item-selection sensitivities are reported separately in the
-[knowledge audit](docs/knowledge_audit.md); the publication baseline is preserved.
+The original 2008 survey delivery and visual-recoding script are absent; preparation starts
+from the earliest available checkpoint. Exact Stata bootstrap-wrapper behavior remains unresolved.
 <!-- results:end -->
-
-See the [table-by-table and figure-by-figure status](docs/exhibit_status.md) for
-exact matches, approximate reproductions, and interpretation limits.
 
 Open the [generated report](docs/report.html), [table booklet](docs/tables.pdf),
 or [audit findings](docs/audit_findings.md).
@@ -43,20 +59,30 @@ make check
 ```
 
 `make check` runs the analysis, lints the R code, and runs substantive tests.
-`make test` rebuilds the analysis datasets and runs the tests without rerunning
-the full model estimation and MCMC. `make prepare` rebuilds those datasets alone.
-`make correctness` audits factual keys, correctness windows, units, and nonresponse,
-then refits outcome-coding alternatives and generates the [correctness audit](docs/correctness_audit.md).
-`make audit` computes direct knowledge contrasts from fitted models.
-`make sensitivity` fits the separate scoring alternatives and economic-item checks
-after model estimation. `make ci-docker` uses the standard Rocker image and installs JAGS. The full analysis
-includes repeated numerical optimization and four-chain MCMC, so it is not a smoke test.
-`make tables-pdf` builds a standalone table booklet when XeLaTeX and latexmk are installed.
-Generated estimates, comparisons, and diagnostics are CSV files in `tabs/`; figures
-are in `figs/`. Intermediate datasets and fitted models are in `data/build/`.
-Git tracks the source inputs, R code, tests, documentation, tables, and figures.
-Installed packages and intermediate datasets and model objects are ignored;
-the analysis commands regenerate them from the preserved inputs.
+The full analysis includes repeated numerical optimization and four-chain Markov
+chain Monte Carlo sampling. A clean Rocker container completed it successfully;
+see the [replication run](https://github.com/finite-sample/know_serious/actions/runs/41094030573)
+and [validation record](docs/local_validation.md).
+
+| Command | What it runs |
+| --- | --- |
+| `make prepare` | Reconstruct the analysis datasets. |
+| `make test` | Rebuild those datasets and run tests without refitting the full models. |
+| `make audit` | Compute direct knowledge contrasts from fitted models. |
+| `make sensitivity` | Refit alternative knowledge scores and economic-item selections after model estimation. |
+| `make correctness` | Check answer keys, windows, units, and nonresponse; refit outcome definitions; regenerate the correctness report. |
+| `make ci-docker` | Restore packages and run the checks in the standard Rocker image with JAGS. |
+| `make tables-pdf` | Build the table booklet; requires XeLaTeX and latexmk. |
+
+Run the separate audits after `make check` has produced the baseline fits.
+After `make sensitivity`, run `Rscript scripts/09_report.R` to refresh the knowledge
+audit and README findings. `make correctness` regenerates its own report; run the
+same reporting script afterward to refresh the README summary.
+
+Estimates, comparisons, and diagnostics are CSV files in `tabs/`; figures are in
+`figs/`. Git tracks the inputs, R code, tests, documentation, tables, and figures.
+Installed packages and the datasets and fitted models in `data/build/` are ignored
+and regenerated by the analysis commands.
 
 The lockfile restores packages into `.library/`, which `.Rprofile` adds to R’s library path.
 The Docker target uses a separate package library for Linux.
@@ -68,8 +94,8 @@ The canonical source is the July 29, 2015 bundle, preserved as extracted files i
 `data/raw/historical_2015_07_15/`
 for historical comparison; its superseded code is not the publication baseline.
 
-Published source copies are in `data/raw/final_bundle/`; the additional survey
-columns used in reconstruction and sensitivity analysis are in `data/extracted/`.
+Additional survey columns used in reconstruction and sensitivity analysis are in
+`data/extracted/`. Historical window definitions are in `data/raw/window_provenance/`.
 `docs/archive_manifest.csv` pins the copied inputs by SHA-256;
 `Rscript scripts/verify_sources.R` checks them. `docs/source_manifest.csv` inventories
 the larger historical project. Its original files, including `PSK_Replication.zip`,
@@ -98,8 +124,8 @@ entrypoints. Source files never serve as output destinations.
 
 The GLLAMM translation explicitly integrates respondent random effects and applies
 the original gamma penalty to their variance. It checks numerical gradients,
-curvature, and quadrature refinement. Matching an ordinal model's name is insufficient
-because an unpenalized mixed model would estimate a different objective.
+curvature, and quadrature refinement. An unpenalized mixed model
+would estimate a different objective.
 
 Bootstrap estimates use respondent resampling and 1,000 replications. R and Stata
 have different random streams; seed equality does not imply identical simulated
@@ -126,5 +152,8 @@ chains added for reproducibility and convergence assessment.
 
 Numerical reproduction, implementation corrections, and alternative analytical
 choices are separate. Corrections do not overwrite the historical specification.
-Missing validation is reported explicitly; a successful execution alone does not
-certify the paper's conclusions. Original materials retain their existing rights.
+Original materials retain their existing rights.
+
+<!-- adjacent:start -->
+
+<!-- adjacent:end -->

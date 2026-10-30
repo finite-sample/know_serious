@@ -223,26 +223,53 @@ benchmark_count <- 2 * nrow(readr::read_csv("tabs/model_benchmarks.csv", show_co
   nrow(readr::read_csv("tabs/model_statistics_benchmarks.csv", show_col_types = FALSE))
 summary <- c(
   sprintf(
+    "All %s checked model benchmarks reproduce at published precision.", benchmark_count
+  ),
+  "Bootstrap standard errors and some figure details do not match exactly;",
+  "see the [exhibit status](docs/exhibit_status.md). Under the published correctness definition,",
+  sprintf(
     paste0(
-      "Monetary incentives reduce congenial answers from %.1f%% to %.1f%% across the two studies ",
+      "monetary incentives reduce partisan-congenial errors from %.1f%% to %.1f%% across the two studies ",
       "(%.1f percentage points). The congenial-minus-uncongenial gap falls from %.1f to %.1f points."
     ),
     value("group_0_congenial"), value("group_1_congenial"), -value("contrast_1_congenial"),
     value("group_0_bias"), value("group_1_bias")
   ),
   "",
-  sprintf(
-    "All %s checked model benchmarks reproduce at published precision. The audit identifies a prose p-value threshold",
-    benchmark_count
-  ),
-  "inconsistent with Table 1, a small completion-definition discrepancy, and invalid IIA diagnostic inference.",
-  "These findings do not establish a change in the reproduced treatment coefficients. See the",
-  "[published-article verification](docs/publication_verification.md) and [model audit](docs/model_audit.md).",
-  "",
-  "The original 2008 delivery is absent; preparation starts from its earliest available checkpoint.",
-  "Exact Stata bootstrap-wrapper behavior and clean-container execution remain unverified.",
-  "Knowledge scoring and item-selection sensitivities are reported separately in the",
-  "[knowledge audit](docs/knowledge_audit.md); the publication baseline is preserved."
+  "The definition of correctness affects the estimates and their uncertainty. The main analysis",
+  "counts 2% to 29.2% uninsured as correct around a 15.6% factual key in Study 1. The",
+  "[correctness audit](docs/correctness_audit.md) traces factual keys, answer windows, units,",
+  "missing answers, and partisan-error coding, then estimates their consequences. The",
+  "[knowledge audit](docs/knowledge_audit.md) separately examines score construction and item selection."
+)
+if (file.exists("tabs/correctness_knowledge_contrasts.csv")) {
+  correctness <- readr::read_csv("tabs/correctness_knowledge_contrasts.csv", show_col_types = FALSE)
+  moderation <- correctness[correctness$contrast == "moderation", ]
+  baseline <- moderation[moderation$variant == "published_33", ]
+  relative <- moderation[moderation$variant == "relative_10", ]
+  stopifnot(nrow(baseline) == 1L, nrow(relative) == 1L)
+  summary <- c(summary, "",
+    "For example, the estimated change in the incentive effect on bias between knowledge",
+    "scores 4.5 and 9.5 is:", "",
+    "| Correctness definition | Difference in effects, percentage points [95% CI] |",
+    "| --- | --- |",
+    sprintf("| Published 33%% windows | %.2f [%.2f, %.2f] |",
+            baseline$estimate_pp, baseline$lower_95_pp, baseline$upper_95_pp),
+    sprintf("| Within 10%% of the factual key | %.2f [%.2f, %.2f] |",
+            relative$estimate_pp, relative$lower_95_pp, relative$upper_95_pp), "",
+    "Negative values mean a larger bias reduction at higher knowledge. Both estimates use",
+    "the same 1,260 respondents and 6,233 responses, with appeal and monetary incentives pooled.",
+    "The intervals are pointwise; a difference in significance is not a test of the difference",
+    "between definitions."
+  )
+}
+summary <- c(summary, "",
+  "The audit also identifies a prose p-value threshold inconsistent with Table 1, a small",
+  "completion-definition discrepancy, and an invalid test of independence of irrelevant alternatives.",
+  "Those findings do not establish a change in the reproduced treatment coefficients. See the",
+  "[published-article verification](docs/publication_verification.md) and [model audit](docs/model_audit.md).", "",
+  "The original 2008 survey delivery and visual-recoding script are absent; preparation starts",
+  "from the earliest available checkpoint. Exact Stata bootstrap-wrapper behavior remains unresolved."
 )
 readme <- readLines("README.md")
 start <- match("<!-- results:start -->", readme)
