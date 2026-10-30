@@ -1,0 +1,107 @@
+model,term,actual,published,tolerance,matches
+table_2_2a,statistic,0.018361344843394,0.02,0.005,TRUE
+table_2_2a,p_value,0.892213370298539,0.89,0.005,TRUE
+table_2_3a,statistic,0.190073597868502,0.19,0.005,TRUE
+table_2_3a,p_value,0.662855369717302,0.66,0.005,TRUE
+table_3_1,statistic,0.0833664646173806,0.08,0.005,TRUE
+table_3_1,p_value,0.959173567651569,0.96,0.005,TRUE
+table_b1_60,statistic,0.00252038990338976,0,0.005,TRUE
+table_b1_60,p_value,0.959960234451422,0.96,0.005,TRUE
+table_b1_45,statistic,0.0193416480932822,0.02,0.005,TRUE
+table_b1_45,p_value,0.889391472914087,0.89,0.005,TRUE
+table_b1_40,statistic,0.093832856485719,0.09,0.005,TRUE
+table_b1_40,p_value,0.759359876944212,0.76,0.005,TRUE
+table_b1_35,statistic,0.25948038078641,0.26,0.005,TRUE
+table_b1_35,p_value,0.610477365028414,0.61,0.005,TRUE
+table_b2_study_two_po,statistic,0.312565376053084,0.31,0.005,TRUE
+table_b2_study_two_po,p_value,0.576110218122662,0.58,0.005,TRUE
+table_b2_study_two_10,statistic,1.81186826375628,1.81,0.005,TRUE
+table_b2_study_two_10,p_value,0.178284276501331,0.18,0.005,TRUE
+table_b2_study_two_23,statistic,0.0974981249911184,0.1,0.005,TRUE
+table_b2_study_two_23,p_value,0.754852893445014,0.75,0.005,TRUE
+table_b2_consistent_po,statistic,0.00854398988092257,0.01,0.005,TRUE
+table_b2_consistent_po,p_value,0.926353461067525,0.93,0.005,TRUE
+table_b2_consistent_10,statistic,0.608853539747181,0.61,0.005,TRUE
+table_b2_consistent_10,p_value,0.435219799488721,0.44,0.005,TRUE
+table_b2_consistent_23,statistic,0.112367686516335,0.11,0.005,TRUE
+table_b2_consistent_23,p_value,0.737464493674291,0.74,0.005,TRUE
+Unemployment 2004,log_likelihood,-488.20876626144,-488,0.5,TRUE
+Unemployment 2004,likelihood_ratio,1.55473023125523,1.55,0.005,TRUE
+Unemployment 2004,p_value,0.212438486965969,0.21,0.005,TRUE
+Estate Tax 2004,log_likelihood,-492.096205586478,-492,0.5,TRUE
+Estate Tax 2004,likelihood_ratio,0.389386037324698,0.39,0.005,TRUE
+Estate Tax 2004,p_value,0.532622303199269,0.53,0.005,TRUE
+Debt 2004,log_likelihood,-467.44948303692,-467,0.5,TRUE
+Debt 2004,likelihood_ratio,4.25463493284803,4.25,0.005,TRUE
+Debt 2004,p_value,0.0391433605096223,0.04,0.005,TRUE
+Uninsured 2004,log_likelihood,-483.943442801457,-484,0.5,TRUE
+Uninsured 2004,likelihood_ratio,0.197148921209532,0.2,0.005,TRUE
+Uninsured 2004,p_value,0.657032063948907,0.66,0.005,TRUE
+Poverty 2004,log_likelihood,-490.524229876818,-491,0.5,TRUE
+Poverty 2004,likelihood_ratio,0.0010920463163302,0,0.005,TRUE
+Poverty 2004,p_value,0.973637806016896,0.97,0.005,TRUE
+Unemployment 2008,log_likelihood,-705.042191411332,-705,0.5,TRUE
+Unemployment 2008,likelihood_ratio,0.814451691774366,0.81,0.005,TRUE
+Unemployment 2008,p_value,0.665493874273582,0.67,0.005,TRUE
+Estate Tax 2008,log_likelihood,-688.346823940219,-688,0.5,TRUE
+Estate Tax 2008,likelihood_ratio,0.900327949126677,0.9,0.005,TRUE
+Estate Tax 2008,p_value,0.637523605395734,0.64,0.005,TRUE
+Debt 2008,log_likelihood,-653.744904472326,-654,0.5,TRUE
+Debt 2008,likelihood_ratio,6.44632397499686,6.45,0.005,TRUE
+Debt 2008,p_value,0.0398289203942087,0.04,0.005,TRUE
+Uninsured 2008,log_likelihood,-713.697877490395,-714,0.5,TRUE
+Uninsured 2008,likelihood_ratio,1.4038380498364,1.4,0.005,TRUE
+Uninsured 2008,p_value,0.495633258011382,0.5,0.005,TRUE
+Gas Price 2008,log_likelihood,-715.369544860117,-715,0.5,TRUE
+Gas Price 2008,likelihood_ratio,4.89867415385697,4.9,0.005,TRUE
+Gas Price 2008,p_value,0.086350811474567,0.09,0.005,TRUE
+Unemployment 2008,statistic,0.050786513908675,0.05,0.005,TRUE
+Unemployment 2008,p_value,0.821700289242191,0.82,0.005,TRUE
+Estate Tax 2008,statistic,0.606415078020982,0.61,0.005,TRUE
+Estate Tax 2008,p_value,0.436140798334133,0.44,0.005,TRUE
+Debt 2008,statistic,2.42625494526058,2.43,0.005,TRUE
+Debt 2008,p_value,0.119317653524176,0.12,0.005,TRUE
+Uninsured 2008,statistic,0.205426363193686,0.21,0.005,TRUE
+Uninsured 2008,p_value,0.650376038971548,0.65,0.005,TRUE
+Gas Price 2008,statistic,3.9093834492404,3.91,0.005,TRUE
+Gas Price 2008,p_value,0.048017210126969,0.05,0.005,TRUE
+table_2_1,random_variance,0.0704494572043585,0.07,0.005,TRUE
+table_2_1,random_variance_se,0.0366649843121379,0.04,0.005,TRUE
+table_2_1,observations,4324,4324,0.5,TRUE
+table_2_1,respondents,878,878,0.5,TRUE
+table_2_1,log_likelihood,-4684.60995389632,-4685,0.5,TRUE
+table_2_2a,random_variance,0.063785282809709,0.06,0.005,TRUE
+table_2_2a,random_variance_se,0.0386438121965697,0.04,0.005,TRUE
+table_2_2a,observations,3276,3276,0.5,TRUE
+table_2_2a,respondents,660,660,0.5,TRUE
+table_2_2a,log_likelihood,-3578.85461462171,-3579,0.5,TRUE
+table_2_2b,random_variance,0.0637559441347352,0.06,0.005,TRUE
+table_2_2b,random_variance_se,0.0386385255289019,0.04,0.005,TRUE
+table_2_2b,observations,3276,3276,0.5,TRUE
+table_2_2b,respondents,660,660,0.5,TRUE
+table_2_2b,log_likelihood,-3578.86333645357,-3579,0.5,TRUE
+table_2_3a,random_variance,0.110781586663068,0.11,0.005,TRUE
+table_2_3a,random_variance_se,0.0514005853188121,0.05,0.005,TRUE
+table_2_3a,observations,2614,2614,0.5,TRUE
+table_2_3a,respondents,525,525,0.5,TRUE
+table_2_3a,log_likelihood,-2814.59503190742,-2815,0.5,TRUE
+table_2_3b,random_variance,0.111356262696431,0.11,0.005,TRUE
+table_2_3b,random_variance_se,0.0514573054513427,0.05,0.005,TRUE
+table_2_3b,observations,2614,2614,0.5,TRUE
+table_2_3b,respondents,525,525,0.5,TRUE
+table_2_3b,log_likelihood,-2814.69519122771,-2815,0.5,TRUE
+table_3_1,random_variance,0.032325499540051,0.03,0.005,TRUE
+table_3_1,random_variance_se,0.0234160499931709,0.02,0.005,TRUE
+table_3_1,observations,6233,6233,0.5,TRUE
+table_3_1,respondents,1260,1260,0.5,TRUE
+table_3_1,log_likelihood,-6766.43930460564,-6766,0.5,TRUE
+table_3_2,random_variance,0.0323444037135414,0.03,0.005,TRUE
+table_3_2,random_variance_se,0.0234228914085738,0.02,0.005,TRUE
+table_3_2,observations,6233,6233,0.5,TRUE
+table_3_2,respondents,1260,1260,0.5,TRUE
+table_3_2,log_likelihood,-6766.48157267501,-6766,0.5,TRUE
+table_4,random_variance,0.0875941662413789,0.09,0.005,TRUE
+table_4,random_variance_se,0.0410201368840342,0.04,0.005,TRUE
+table_4,observations,6233,6233,0.5,TRUE
+table_4,respondents,1260,1260,0.5,TRUE
+table_4,log_likelihood,-6510.23316197993,-6510,0.5,TRUE

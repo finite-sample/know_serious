@@ -1,0 +1,15 @@
+Package: serious
+Type: Project
+Title: Replication of Accuracy Incentives and Partisan Bias
+Version: 0.1.0
+Authors@R: c(
+    person("Markus", "Prior", role = "aut"),
+    person("Gaurav", "Sood", role = c("aut", "cre"), email = "gsood07@gmail.com"),
+    person("Kabir", "Khanna", role = "aut"))
+Description: Reconstructs and audits the published analyses of Prior, Sood, and Khanna (2015).
+License: file LICENSE
+Encoding: UTF-8
+SystemRequirements: JAGS
+Depends: R (>= 4.6.0)
+Imports: readr, haven, digest, ggplot2, MASS, statmod, numDeriv, rlang, rjags, coda
+Suggests: renv, testthat, lintr, styler, callr

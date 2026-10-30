@@ -1,0 +1,14 @@
+artifact,check,matches
+study2hologit.jag,exact_bytes,True
+remcor.ado,exact_bytes,True
+gllarob.ado,exact_bytes,True
+calc_prior.ado,exact_bytes,True
+study2ologit.jag,exact_bytes,True
+gllas_yu.ado,exact_bytes,True
+gllamm.ado,exact_bytes,True
+study12hologit.jag,exact_bytes,True
+gllam_ll.ado,exact_bytes,True
+init_prior.ado,exact_bytes,True
+gllasim.ado,exact_bytes,True
+gllapred.ado,exact_bytes,True
+PSK_Analysis.do,model_and_prediction_commands,True

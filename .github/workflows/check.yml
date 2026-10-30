@@ -1,0 +1,14 @@
+name: Replication checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  replication:
+    runs-on: ubuntu-latest
+    container: rocker/verse:4.6.0
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Install JAGS
+        run: apt-get update && apt-get install -y jags
+      - name: Restore and check
+        run: make restore check

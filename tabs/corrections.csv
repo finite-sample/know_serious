@@ -1,0 +1,6 @@
+finding,quantity,original_value,comparison_value,interpretation
+study_2004_completion_definition,Respondents reaching the last economic item,618,614,Four retained records code the final item as not asked; estimation sample remains unchanged
+iia_test_order,Omitted response category -1,1.70406813668591,-1.70406813668591,Reversed model order; neither covariance difference supports chi-square inference
+iia_test_order,Omitted response category 0,0.582852145209215,-0.582852145209215,Reversed model order; neither covariance difference supports chi-square inference
+iia_test_order,Omitted response category 1,-21.250850231903,21.250850231903,Reversed model order; neither covariance difference supports chi-square inference
+pooled_significance_threshold,Claimed p-value threshold versus minimum p-value allowed by SE rounding,0.001,0.00104590205978312,Prose p < .001 is incompatible with exact effect and published SE; evidence remains below .01

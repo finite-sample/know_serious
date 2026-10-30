@@ -1,0 +1,813 @@
+** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  **
+**									    	**								
+**  Partisan Inference Analyses			
+**  Last Edited: 3/07/2013 by GS		
+**  Analyses: KN 2008 Hier/From Cmn. Subset
+**											
+** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  **		
+
+* Set Library Location for finding survwgt (Leave it for GS)
+	sysdir set PLUS "\\files\dept\WWS\Research\MPRIOR\stata\"
+	* ssc install gllamm
+	
+	* Two conditions
+		* Load and reshape
+			use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+			keep if pollid==2008 & (pid_app==1 | pid_app==4)
+			drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+			reshape long tri_dv t_l, i(caseid)
+					
+			recode rd 2 3 =1, gen(incentive)
+			gen incXpid3b = incentive*pid3b
+			gllamm tri_dv incentive pid3b incXpid3b, i(caseid) link(ologit)
+					
+				* Raw Probabilities
+				egen probg0 = mean(tri_dv > 0), by(pid3b incentive)
+				egen probg1 = mean(tri_dv > 1), by(pid3b incentive)
+				
+				* Pred. Probabilities
+				gllapred mprobg0, mu marginal above(0)
+				gllapred mprobg1, mu marginal above(1)
+							
+				gen pr0 = 1 - mprobg0
+				gen pr1 = mprobg0 - mprobg1
+					
+				label define incentivel 0 "Control" 1 "Incentive"	
+				label val incentive incentivel
+					
+				* Predicted Bar
+					twoway  (bar mprobg1 pid3b if pid3b==0,  color("230 120 120") barw(.8)) ///
+						(bar mprobg1 pid3b if pid3b==1, color("120 120 230") barw(.8)), ///
+						by(incentive, legend(off) note("") cols(3)  bgcolor(white) plotregion(lcolor(none) lwidth(zero) ilcolor(none) style(none) color(white)) graphregion(color(white)))  ///
+						yscale(range(.35, .6)) ///
+						ylabel(,nogrid) ///
+						xscale(range(0, 1.1)) ///
+						xlabel(0 "Republican" 1 "Democrat") ///
+						xlabel(0 "Republican" 1 "Democrat") ///
+						xtitle("Partisan self-identification") ///
+						ytitle("Pr(Overestimation)")
+						graph export OverPredictBy2Cond08Bar.png, height(1500) replace
+						
+				* For two cond: Raw Plus Predicted Point
+					twoway  (scatter mprobg1 pid3b if pid3b==0,  color("230 120 120")  msize(2)) ///
+							(scatter mprobg1 pid3b if pid3b==1,  color("120 120 230")  msize(2)) ///
+							(scatter probg1  pid3b if pid3b==0,  color("230 120 120")  msize(2) msymbol(Oh)) ///
+							(scatter probg1  pid3b if pid3b==1,  color("120 120 230")  msize(2) msymbol(Oh)), ///
+							by(incentive, note("") cols(3) bgcolor(white) plotregion(lcolor(none) lwidth(zero) ilcolor(none) style(none) color(white)) graphregion(color(white))) ///
+							yscale(range(.35, .6)) ///
+							ylabel(,nogrid) ///
+							xscale(range(-.1, 1.3)) ///
+							legend(\`KEY' pos(3) col(2) region(lwidth(none)) order(1 3)  lab(1 "Predicted")  lab(3 "Raw")) ///
+							xlabel(0 "Republican" 1 "Democrat") ///
+							xlabel(0 "Republican" 1 "Democrat") ///
+							xtitle("Partisan self-identification") ///
+							ytitle("Pr(Overestimation)")
+							graph export OverPredictBy2Cond08RawPlusPredPt.png, height(1500) replace
+
+							
+	* Bartels PID
+		gllamm tri_dv rd1 rd2 strpid leanpid weakpid rd1Xstrpid  rd1Xweakpid rd1Xleanpid rd2Xstrpid rd2Xleanpid rd2Xweakpid r_bushref r_PIDloc, i(caseid) link(ologit)	
+		gllamm tri_dv pay strpid leanpid weakpid payXstrpid  payXweakpid payXleanpid  r_bushref r_PIDloc, i(caseid) link(ologit)	
+		
+		* With Markus lean
+		gllamm tri_dv rd1 rd2 strpid mleanpid weakpid rd1Xstrpid  rd1Xweakpid rd1Xmleanpid rd2Xstrpid rd2Xmleanpid rd2Xweakpid r_bushref r_PIDloc, i(caseid) link(ologit)	
+		gllamm tri_dv pay strpid mleanpid weakpid payXstrpid  payXweakpid payXmleanpid  r_bushref r_PIDloc, i(caseid) link(ologit)	
+		
+	* pg. 9
+		gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_bushref r_PIDloc, i(caseid) link(ologit)	
+		gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_bushref r_PIDloc, i(caseid) link(ologit)	robust
+				
+	* pg. 10
+		gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7, i(caseid) link(ologit)
+			
+	* pg. 11
+		regress tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7
+		
+	* Pay Only
+		* Dummy Model
+			gllamm tri_dv pay stdem strep wkdem wkrep lnrep payXstdem payXstrep payXwkdem payXwkrep payXlnrep, i(caseid) link(ologit) 
+		
+		* PID 3
+			gllamm tri_dv pay pid3b payXpid3b, i(caseid) link(ologit) adapt
+			
+		* pg. 14
+			gllamm tri_dv pay pid7 payXpid7, i(caseid) link(ologit) 
+	
+		* pg. 15
+			regress tri_dv pay pid7 payXpid7
+			
+		* pg. 16
+			gllamm tri_dv pay pid7 payXpid7 r_bushref r_PIDloc, i(caseid) link(ologit) 
+	
+	* Not worrying about approvers etc.
+		use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+		keep if pollid==2008 & pid7~=4
+		drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+		reshape long tri_dv t_l, i(caseid)	
+		gllamm tri_dv rd1 rd2 pid3b rd1Xpid3b rd2Xpid3b, i(caseid) link(ologit)
+		
+	* Education, Num, Voc, PK etc.
+		* triple doesn't work for num, voc, numvoc, edu, 
+		* triple: pk, int rd1 triple works, pk rd2 close 
+		
+		* Load data
+			use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+			keep if pollid==2008 & (pid_app==1 | pid_app==4)
+			drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+			reshape long tri_dv, i(caseid)
+		
+		* Add num 
+			gllamm tri_dv rd1 rd2 pid7 num rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xnum rd1Xnum, i(caseid) link(ologit)
+			gllamm tri_dv rd1 rd2 pid7 num rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xnum rd1Xnum pid7Xnum rd1Xpid7Xnum rd2Xpid7Xnum, i(caseid) link(ologit)
+			
+				* split by num== 3 and num <=3
+					* low num
+					use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+					keep if pollid==2008 & (pid_app==1 | pid_app==4)
+					drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+					reshape long tri_dv, i(caseid)
+					keep if num < 3
+					gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+					
+					* hi num
+					use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+					keep if pollid==2008 & (pid_app==1 | pid_app==4)
+					drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+					reshape long tri_dv, i(caseid)
+					keep if num == 3
+					gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+				
+				* Back
+					use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+					keep if pollid==2008 & (pid_app==1 | pid_app==4)
+					drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+					reshape long tri_dv, i(caseid)
+					
+				* Add voc
+					gllamm tri_dv rd1 rd2 pid7 voc rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xvoc rd1Xvoc, i(caseid) link(ologit)
+					gllamm tri_dv rd1 rd2 pid7 voc rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xvoc rd1Xvoc pid7Xvoc rd1Xpid7Xvoc rd2Xpid7Xvoc, i(caseid) link(ologit)
+			
+				* Add numvoc
+					gllamm tri_dv rd1 rd2 pid7 numvoc rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xnumvoc rd1Xnumvoc, i(caseid) link(ologit)
+					gllamm tri_dv rd1 rd2 pid7 numvoc rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xnumvoc rd1Xnumvoc pid7Xnumvoc rd1Xpid7Xnumvoc rd2Xpid7Xnumvoc, i(caseid) link(ologit)
+			
+				* Add edu
+					gllamm tri_dv rd1 rd2 pid7 ppeducat rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xedu rd1Xedu, i(caseid) link(ologit)
+					gllamm tri_dv rd1 rd2 pid7 ppeducat rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xedu rd1Xedu  pid7Xedu rd1Xpid7Xedu rd2Xpid7Xedu, i(caseid) link(ologit)
+	
+	
+	* Knowledge
+					use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+					keep if pollid==2008 & (pid_app==1 | pid_app==4)
+					drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+					reshape long tri_dv, i(caseid)
+					
+				* some recodes
+					recode rd 2=1, gen(incentive)
+					gen incXnewpk  		 = incentive*newpk
+					gen incXpid3bXnewpk  = pid3b*incentive*newpk
+					gen pid3bXnewpk		 = pid3b*newpk
+					
+					* Lowess
+						recode tri_dv 0/1=0 2=1, gen(probg1)
+						*egen probg1 = mean(tri_dv > 1), by(pid3b incentive newpk)
+						
+						* Change folder
+									cd "H:\PartisanInferencePaper\figs\"
+		
+						twoway  (lowess  probg1  newpk if pid3b==1 & rd==0, lpattern(solid) lcol("100 100 210") scheme(s1color)) ///
+								(lowess  probg1  newpk if pid3b==0 & rd==0, lpattern(solid) lcol("210 100 100")) ///
+								(lowess  probg1  newpk if pid3b==1 & rd==1, lpattern(dash) lcol("100 100 210")) ///
+								(lowess  probg1  newpk if pid3b==0 & rd==1, lpattern(dash) lcol("210 100 100")), ///
+								ylabel(.2[.1].7) xlabel(0[2]13) xscale(range(0, 13)) yscale(range(.2, .65))  ///
+								t2title("Control Versus Accuracy Reminder") ytitle("P(Overestimation)") xtitle("General Political Knowledge") ///
+								legend(cols(2) lab(1 "Ctrl: Dem.") lab(2 "Ctrl: Rep.") lab(3 "Verbal: Dem.") lab(4 "Verbal: Rep.")) 
+								graph export verbalknow.png, height(1500) replace
+								
+						twoway (lowess  probg1 newpk if pid3b==1 & rd==0, lpattern(solid) lcol("100 100 210") scheme(s1color)) ///
+							   (lowess  probg1 newpk if pid3b==0 & rd==0, lpattern(solid) lcol("210 100 100")) ///
+								(lowess probg1 newpk if pid3b==1 & rd==2, lpattern(dash) lcol("100 100 210")) ///
+								(lowess probg1 newpk if pid3b==0 & rd==2, lpattern(dash) lcol("210 100 100")), ///
+								ylabel(.2[.1].7) xlabel(0[2]13) xscale(range(0, 13)) yscale(range(.2, .65))  ///
+								t2title("Control Versus Monetary Incentives") ytitle("P(Overestimation)") xtitle("General Political Knowledge") ///
+								legend(cols(2) lab(1 "Ctrl: Dem.") lab(2 "Ctrl: Rep.") lab(3 "$: Dem.") lab(4 "$: Rep.")) 
+								graph export moneyknow.png, height(1500) replace
+
+						twoway (lowess  probg1 newpk if pid3b==1 & incentive==0, lpattern(solid) lcol("100 100 210") scheme(s1color)) ///
+							   (lowess  probg1 newpk if pid3b==0 & incentive==0, lpattern(solid) lcol("210 100 100")) ///
+								(lowess probg1 newpk if pid3b==1 & incentive==1, lpattern(dash) lcol("100 100 210")) ///
+								(lowess probg1 newpk if pid3b==0 & incentive==1, lpattern(dash) lcol("210 100 100")), ///
+								ylabel(.2[.1].7) xlabel(0[2]13) xscale(range(0, 13)) yscale(range(.2, .65))  ///
+								t2title("Control Versus Incentives")  ytitle("P(Overestimation)") xtitle("General Political Knowledge") ///
+								legend(cols(2) lab(1 "Ctrl: Dem.") lab(2 "Ctrl: Rep.") lab(3 "Incentive: Dem.") lab(4 "Incentive: Rep."))
+								graph export incentiveknow.png, height(1500) replace
+					
+				* New PK
+					gllamm tri_dv incentive pid3b newpk incXpid3b incXnewpk pid3bXnewpk incXpid3bXnewpk, i(caseid) link(ologit)
+								
+				* PID 7 
+				* Add kn_tote
+					gllamm tri_dv rd1 rd2 pid7 kn_tote rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xpk rd1Xpk, i(caseid) link(ologit)
+					gllamm tri_dv rd1 rd2 pid7 kn_tote rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xpk rd1Xpk  pid7Xpk rd1Xpid7Xpk rd2Xpid7Xpk, i(caseid) link(ologit)
+			
+				* Add kn_sum
+					* cor kn_sum kn_tote newpk
+					gllamm tri_dv rd1 rd2 pid7 kn_sum rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xpk2 rd1Xpk2, i(caseid) link(ologit)
+					gllamm tri_dv rd1 rd2 pid7 kn_sum rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xpk2 rd1Xpk2  pid7Xpk2 rd1Xpid7Xpk2 rd2Xpid7Xpk2, i(caseid) link(ologit)
+					
+				* create new tripk
+						* drop tripk
+						* recode newpk 0/5.5 =0 5.5/8.5=.5 8.5/13=1, gen(tripk)
+						
+				* Interact with tripk
+					* tripk as continuous
+						gen payXtripk  = pay*tripk
+						gen rd1Xtripk  = rd1*tripk
+						gen rd2Xtripk  = rd2*tripk
+						
+						gen pid7Xtripk = pid7*tripk
+						gen rd1Xpid7Xtripk  = pid7*rd1*tripk
+						gen rd2Xpid7Xtripk  = pid7*rd2*tripk
+						
+						gen pid3bXtripk = pid3b*tripk
+						gen rd1Xpid3bXtripk  = pid3b*rd1*tripk
+						gen rd2Xpid3bXtripk  = pid3b*rd2*tripk
+						
+						*gllamm tri_dv rd1 rd2 pid7 tripk rd1Xpid7 rd2Xpid7 rd2Xtripk rd1Xtripk  pid7Xtripk rd1Xpid7Xtripk rd2Xpid7Xtripk, i(caseid) link(ologit)
+						gllamm tri_dv rd1 rd2 pid3b tripk rd1Xpid3b rd2Xpid3b rd2Xtripk rd1Xtripk  pid3bXtripk rd1Xpid3bXtripk rd2Xpid3bXtripk, i(caseid) link(ologit)
+					
+					* categorical
+						gen toppk = tripk==1
+						gen medpk = tripk==.5
+						
+						gen payXtoppk  = pay*toppk
+						gen rd1Xtoppk  = rd1*toppk
+						gen rd2Xtoppk  = rd2*toppk
+						
+						gen pid7Xtoppk = pid7*toppk
+						gen rd1Xpid7Xtoppk  = pid7*rd1*toppk
+						gen rd2Xpid7Xtoppk  = pid7*rd2*toppk
+					
+						gen pid3bXtoppk = pid3b*toppk
+						gen rd1Xpid3bXtoppk  = pid3b*rd1*toppk
+						gen rd2Xpid3bXtoppk  = pid3b*rd2*toppk
+						
+						gen payXmedpk  = pay*medpk
+						gen rd1Xmedpk  = rd1*medpk
+						gen rd2Xmedpk  = rd2*medpk
+						
+						gen pid7Xmedpk = pid7*medpk
+						gen rd1Xpid7Xmedpk  = pid7*rd1*medpk
+						gen rd2Xpid7Xmedpk  = pid7*rd2*medpk
+						
+						gen pid3bXmedpk = pid3b*medpk
+						gen rd1Xpid3bXmedpk  = pid3b*rd1*medpk
+						gen rd2Xpid3bXmedpk  = pid3b*rd2*medpk
+						
+					* With dichotomously coded treat
+						recode rd 2=1, gen(incentive)
+							  
+						gen incXpid3b  = incentive*pid3b
+						gen incXtoppk  = incentive*toppk
+						gen incXpid3bXtoppk  = pid3b*incentive*toppk
+						gen incXmedpk  = incentive*medpk
+						gen incXpid3bXmedpk  = pid3b*incentive*medpk
+						
+						* Analyses
+							gllamm tri_dv rd1 rd2 pid7 medpk toppk rd1Xpid7 rd2Xpid7 rd2Xmedpk rd1Xmedpk rd2Xtoppk rd1Xtoppk  pid7Xmedpk pid7Xtoppk rd1Xpid7Xmedpk rd2Xpid7Xmedpk rd1Xpid7Xtoppk rd2Xpid7Xtoppk, i(caseid) link(ologit)
+							gllamm tri_dv rd1 rd2 pid3b medpk toppk rd1Xpid3b rd2Xpid3b rd2Xmedpk rd1Xmedpk rd2Xtoppk rd1Xtoppk  pid3bXmedpk pid3bXtoppk rd1Xpid3bXmedpk rd2Xpid3bXmedpk rd1Xpid3bXtoppk rd2Xpid3bXtoppk, i(caseid) link(ologit)
+           
+							* PID 7 compare
+							gllamm tri_dv rd1 rd2 pid7 medpk toppk rd1Xpid7 rd2Xpid7 rd2Xmedpk rd1Xmedpk rd2Xtoppk rd1Xtoppk  pid7Xmedpk pid7Xtoppk, i(caseid) link(ologit)
+							estimates store model1
+							
+							gllamm tri_dv rd1 rd2 pid7 medpk toppk rd1Xpid7 rd2Xpid7 rd2Xmedpk rd1Xmedpk rd2Xtoppk rd1Xtoppk  pid7Xmedpk pid7Xtoppk rd1Xpid7Xmedpk rd2Xpid7Xmedpk rd1Xpid7Xtoppk rd2Xpid7Xtoppk, i(caseid) link(ologit)
+							estimates store model2
+						
+							lrtest model1 model2
+						              
+					    * Compare rd v rd1 rd2
+							gllamm tri_dv rd1 rd2 pid3b medpk toppk rd1Xpid3b rd2Xpid3b rd2Xmedpk rd1Xmedpk rd2Xtoppk rd1Xtoppk  pid3bXmedpk pid3bXtoppk rd1Xpid3bXmedpk rd2Xpid3bXmedpk rd1Xpid3bXtoppk rd2Xpid3bXtoppk, i(caseid) link(ologit)
+							est store tripk_rdsep
+							
+							gllamm tri_dv incentive pid3b medpk toppk incXpid3b incXmedpk incXtoppk pid3bXmedpk pid3bXtoppk incXpid3bXmedpk incXpid3bXtoppk , i(caseid) link(ologit)
+							est store tripk_rdone
+										  
+							lrtest tripk_rdone tripk_rdsep
+								
+							* Graph the predicted values
+							* Pred. Probabilities
+								gllapred mprobg0, mu marginal above(0)
+								gllapred mprobg1, mu marginal above(1)
+								
+								gen pr0 = 1 - mprobg0
+								gen pr1 = mprobg0 - mprobg1
+						
+								label define incentivel 0 "Control" 1 "Incentive"	
+								label val rd rdl
+							
+							* Change folder
+								cd "H:\PartisanInferencePaper\figs\"
+	
+							* Bar
+							twoway  (bar mprobg1 pid3b if pid3b==0 & medpk==0 & toppk==0,  color("230 120 120") barw(.8)) ///
+									(bar mprobg1 pid3b if pid3b==1 & medpk==0 & toppk==0, color("120 120 230") barw(.8)), ///
+									by(incentive, legend(off) note("") cols(2)   bgcolor(white) plotregion(lcolor(none) lwidth(zero) ilcolor(none) style(none) color(white)) graphregion(color(white)))  ///
+									yscale(range(.35, .6)) ///
+									ylabel(,nogrid) ///
+									xscale(range(0, 1.1)) ///
+									xlabel(0 "Republican" 1 "Democrat") ///
+									xlabel(0 "Republican" 1 "Democrat") ///
+									xtitle("Partisan self-identification") ///
+									ytitle("Pr(Overestimation)")
+									graph export OverPredictBy2Cond08JointModelLowPKBar.png, height(1500) replace
+					
+						
+							* Bar
+							twoway  (bar mprobg1 pid3b if pid3b==0 & medpk==1 & toppk==0,  color("230 120 120") barw(.8)) ///
+									(bar mprobg1 pid3b if pid3b==1 & medpk==1 & toppk==0, color("120 120 230") barw(.8)), ///
+									by(incentive, legend(off) note("") cols(2)   bgcolor(white) plotregion(lcolor(none) lwidth(zero) ilcolor(none) style(none) color(white)) graphregion(color(white)))  ///
+									yscale(range(.35, .6)) ///
+									ylabel(,nogrid) ///
+									xscale(range(0, 1.1)) ///
+									xlabel(0 "Republican" 1 "Democrat") ///
+									xlabel(0 "Republican" 1 "Democrat") ///
+									xtitle("Partisan self-identification") ///
+									ytitle("Pr(Overestimation)")
+									graph export OverPredictBy2Cond08JointModelMedPKBar.png, height(1500) replace
+						
+							* Bar
+							twoway  (bar mprobg1 pid3b if pid3b==0 & medpk==0 & toppk==1,  color("230 120 120") barw(.8)) ///
+									(bar mprobg1 pid3b if pid3b==1 & medpk==0 & toppk==1, color("120 120 230") barw(.8)), ///
+									by(incentive, legend(off) note("") cols(2)   bgcolor(white) plotregion(lcolor(none) lwidth(zero) ilcolor(none) style(none) color(white)) graphregion(color(white)))  ///
+									yscale(range(.35, .6)) ///
+									ylabel(,nogrid) ///
+									xscale(range(0, 1.1)) ///
+									xlabel(0 "Republican" 1 "Democrat") ///
+									xlabel(0 "Republican" 1 "Democrat") ///
+									xtitle("Partisan self-identification") ///
+									ytitle("Pr(Overestimation)")
+									graph export OverPredictBy2Cond08JointModelHiPKBar.png, height(1500) replace
+					
+
+							* Quadratic Knowledge Model
+									gen newpkSQ = newpk^2
+									gen pid3bXnewpkSQ = pid3b * newpkSQ
+									gen incXnewpkSQ= incentive * newpkSQ
+									gen incXpid3bXnewpkSQ = incentive * pid3bXnewpkSQ
+																		  
+									gllamm tri_dv pid3b newpk newpkSQ incentive incXpid3b , i(caseid) link(ologit)
+									estimates store model_knbase
+																						 
+									gllamm tri_dv pid3b newpk newpkSQ pid3bXnewpk pid3bXnewpkSQ incentive incXpid3b incXnewpk incXnewpkSQ incXpid3bXnewpk incXpid3bXnewpkSQ, i(caseid) link(ologit)
+											estimates store model_full
+									lrtest model_knbase model_full                                                     
+											* test if incentive X knowledge effect varies by party
+													test incXpid3b incXpid3bXnewpk incXpid3bXnewpkSQ
+
+					
+								
+				* Split by low, med., hi of kn_tote
+						
+						* low
+						use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+						keep if pollid==2008 & (pid_app==1 | pid_app==4)
+						drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+						reshape long tri_dv, i(caseid)
+						
+						pctile pct = kn_tote, nq(3) genp(percent)
+						pctile pct2 = newpk, nq(3) genp(percent2)
+						
+						keep if kn_tote <= 7
+						* keep if newpk <= 5.5
+						
+						*gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+						gllamm tri_dv rd1 rd2 pid3b rd1Xpid3b rd2Xpid3b, i(caseid) link(ologit)
+						
+						* Change folder
+						cd "H:\PartisanInferencePaper\figs\"
+	
+							* Run gllamm
+								*gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7, i(caseid) link(ologit)
+								gllamm tri_dv rd1 rd2 pid3b rd1Xpid3b rd2Xpid3b, i(caseid) link(ologit)
+							
+							* Pred. Probabilities
+								gllapred mprobg0, mu marginal above(0)
+								gllapred mprobg1, mu marginal above(1)
+								
+								gen pr0 = 1 - mprobg0
+								gen pr1 = mprobg0 - mprobg1
+						
+								label define rdl 0 "Control" 1 "Accuracy Appeal" 2 "Monetary Incentive"	
+								label val rd rdl
+								
+								* original pk * sum mprobg1 if pid3b==1 & rd1==0 & rd2==0
+								* Control: PID3b==1: .56; PID3b==0: .45
+								* Verbal: PID3b==1: .57; PID3b==0: .45
+								* Mon.: PID3b==1: .54; PID3b==0: .48
+								
+								* new pk * sum mprobg1 if pid3b==1 & rd1==0 & rd2==0
+								* Control: PID3b==1: .56; PID3b==0: .45
+								* Verbal: PID3b==1: .57; PID3b==0: .47
+								* Mon.: PID3b==1: .53; PID3b==0: .48
+								
+							* Bar
+							twoway  (bar mprobg1 pid3b if pid3b==0,  color("230 120 120") barw(.8)) ///
+								(bar mprobg1 pid3b if pid3b==1, color("120 120 230") barw(.8)), ///
+								by(rd, legend(off) note("") cols(3)   bgcolor(white) plotregion(lcolor(none) lwidth(zero) ilcolor(none) style(none) color(white)) graphregion(color(white)))  ///
+								yscale(range(.35, .6)) ///
+								ylabel(,nogrid) ///
+								xscale(range(0, 1.1)) ///
+								xlabel(0 "Republican" 1 "Democrat") ///
+								xlabel(0 "Republican" 1 "Democrat") ///
+								xtitle("Partisan self-identification") ///
+								ytitle("Pr(Overestimation)")
+								graph export OverPredictByCond08LowPKBar.png, height(1500) replace
+								
+						*med
+						use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+						keep if pollid==2008 & (pid_app==1 | pid_app==4)
+						drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+						reshape long tri_dv, i(caseid)
+						keep if kn_tote <= 11 & kn_tote > 7 
+						* keep if newpk <= 8.5 & newpk > 5.5
+						*gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+						gllamm tri_dv rd1 rd2 pid3b rd1Xpid3b rd2Xpid3b, i(caseid) link(ologit)
+						
+						* Change folder
+						cd "H:\PartisanInferencePaper\figs\"
+	
+							* Run gllamm
+								*gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7, i(caseid) link(ologit)
+								gllamm tri_dv rd1 rd2 pid3b rd1Xpid3b rd2Xpid3b, i(caseid) link(ologit)
+							
+							* Pred. Probabilities
+								gllapred mprobg0, mu marginal above(0)
+								gllapred mprobg1, mu marginal above(1)
+								
+								gen pr0 = 1 - mprobg0
+								gen pr1 = mprobg0 - mprobg1
+						
+								label define rdl 0 "Control" 1 "Accuracy Appeal" 2 "Monetary Incentive"	
+								label val rd rdl
+								
+								sum mprobg1 if pid3b==1 & rd1==0 & rd2==0
+								sum mprobg1 if pid3b==0 & rd1==0 & rd2==0
+								sum mprobg1 if pid3b==1 & rd1==1 & rd2==0
+								sum mprobg1 if pid3b==0 & rd1==1 & rd2==0
+								sum mprobg1 if pid3b==1 & rd1==0 & rd2==1
+								sum mprobg1 if pid3b==0 & rd1==0 & rd2==1
+								
+								* original pk * sum mprobg1 if pid3b==1 & rd1==0 & rd2==0
+								* Control: PID3b==1: .50; PID3b==0: .34
+								* Verbal: PID3b==1: .54; PID3b==0: .40
+								* Mon.: PID3b==1: .52; PID3b==0: .42
+								
+								* new pk * sum mprobg1 if pid3b==1 & rd1==0 & rd2==0
+								* Control: PID3b==1: .52; PID3b==0: .31
+								* Verbal: PID3b==1: .53; PID3b==0: .40
+								* Mon.: PID3b==1: .52; PID3b==0: .45
+								
+								
+							* Bar
+							twoway  (bar mprobg1 pid3b if pid3b==0,  color("230 120 120") barw(.8)) ///
+								(bar mprobg1 pid3b if pid3b==1, color("120 120 230") barw(.8)), ///
+								by(rd, legend(off) note("") cols(3)   bgcolor(white) plotregion(lcolor(none) lwidth(zero) ilcolor(none) style(none) color(white)) graphregion(color(white)))  ///
+								yscale(range(.35, .6)) ///
+								ylabel(,nogrid) ///
+								xscale(range(0, 1.1)) ///
+								xlabel(0 "Republican" 1 "Democrat") ///
+								xlabel(0 "Republican" 1 "Democrat") ///
+								xtitle("Partisan self-identification") ///
+								ytitle("Pr(Overestimation)")  graphregion(color(white)) bgcolor(white)
+								graph export OverPredictByCond08MedPKBar.png, height(1500) replace
+								
+						*hi
+						use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+						keep if pollid==2008 & (pid_app==1 | pid_app==4)
+						drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+						reshape long tri_dv, i(caseid)
+						keep if kn_tote > 11
+						*keep if newpk > 8.5
+						
+						*gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+						gllamm tri_dv rd1 rd2 pid3b rd1Xpid3b rd2Xpid3b, i(caseid) link(ologit)
+						
+						* Change folder
+						cd "H:\PartisanInferencePaper\figs\"
+	
+							* Run gllamm
+								*gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7, i(caseid) link(ologit)
+								gllamm tri_dv rd1 rd2 pid3b rd1Xpid3b rd2Xpid3b, i(caseid) link(ologit)
+							* Pred. Probabilities
+								gllapred mprobg0, mu marginal above(0)
+								gllapred mprobg1, mu marginal above(1)
+								
+								gen pr0 = 1 - mprobg0
+								gen pr1 = mprobg0 - mprobg1
+						
+								label define rdl 0 "Control" 1 "Accuracy Appeal" 2 "Monetary Incentive"	
+								label val rd rdl
+								
+								* original pk * sum mprobg1 if pid3b==1 & rd1==0 & rd2==0
+								* Control: PID3b==1: .58; PID3b==0: .30
+								* Verbal: PID3b==1: .46; PID3b==0: .39
+								* Mon.: PID3b==1: .51; PID3b==0: .40
+								
+								* new pk * sum mprobg1 if pid3b==1 & rd1==0 & rd2==0
+								* Control: PID3b==1: .56; PID3b==0: .31
+								* Verbal: PID3b==1: .47; PID3b==0: .39
+								* Mon.: PID3b==1: .51; PID3b==0: .39
+								
+								
+							* Bar
+							twoway  (bar mprobg1 pid3b if pid3b==0,  color("230 120 120") barw(.8)) ///
+								(bar mprobg1 pid3b if pid3b==1, color("120 120 230") barw(.8)), ///
+								by(rd, legend(off) note("") cols(3)   bgcolor(white) plotregion(lcolor(none) lwidth(zero) ilcolor(none) style(none) color(white)) graphregion(color(white)))  ///
+								yscale(range(.35, .6)) ///
+								ylabel(,nogrid) ///
+								xscale(range(0, 1.1)) ///
+								xlabel(0 "Republican" 1 "Democrat") ///
+								xlabel(0 "Republican" 1 "Democrat") ///
+								xtitle("Partisan self-identification") ///
+								ytitle("Pr(Overestimation)")  graphregion(color(white)) bgcolor(white)
+								graph export OverPredictByCond08HiPKBar.png, height(1500) replace
+				* median split by pk
+					* lo
+						use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+						keep if pollid==2008 & (pid_app==1 | pid_app==4)
+						drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+						reshape long tri_dv, i(caseid)
+						keep if kn_tote <=9
+						
+						gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+	
+					* hi
+						use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+						keep if pollid==2008 & (pid_app==1 | pid_app==4)
+						drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+						reshape long tri_dv, i(caseid)
+						keep if kn_tote > 9
+						
+						gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+						
+				* Add cablepk
+					gllamm tri_dv rd1 rd2 pid7 cablepk rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xcab rd1Xcab pid7Xcab rd1Xpid7Xcab rd2Xpid7Xcab, i(caseid) link(ologit) adapt
+				
+				* Cable Vs. General PK
+				* 4 way split
+					* 9
+						pctile pkpct = kn_tote, nq(2) genp(pkpercent)
+					* 0
+						pctile capct = cablepk, nq(2) genp(capercent)
+				
+				* Low Cable PK, Low General PK
+						use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+						keep if pollid==2008 & (pid_app==1 | pid_app==4)
+						drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+						reshape long tri_dv, i(caseid)
+						keep if kn_tote <=9 & cablepk==0
+						
+						gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+						
+				
+				* High Cable PK, Low General PK
+						use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+						keep if pollid==2008 & (pid_app==1 | pid_app==4)
+						drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+						reshape long tri_dv, i(caseid)
+						keep if kn_tote <=9 & cablepk > 0
+						
+						gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+						
+				* Low Cable PK, High General PK
+						use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+						keep if pollid==2008 & (pid_app==1 | pid_app==4)
+						drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+						reshape long tri_dv, i(caseid)
+						keep if kn_tote > 9 & cablepk==0
+						
+						gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+						
+				* High Cable PK, High General PK
+						use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+						keep if pollid==2008 & (pid_app==1 | pid_app==4)
+						drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+						reshape long tri_dv, i(caseid)
+						keep if kn_tote > 9 & cablepk > 0
+						
+						gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7 r_PIDloc, i(caseid) link(ologit)
+					
+				* Add polint
+					gllamm tri_dv rd1 rd2 pid7 polint rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xint rd1Xint, i(caseid) link(ologit)
+					gllamm tri_dv rd1 rd2 pid7 polint rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xint rd1Xint pid7Xint rd1Xpid7Xint rd2Xpid7Xint, i(caseid) link(ologit) adapt
+			
+				* PK + Polint
+					gllamm tri_dv rd1 rd2 pid7 kn_tote polint rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xpk rd1Xpk rd2Xint rd1Xint pid7Xpk pid7Xint rd1Xpid7Xpk rd2Xpid7Xpk rd1Xpid7Xint rd2Xpid7Xint, i(caseid) link(ologit)
+			
+				* The full monty
+					gllamm tri_dv rd1 rd2 pid7 num voc ppeducat pidstr rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xnum rd1Xnum rd1Xvoc rd2Xvoc rd1Xedu rd2Xedu pid7Xnum pid7Xvoc pid7Xedu rd1Xpid7Xnum rd2Xpid7Xnum , i(caseid) link(ologit)
+					gllamm tri_dv rd1 rd2 pid7 num voc kn_tote ppeducat pidstr rd1Xpid7 rd2Xpid7 r_PIDloc rd2Xnum rd1Xnum rd1Xvoc rd2Xvoc rd2Xpk rd1Xpk pid7Xnum pid7Xvoc pid7Xedu pid7Xpk rd1Xpid7Xnum rd2Xpid7Xnum rd1Xpid7Xpk rd2Xpid7Xpk rd1Xpid7Xvoc rd2Xpid7Xvoc rd1Xedu rd2Xedu rd1Xpid7Xedu rd2Xpid7Xedu, i(caseid) link(ologit)
+			
+	
+* PID 7 Graphs
+*******************
+
+
+			* Graphing
+				* Change folder
+					cd "H:\PartisanInferencePaper\figs\"
+				
+				* Graph Pay Vs. Control
+				*********************************			
+					use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+					keep if pollid==2008 & (pid_app==1 | pid_app==4)
+					drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+					reshape long tri_dv, i(caseid)
+					gllamm tri_dv pay pid7 payXpid7, i(caseid) link(ologit) 
+					
+				* Raw Probabilities
+					egen probg0 = mean(tri_dv > 0), by(pid7 pay)
+					egen probg1 = mean(tri_dv > 1), by(pid7 pay)
+				
+				* Pred. Probabilities
+					gllapred mprobg0, mu marginal above(0)
+					gllapred mprobg1, mu marginal above(1)
+					
+					gen pr0 = 1 - mprobg0
+					gen pr1 = mprobg0 - mprobg1
+					
+					* Raw Probs. also plotted (not happy with poor fit of the model)
+					twoway(line mprobg1 pid7 if pay==0, sort lpatt(solid)) ///
+						 (line mprobg1 pid7 if pay==1, sort lpatt(solid)) ///
+						 (line probg1 pid7 if pay==0, sort lpatt(dash)) ///
+						 (line probg1 pid7 if pay==1, sort lpatt(dash)), ///
+						 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+						 xlabel(1 "Str. R" 7 "Str. D") ///
+						 xtitle("Partisan self-identification") ///
+						 ytitle("Probability of over-estimation") ///
+						 title("2008: Pay Vs. Control")
+						 graph export OverPredictByPayWithRaw08.png, replace
+						
+					*Pred. Prob for Pr(y > correct)
+					twoway(line mprobg1 pid7 if pay==0, sort lpatt(solid)) ///
+						 (line mprobg1 pid7 if pay==1, sort lpatt(solid)), ///
+						 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+						 xlabel(1 "Str. R" 7 "Str. D") ///
+						 xtitle("Partisan self-identification") ///
+						 ytitle("Pr(y > correct)") ///
+						 title("2008: Pay Vs. Control")
+						 graph export OverPredictByPay08.png, replace
+						 
+				* Predicted for each cat.
+					twoway(line pr0 pid7 if pay==0, sort lpatt(solid)) ///
+						 (line pr0 pid7 if pay==1, sort lpatt(dashed)), ///
+						 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+						 xlabel(1 "Str. R" 7 "Str. D") ///
+						 xtitle("Partisan self-identification") ///
+						 ytitle("Pr(y=Lower)") ///
+						 title("2008: Pay Vs. Control")
+						 graph export UnderPredictByPay08.png, replace
+						 
+			
+			* Graph Verbal Vs. Control
+			*********************************
+					use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+					keep if pollid==2008 & (pid_app==1 | pid_app==4)
+					drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+					reshape long tri_dv, i(caseid)
+					
+					* change rd1
+					gen rd11 = rd1
+					replace rd11 = . if rd2==1
+					gen rd11Xpid7 = rd11*pid7
+					
+					* estimate
+					gllamm tri_dv rd11 pid7 rd11Xpid7, i(caseid) link(ologit) 
+					
+				* Raw Probabilities
+					egen probg0 = mean(tri_dv > 0), by(pid7 rd11)
+					egen probg1 = mean(tri_dv > 1), by(pid7 rd11)
+				
+				* Pred. Probabilities
+					gllapred mprobg0, mu marginal above(0)
+					gllapred mprobg1, mu marginal above(1)
+					
+					gen pr0 = 1 - mprobg0
+					gen pr1 = mprobg0 - mprobg1
+					
+					* Raw Probs. also plotted (not happy with poor fit of the model)
+					twoway(line mprobg1 pid7 if rd11==0, sort lpatt(solid)) ///
+						 (line mprobg1 pid7 if rd11==1, sort lpatt(solid)) ///
+						 (line probg1 pid7 if rd11==0, sort lpatt(dash)) ///
+						 (line probg1 pid7 if rd11==1, sort lpatt(dash)), ///
+						 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+						 xlabel(1 "Str. R" 7 "Str. D") ///
+						 xtitle("Partisan self-identification") ///
+						 ytitle("Probability of over-estimation") ///
+						 title("2008: Verbal Vs. Control")
+						 graph export OverPredictByVerbalWithRaw08.png, replace
+						
+					*Pred. Prob for Pr(y > correct)
+					twoway(line mprobg1 pid7 if rd11==0, sort lpatt(solid)) ///
+						 (line mprobg1 pid7 if rd11==1, sort lpatt(solid)), ///
+						 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+						 xlabel(1 "Str. R" 7 "Str. D") ///
+						 xtitle("Partisan self-identification") ///
+						 ytitle("Pr(y > correct)") ///
+						 title("2008: Verbal Vs. Control")
+						 graph export OverPredictByVerbal08.png, replace
+						 
+				* Predicted for each cat.
+					twoway(line pr0 pid7 if rd11==0, sort lpatt(solid)) ///
+						 (line pr0 pid7 if rd11==1, sort lpatt(dashed)), ///
+						 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+						 xlabel(1 "Str. R" 7 "Str. D") ///
+						 xtitle("Partisan self-identification") ///
+						 ytitle("Pr(y=Lower)") ///
+						 title("2008: Verbal Vs. Control") 
+						 graph export UnderPredictByVerbal08.png, replace 
+						 
+				
+			* Graph Both Verbal and Pay
+			********************************
+			
+			** Ignore for now
+			***************************
+						* Raw Probs. also plotted
+						twoway(line mprobg1 pid7 if rd1==0 & rd2==0, sort lpatt(solid)) ///
+							 (line mprobg1 pid7 if rd1==1, sort lpatt(dot)) ///
+							 (line mprobg1 pid7 if rd2==1, sort lpatt(dash)), ///
+							 legend(order(1 "Control" 2 "Verbal" 3 "Pay") size(medium) rows(1)) ///
+							 xlabel(1 "Str. R" 7 "Str. D") ///
+							 xtitle("Partisan self-identification") ///
+							 ytitle("Probability of over-estimation") ///
+							 title("2008 No Bush Reference: Verbal, Pay, and Control") graphregion(color(white))
+							 graph export OverPredictByCond08Bushref0.png, height(1500) replace
+							 
+						* Raw Probs. also plotted (not happy with poor fit of the model)
+						twoway(line pr0 pid7 if rd1==0 & rd2==0, sort lpatt(solid)) ///
+							  (line  pr0 pid7 if rd1==1, sort lpatt(dot)) ///
+							  (line  pr0 pid7 if rd2==1, sort lpatt(dash)), ///
+							 legend(order(1 "Control" 2 "Verbal" 3 "Pay")  size(medium) rows(1)) ///
+							 xlabel(1 "Str. R" 7 "Str. D") ///
+							 xtitle("Partisan self-identification") ///
+							 ytitle("Probability of under-estimation") ///
+							 title("2008 No Bush Reference: Verbal, Pay, and Control") graphregion(color(white))
+							 graph export UnderPredictByCond08Bushref0.png, height(1500) replace
+				
+				
+					use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+					keep if pollid==2008 & (pid_app==1 | pid_app==4)
+					drop tri_dv6 tri_dv7 tri_dv8 tri_dv9 tri_dv10
+					reshape long tri_dv, i(caseid)
+					
+					* estimate
+					gllamm tri_dv rd1 rd2 pid7  rd1Xpid7 rd2Xpid7, i(caseid) link(ologit) 
+				
+							
+				* Raw Probabilities
+					egen probg1 = mean(tri_dv > 1), by(pid7 rd1)
+					egen probg2 = mean(tri_dv > 1), by(pid7 rd2)
+					
+				* Pred. Probabilities
+					gllapred mprobg0, mu marginal above(0)
+					gllapred mprobg1, mu marginal above(1)
+					
+					gen pr0 = 1 - mprobg0
+					gen pr1 = mprobg0 - mprobg1
+					
+					* Raw Probs. also plotted (somewhat poor fit)
+					twoway(line mprobg1 pid7 if rd1==0 & rd2==0, sort lpatt(dot)) ///
+						 (line mprobg1 pid7 if rd1==1, sort lpatt(dot)) ///
+						 (line probg1 pid7 if rd1==1, sort lpatt(solid)) ///
+						 (line probg2 pid7 if rd2==1, sort lpatt(solid)) ///
+						 (line mprobg1 pid7 if rd2==1, sort lpatt(dash)), ///
+						 legend(order(1 "Control" 2 "Verbal" 3 "Pay") size(medium) rows(1)) ///
+						 xlabel(1 "Str. R" 7 "Str. D") ///
+						 xtitle("Partisan self-identification") ///
+						 ytitle("Probability of over-estimation") ///
+						 title("2008: Verbal, Pay, and Control") graphregion(color(white))
+						 graph export OverPredictByCondPlusRaw08.png, height(1500) replace
+					
+					* OverPredict by Con.d
+					twoway(line mprobg1 pid7 if rd1==0 & rd2==0, sort lpatt(dot)) ///
+						 (line mprobg1 pid7  if rd1==1, sort lpatt(dot)) ///
+						 (line mprobg1 pid7  if rd2==1, sort lpatt(dash)), ///
+						 legend(order(1 "Control" 2 "Verbal" 3 "Pay") size(medium) rows(1)) ///
+						 xlabel(1 "Str. R" 7 "Str. D") ///
+						 xtitle("Partisan self-identification") ///
+						 ytitle("Probability of over-estimation") ///
+						 title("2008: Verbal, Pay, and Control") graphregion(color(white))
+						 graph export OverPredictByCond08.png, height(1500) replace
+						 
+					* Raw Probs. also plotted (not happy with poor fit of the model)
+					twoway(line pr0 pid7 if rd1==0 & rd2==0, sort lpatt(solid)) ///
+						  (line  pr0 pid7 if rd1==1, sort lpatt(dot)) ///
+						  (line  pr0 pid7 if rd2==1, sort lpatt(dash)), ///
+						 legend(order(1 "Control" 2 "Verbal" 3 "Pay")  size(medium) rows(1)) ///
+						 xlabel(1 "Str. R" 7 "Str. D") ///
+						 xtitle("Partisan self-identification") ///
+						 ytitle("Probability of over-estimation") ///
+						 title("2008: Verbal, Pay, and Control")
+						 graph export UnderPredictByCond08.png, height(1500) replace

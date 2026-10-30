@@ -1,0 +1,10 @@
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/staging/
+data/build/
+.DS_Store
+.library/
+/historical/
+/data/raw/upstream/

@@ -1,0 +1,603 @@
+study_year,source_column,included,description,value_labels,reason
+2004,caseid,TRUE,Case identification number,=,"Replication, item-selection, or knowledge-measurement field"
+2004,mno,FALSE,Member Number,=,Not needed for these analyses; omitted from public projection
+2004,mbr_pane,FALSE,Panel Tenure,=,Not needed for these analyses; omitted from public projection
+2004,dt_start,FALSE,Date interview started,=,Not needed for these analyses; omitted from public projection
+2004,tm_start,FALSE,Time interview started,=,Not needed for these analyses; omitted from public projection
+2004,dt_end,FALSE,Date interview ended,=,Not needed for these analyses; omitted from public projection
+2004,tm_end,FALSE,Time interview ended,=,Not needed for these analyses; omitted from public projection
+2004,int_dur,FALSE,Survey length in minutes,=,Not needed for these analyses; omitted from public projection
+2004,resume,FALSE,Interview Type,Not a resumed interview (duration less than 100 minutes)=0 | Resumed interview (duration 100 minutes or more)=1,Not needed for these analyses; omitted from public projection
+2004,mywgt,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,weight,FALSE,Final poststratification weights,=,Not needed for these analyses; omitted from public projection
+2004,eligible,FALSE,Eligible for study,Eligible=1 | Ineligible=2,Not needed for these analyses; omitted from public projection
+2004,xpanel,FALSE, XPANEL,Not asked=-2 | REFUSED=-1 | PC=1 | WebTV=2,Not needed for these analyses; omitted from public projection
+2004,incomp,TRUE,Completion Status,"Completed Interview AND some complete knowledge questions=0 | Uncompleted Interview=1 | Completed Interview, but did not see knowledge questions=2 | Uncompleted Interview AND did not see knowledge questions=3","Replication, item-selection, or knowledge-measurement field"
+2004,treat,TRUE,Treatment Assignment,60 seconds=1 | 24 hours=2,"Replication, item-selection, or knowledge-measurement field"
+2004,group,TRUE, DATA-ONLY: GROUP,Not asked=-2 | REFUSED=-1 | 60 seconds/no pay=1 | 24 hours/no pay=2 | 60 seconds/$1 per correct answer=3 | 24 hours/$1 per correct answer=4,"Replication, item-selection, or knowledge-measurement field"
+2004,ex_group,TRUE,,Not asked=-2 | REFUSED=-1 | 60 seconds/no pay=1 | 24 hours/no pay=2 | 60 seconds/$1 per correct answer=3 | 24 hours/$1 per correct answer=4,"Replication, item-selection, or knowledge-measurement field"
+2004,correct,FALSE, DATA-ONLY: NUMBER OF CORRECT ANSWERS,Not asked=-2 | REFUSED=-1,Not needed for these analyses; omitted from public projection
+2004,xanswer,FALSE, XANSWER,Not asked=-2 | REFUSED=-1 | Bush won by more than 5 percentage points=1 | Bush won by less than 5 percentage points=2 | Gore won by less than 5 percentage points=3 | Gore won by more than 5 percentage points=4,Not needed for these analyses; omitted from public projection
+2004,q1,FALSE," In talking to people about elections, we often find that a lot of people were n","Not asked=-2 | REFUSED=-1 | I did not vote (in the 2002 midterm election)=1 | I thought about voting - but didn't=2 | I usually vote, but didn't in 2002=3 | I am sure I voted in 2002=4",Not needed for these analyses; omitted from public projection
+2004,q2,FALSE," Generally speaking, do you think of yourself as a Republican, a Democrat, an In",Not asked=-2 | REFUSED=-1 | Democrat=1 | Republican=2 | Independent=3 | No Preference=4 | Don't Know=5,Not needed for these analyses; omitted from public projection
+2004,q3a,FALSE, Would you call yourself a strong Democrat or a not very strong Democrat?,Not asked=-2 | REFUSED=-1 | Strong Democrat=1 | Not very strong Democrat=2,Not needed for these analyses; omitted from public projection
+2004,q3b,FALSE, Would you call yourself a strong Republican or a not very strong Republican?,Not asked=-2 | REFUSED=-1 | Strong Republican=1 | Not very strong Republican=2,Not needed for these analyses; omitted from public projection
+2004,q3c,FALSE, Do you think of yourself as closer to the Republican party or to the Democratic,Not asked=-2 | REFUSED=-1 | Closer to Democratic party=1 | Close to Republican party=2 | Neither=3 | Don't Know=4,Not needed for these analyses; omitted from public projection
+2004,q4,FALSE, Some people seem to follow what's going on in government and public affairs mos,Not asked=-2 | REFUSED=-1 | most of the time=1 | some of the time=2 | only now and then=3 | hardly at all=4,Not needed for these analyses; omitted from public projection
+2004,q5,TRUE, How long is the term of office for a U.S. Senator? If you do not know the answe,Not asked=-2 | REFUSED=-1,"Replication, item-selection, or knowledge-measurement field"
+2004,q6,TRUE," Of the 100 members of the U.S. Senate, how many are members of the Republican p",Not asked=-2 | REFUSED=-1,"Replication, item-selection, or knowledge-measurement field"
+2004,q7,TRUE, What was the outcome of the 2000 Presidential Election in the state in which yo,Not asked=-2 | REFUSED=-1 | Bush won by more than 5 percentage points=1 | Bush won by less than 5 percentage points=2 | Gore won by less than 5 percentage points=3 | Gore won by more than 5 percentage points=4,"Replication, item-selection, or knowledge-measurement field"
+2004,q8,TRUE, President Bush proposed a Striving Readers initiative to help high school stude,"Not asked=-2 | REFUSED=-1 | The program was implemented in 2002 and has already led to a=1 | President Bush has proposed to fund this program at $100 mil=2 | President Bush proposed this program, but did not include an=3 | The program started last year, but in his 2005 budget Presid=4","Replication, item-selection, or knowledge-measurement field"
+2004,q9,TRUE," In the key Senate vote on October 11, 2002, how many Democratic Senators voted","Not asked=-2 | REFUSED=-1 | None of them=1 | Two Democratic senators=2 | About a quarter of all Democratic senators=3 | A majority of all Democrats in the Senate, but not all of th=4 | All Democratic senators=5","Replication, item-selection, or knowledge-measurement field"
+2004,q10,TRUE, A line-item veto allows the president to sign a budget bill while cutting speci,"Not asked=-2 | REFUSED=-1 | President Bush and Senator Kerry both oppose the line-item v=1 | President Bush supports a line-item veto, while Senator Kerr=2 | Senator Kerry supports a line-item veto, while President Bus=3 | President Bush and Senator Kerry both support a line-item ve=4","Replication, item-selection, or knowledge-measurement field"
+2004,q11,TRUE," As you may know, a special government commission-called the 9/11 Commission, in","Not asked=-2 | REFUSED=-1 | They had no connection at all=1 | A few al-Qaeda individuals visited Iraq or had contact with=2 | Iraq gave substantial financial support to al-Qaeda, but was=3 | Iraq was directly involved in carrying out the September 11t=4","Replication, item-selection, or knowledge-measurement field"
+2004,q12,TRUE," Compared with the citizens of Western European countries, do you think American",Not asked=-2 | REFUSED=-1 | A higher percentage=1 | A smaller percentage=2 | About the same percentage=3,"Replication, item-selection, or knowledge-measurement field"
+2004,q13,TRUE, The U.S. Bureau of Labor Statistics counts a person as unemployed if they are n,Not asked=-2 | REFUSED=-1 | around 11 percent=1 | around 9 percent=2 | around 7 percent=3 | around 5 percent=4 | around 3 percent=5,"Replication, item-selection, or knowledge-measurement field"
+2004,q14,TRUE," There is a federal estate tax - that is, a tax on the money people leave to oth",Not asked=-2 | REFUSED=-1 | About 95% of all Americans=1 | About 70% of all Americans=2 | About 50% of all Americans=3 | About 25% of all Americans=4 | Less than 5% of all Americans=5,"Replication, item-selection, or knowledge-measurement field"
+2004,q15,TRUE," In August 2004, the United States Census Bureau reported an estimate of the num",Not asked=-2 | REFUSED=-1,"Replication, item-selection, or knowledge-measurement field"
+2004,q16,TRUE, The outstanding public debt of the United States is the total amount of money o,Not asked=-2 | REFUSED=-1 | Less than 3.5 trillion dollars=1 | 4.5 trillion dollars=2 | 5.5 trillion dollars=3 | 6.5 trillion dollars=4 | 7.5 trillion dollars=5 | 8.5 trillion dollars=6 | More than 9.5 trillion dollars=7,"Replication, item-selection, or knowledge-measurement field"
+2004,q17,TRUE, John Kerry says that he would eliminate the Bush tax cuts on families making ho,"Not asked=-2 | REFUSED=-1 | Over 50,000 a year=1 | Over 100,000 a year=2 | Over 150,000 a year=3 | Over 200,000 a year=4 | Over 500,000 a year=5","Replication, item-selection, or knowledge-measurement field"
+2004,q18,TRUE," In August 2004, the Census Bureau reported how many Americans live in poverty.",Not asked=-2 | REFUSED=-1,"Replication, item-selection, or knowledge-measurement field"
+2004,q19_1,FALSE, Please indicate whether you agree or disagree with each of the following statem,Not asked=-2 | REFUSED=-1 | Strongly Disagree=1 | Disagree=2 | Agree=3 | Strongly Agree=4,Not needed for these analyses; omitted from public projection
+2004,q19_2,FALSE, Please indicate whether you agree or disagree with each of the following statem,Not asked=-2 | REFUSED=-1 | Strongly Disagree=1 | Disagree=2 | Agree=3 | Strongly Agree=4,Not needed for these analyses; omitted from public projection
+2004,q19_3,FALSE, Please indicate whether you agree or disagree with each of the following statem,Not asked=-2 | REFUSED=-1 | Strongly Disagree=1 | Disagree=2 | Agree=3 | Strongly Agree=4,Not needed for these analyses; omitted from public projection
+2004,q19_4,FALSE, Please indicate whether you agree or disagree with each of the following statem,Not asked=-2 | REFUSED=-1 | Strongly Disagree=1 | Disagree=2 | Agree=3 | Strongly Agree=4,Not needed for these analyses; omitted from public projection
+2004,q19_5,FALSE, Please indicate whether you agree or disagree with each of the following statem,Not asked=-2 | REFUSED=-1 | Strongly Disagree=1 | Disagree=2 | Agree=3 | Strongly Agree=4,Not needed for these analyses; omitted from public projection
+2004,q19_6,FALSE, Please indicate whether you agree or disagree with each of the following statem,Not asked=-2 | REFUSED=-1 | Strongly Disagree=1 | Disagree=2 | Agree=3 | Strongly Agree=4,Not needed for these analyses; omitted from public projection
+2004,q20,FALSE, There has been a lot of talk recently about eliminating the estate tax (a tax o,Not asked=-2 | REFUSED=-1 | Favor eliminating the estate tax=1 | Oppose eliminating the estate tax=2 | No opinion=3,Not needed for these analyses; omitted from public projection
+2004,q20a,FALSE, Thank you for your response. Think for a moment of what position you would take,Not asked=-2 | REFUSED=-1 | Favor eliminating the estate tax=1 | Oppose eliminating the estate tax=2,Not needed for these analyses; omitted from public projection
+2004,q21,FALSE," So far as you know now, do you expect to vote in the national elections this co","Not asked=-2 | REFUSED=-1 | No, definitely not=1 | No, probably not=2 | I don't know yet=3 | Yes, probably=4 | Yes, definitely=5",Not needed for these analyses; omitted from public projection
+2004,q22a,FALSE, Who do you think you will vote for in the election for president?,Not asked=-2 | REFUSED=-1 | I will definitely vote for John Kerry=1 | I will probably vote for John Kerry=2 | I am undecided=3 | I will probably vote for George Bush=4 | I will definitely vote for George Bush=5 | spacer=6 | I will vote for another candidate=7 | I will not vote in this election=8,Not needed for these analyses; omitted from public projection
+2004,q22b,FALSE," If you decided to vote in the election in November, who do you think you would",Not asked=-2 | REFUSED=-1 | I would definitely vote for John Kerry=1 | I would probably vote for John Kerry=2 | I am undecided=3 | I would probably vote for George Bush=4 | I would definitely vote for George Bush=5 | spacer=6 | I would vote for another candidate=7,Not needed for these analyses; omitted from public projection
+2004,q23,FALSE, Are you a citizen of the United States?,Not asked=-2 | REFUSED=-1 | Yes=1 | No=2,Not needed for these analyses; omitted from public projection
+2004,q24,FALSE,How many desktop or laptop computers do you or other members of your household o,Not asked=-2 | REFUSED=-1 | None=1 | 1=2 | 2=3 | 3=4 | 4 or more=5 | The computer(s) in this household are not owned by me or any=6,Not needed for these analyses; omitted from public projection
+2004,q24a,FALSE, Is the newest computer in your household connected to the Internet?,Not asked=-2 | REFUSED=-1 | Yes=1 | No=2,Not needed for these analyses; omitted from public projection
+2004,q24b,FALSE, How does your newest computer connect to the Internet?,Not asked=-2 | REFUSED=-1 | Dialup modem=1 | ISDN line=2 | Cable modem=3 | Digital Subscriber Line (DSL)=4 | Satellite dish=5 | T1 / T3 line=6,Not needed for these analyses; omitted from public projection
+2004,ppgender,FALSE, Gender,Male=1 | Female=2,Not needed for these analyses; omitted from public projection
+2004,ppage,FALSE, Age,Not asked=-2 | Refused=-1,Not needed for these analyses; omitted from public projection
+2004,ppagecat,FALSE,Age - 7 categories,18-24=1 | 25-34=2 | 35-44=3 | 45-54=4 | 55-64=5 | 65-74=6 | 75+=7 | Age missing/Under 18=99,Not needed for these analyses; omitted from public projection
+2004,ppagect4,FALSE,Age - 4 categories,18-29=1 | 30-44=2 | 45-59=3 | 60+=4 | Age missing/Under 18=99,Not needed for these analyses; omitted from public projection
+2004,ppeth,FALSE, Race/Ethnicity,"White, Non-Hispanic=1 | Black, Non-Hispanic=2 | Other, Non-Hispanic=3 | Hispanic=4",Not needed for these analyses; omitted from public projection
+2004,ppeduc,FALSE, Education (Highest Degree Received),"Less than HS=1 | Some HS, no diploma=2 | Graduated from HS - Diploma or equivalent (GED)=3 | Some college, no degree=4 | Associate degree (AA, AS)=5 | Bachelor's degree=6 | Master's degree=7 | Professional degree (MD, DDS, LLB, JD)=8 | Doctorate degree=9",Not needed for these analyses; omitted from public projection
+2004,ppeducat,FALSE, Education (Categorical),Less than HS=1 | HS=2 | Some college=3 | Bachelor's degree or higher=4,Not needed for these analyses; omitted from public projection
+2004,pphouse,FALSE, Housing Type,A single-family house detached=1 | A single-family house attached=2 | An apartment=3 | A condominium or co-op=4 | College dormitory=5 | A manufactured or mobile home=6 | Other=7,Not needed for these analyses; omitted from public projection
+2004,pprent,FALSE, Ownership Status Of Living Quarters,Own=1 | Rent=2 | Do not pay for housing=3,Not needed for these analyses; omitted from public projection
+2004,ppdualin,FALSE, Dual income HH,No=0 | Yes=1,Not needed for these analyses; omitted from public projection
+2004,ppincimp,FALSE, Household Income,"Less than $5,000=1 | $5,000 to $7,499=2 | $7,500 to $9,999=3 | $10,000 to $12,499=4 | $12,500 to $14,999=5 | $15,000 to $19,999=6 | $20,000 to $24,999=7 | $25,000 to $29,999=8 | $30,000 to $34,999=9 | $35,000 to $39,999=10 | $40,000 to $49,999=11 | $50,000 to $59,999=12 | $60,000 to $74,999=13 | $75,000 to $84,999=14 | $85,000 to $99,999=15 | $100,000 to $124,999=16 | $125,000 to 149,999=17 | $150,000 to $174,999=18 | $175,000 or more=19",Not needed for these analyses; omitted from public projection
+2004,ppmarit,FALSE, Marital Status,Married=1 | Single (never married)=2 | Divorced=3 | Widowed=4 | Separated=5,Not needed for these analyses; omitted from public projection
+2004,pphhhead,FALSE, Household Head,No=0 | Yes=1,Not needed for these analyses; omitted from public projection
+2004,pphhsize,FALSE, Household Size,Not asked=-2 | Refused=-1,Not needed for these analyses; omitted from public projection
+2004,ppt01,FALSE, Presence Of Household Members - Children under 2,Not asked=-2 | Refused=-1,Not needed for these analyses; omitted from public projection
+2004,ppt1317,FALSE, Presence Of Household Members - Children 13-17,Not asked=-2 | Refused=-1,Not needed for these analyses; omitted from public projection
+2004,ppt18ov,FALSE, Presence Of Household Members - Adults 18+,Not asked=-2 | Refused=-1,Not needed for these analyses; omitted from public projection
+2004,ppt25,FALSE, Presence Of Household Members - Children 2-5,Not asked=-2 | Refused=-1,Not needed for these analyses; omitted from public projection
+2004,ppt612,FALSE, Presence Of Household Members - Children 6-12,Not asked=-2 | Refused=-1,Not needed for these analyses; omitted from public projection
+2004,ppwork,FALSE, Current Employment Status,"I work as a paid employee=1 | I am self-employed=2 | I am an owner/partner in small business, prof practice, farm=3 | I work at least 15 hrs/wk w/o pay in family business/farm=4 | I am unemployed, temporarily laid off, but looking for work=5 | I am retired=6 | I am disabled=7 | I am a homemaker=8 | Other=9",Not needed for these analyses; omitted from public projection
+2004,ppstaten,FALSE, State,ME=11 | NH=12 | VT=13 | MA=14 | RI=15 | CT=16 | NY=21 | NJ=22 | PA=23 | OH=31 | IN=32 | IL=33 | MI=34 | WI=35 | MN=41 | IA=42 | MO=43 | ND=44 | SD=45 | NE=46 | KS=47 | DE=51 | MD=52 | DC=53 | VA=54 | WV=55 | NC=56 | SC=57 | GA=58 | FL=59 | KY=61 | TN=62 | AL=63 | MS=64 | AR=71 | LA=72 | OK=73 | TX=74 | MT=81 | ID=82 | WY=83 | CO=84 | NM=85 | AZ=86 | UT=87 | NV=88 | WA=91 | OR=92 | CA=93 | AK=94 | HI=95,Not needed for these analyses; omitted from public projection
+2004,ppreg4,FALSE, Region 4 - Based On State Of Residence,Northeast=1 | Midwest=2 | South=3 | West=4,Not needed for these analyses; omitted from public projection
+2004,ppreg9,FALSE,Region 9 (based on state of residence),New England=1 | Mid-Atlantic=2 | East-North Central=3 | West-North Central=4 | South Atlantic=5 | East-South Central=6 | West-South Central=7 | Mountain=8 | Pacific=9 | Missing=99,Not needed for these analyses; omitted from public projection
+2004,ppmsacat,FALSE, MSA Status,Non-Metro=0 | Metro=1,Not needed for these analyses; omitted from public projection
+2004,cu30offp,FALSE,"On average, how often do you make online purchases?",Never (Not asked this follow-up)=-2 | REFUSED=-1 | Once a week or more=1 | Once every two weeks=2 | Once a month=3 | Once every 3 months=4 | Once every 6 months=5 | Once a year=6 | Less than once a year=7,Not needed for these analyses; omitted from public projection
+2004,pk1_term,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,pk1_ter2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,pk2_sen,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,pk2_sen1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,pk2_sen2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,pk3_2000,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,pk4_strv,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,pk5_iraq,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,pk6_veto,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,pk7_alq,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,ek1_euro,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,ek2_empl,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,ek3_esta,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,ek4_heal,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,ek4_hea1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,ek4_hea2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,ek5_debt,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,ek6_tax,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,ek7_poor,FALSE,,"started knowledge battery, but did not get to this one=-9 | Incorrect or no answer=0 | Correct answer=1",Not needed for these analyses; omitted from public projection
+2004,ek7_poo1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,ek7_poo2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,allknow,FALSE,Total Knowledge Score,=,Not needed for these analyses; omitted from public projection
+2004,pknow,FALSE,Total Political Knowledge Score,=,Not needed for these analyses; omitted from public projection
+2004,eknow,FALSE,Total Economic Knowledge Score (given R started econ sequence),=,Not needed for these analyses; omitted from public projection
+2004,voted02,FALSE,R voted in 2002 midterm election (Pre),Not US citizen=-9 | Not asked=-2 | REFUSED=-1 | Did not vote=0 | Voted=1,Not needed for these analyses; omitted from public projection
+2004,polint,FALSE,Political Interest (Pre),Not asked=-2 | REFUSED=-1,Not needed for these analyses; omitted from public projection
+2004,pid3,FALSE,"PID, 3-point scale (Pre)",Not asked=-2 | REFUSED=-1 | Republican=1 | All others=2 | Democrat=3,Not needed for these analyses; omitted from public projection
+2004,pid3a,FALSE,"PID, 3-point scale, leaners as partisans (Pre)",Republican=1 | All others=2 | Democrat=3,Not needed for these analyses; omitted from public projection
+2004,pid7,TRUE,"PID, 7-point scale (Pre)",Not asked=-2 | REFUSED=-1 | Strong Republican=1 | Strong Democrat=7,"Replication, item-selection, or knowledge-measurement field"
+2004,pstr,FALSE,Strength of Party ID (Pre),=,Not needed for these analyses; omitted from public projection
+2004,pstr2,FALSE,"Strength of Party ID, dummy for identifiers (Pre)",=,Not needed for these analyses; omitted from public projection
+2004,estate3,FALSE,Opinion on Repeal of Estate Tax (Post),Not asked=-2 | REFUSED=-1 | Opposes elimination=0 | No opinion=1 | Favors elemination=2,Not needed for these analyses; omitted from public projection
+2004,estate4,FALSE,"Opinion on Repeal of Estate Tax, with follow-up (Post)",Not asked=-2 | REFUSED at least one question=-1 | Opposes elimination=0 | Opposes elimination if forced=1 | Favors elemination if forced=2 | Favors elemination=3,Not needed for these analyses; omitted from public projection
+2004,estate2,FALSE,"Opinion on Repeal of Estate Tax, with follow-up, dummy (Post)",Opposes elimination=0 | Favors elemination=1,Not needed for these analyses; omitted from public projection
+2004,npref,FALSE,News Preference (as in previous studies) (Post),=,Not needed for these analyses; omitted from public projection
+2004,vote04,FALSE,Turnout likelihood for 2004 (Post),Not US citizen=-9 | Not asked=-2 | REFUSED=-1 | Will not vote definitely=0 | Will vote definitely=1,Not needed for these analyses; omitted from public projection
+2004,voteint,FALSE,Vote intention for 2004 presidential election (Post),Not US citizen=-9 | Not asked=-2 | REFUSED=-1 | Definitely Bush=0 | Probably Bush=1 | Undecided or other candidate=2 | Probably Kerry=3 | Definitely Kerry=4,Not needed for these analyses; omitted from public projection
+2004,decided,FALSE,Decided whom to vote for in 2004 presidential election (Post),Not US citizen=-9 | Not asked=-2 | REFUSED=-1 | Undecided=0 | Decided=1,Not needed for these analyses; omitted from public projection
+2004,battle,FALSE,R lives in battleground state,=,Not needed for these analyses; omitted from public projection
+2004,inet,FALSE,R has Internet connection,Not asked=-2 | REFUSED=-1,Not needed for these analyses; omitted from public projection
+2004,inet_sp,TRUE,Speed of Internet connection,Not asked=-2 | REFUSED=-1 | No connection=0 | Dial-up or NA=1 | Broadband=2,"Replication, item-selection, or knowledge-measurement field"
+2004,citizen,FALSE,R is US citizen,Not asked=-2 | REFUSED=-1,Not needed for these analyses; omitted from public projection
+2004,female,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,age,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,white,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,edu,FALSE,"Education, 6-point scale",Less than high school=1 | Some high school=2 | Finished high school=3 | some college=4 | Associate or Bachelor degree=5 | Graduate degree=6,Not needed for these analyses; omitted from public projection
+2004,edu2,FALSE,R has at least some college education,=,Not needed for these analyses; omitted from public projection
+2004,income,FALSE,Imputed Household Income,=,Not needed for these analyses; omitted from public projection
+2004,income2,FALSE,Imputed Household Income $40k or higher,=,Not needed for these analyses; omitted from public projection
+2004,married,FALSE,,=,Not needed for these analyses; omitted from public projection
+2004,child,FALSE,R has children under 18,=,Not needed for these analyses; omitted from public projection
+2004,others,FALSE,How many other adults in household?,R is only adult HH member=0 | One other adult lives in HH=1 | More than one other adult in HH=2,Not needed for these analyses; omitted from public projection
+2004,employ,FALSE,R works full time,=,Not needed for these analyses; omitted from public projection
+2008,caseid,TRUE,case id,=,"Replication, item-selection, or knowledge-measurement field"
+2008,complete,FALSE,complete case,=,Not needed for these analyses; omitted from public projection
+2008,start_wt,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,bweight,FALSE, (raked),=,Not needed for these analyses; omitted from public projection
+2008,eweight,FALSE, (raked),=,Not needed for these analyses; omitted from public projection
+2008,fweight,FALSE, (raked),=,Not needed for these analyses; omitted from public projection
+2008,weight,FALSE,poststratification weights,=,Not needed for these analyses; omitted from public projection
+2008,tm_start,FALSE,interview start time,=,Not needed for these analyses; omitted from public projection
+2008,tm_finish,FALSE,interview finish time,=,Not needed for these analyses; omitted from public projection
+2008,duration,FALSE,interview duration in minutes,=,Not needed for these analyses; omitted from public projection
+2008,a1_ori,FALSE,a1 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,a2a3_ord,FALSE,a2 a3 order,a2=1 | a3=2,Not needed for these analyses; omitted from public projection
+2008,a2_ori,FALSE,a2 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,a8a9_ori,FALSE,a8_a9 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,b2_ord,FALSE,b2 scale order,more often than most other americans=1 | less often than most other americans=2,Not needed for these analyses; omitted from public projection
+2008,b3a_ori,FALSE,b3a scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,b4_ori,FALSE,b4 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,b7a_ori,FALSE,b7a scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,b7b_ori,FALSE,b7b scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,c3_ori,FALSE,c3 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,d1_ori,FALSE,d1 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,d2_ori,FALSE,d2 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,eblock_ord_1,TRUE,e block shown 1st :,e1_e4=1 | e5_e8=2 | e9_e12=3,"Replication, item-selection, or knowledge-measurement field"
+2008,eblock_ord_2,TRUE,e block shown 2nd :,e1_e4=1 | e5_e8=2 | e9_e12=3,"Replication, item-selection, or knowledge-measurement field"
+2008,eblock_ord_3,TRUE,e block shown 3rd :,e1_e4=1 | e5_e8=2 | e9_e12=3,"Replication, item-selection, or knowledge-measurement field"
+2008,e1_pos,TRUE,e1 position,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e2_ord1,TRUE,e2 image shown 1st :,nancy pelosi=1 | dana perino=2 | barbara boxer=3 | elizabeth edwards=4,"Replication, item-selection, or knowledge-measurement field"
+2008,e2_ord2,TRUE,e2 image shown 2nd :,nancy pelosi=1 | dana perino=2 | barbara boxer=3 | elizabeth edwards=4,"Replication, item-selection, or knowledge-measurement field"
+2008,e2_ord3,TRUE,e2 image shown 3rd :,nancy pelosi=1 | dana perino=2 | barbara boxer=3 | elizabeth edwards=4,"Replication, item-selection, or knowledge-measurement field"
+2008,e2_ord4,TRUE,e2 image shown 4th :,nancy pelosi=1 | dana perino=2 | barbara boxer=3 | elizabeth edwards=4,"Replication, item-selection, or knowledge-measurement field"
+2008,e3_pos,TRUE,e3 position,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e4_pos,TRUE,e4 position,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e5_pos,TRUE,e5 position,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e6_pos,TRUE,e6 position,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e7_pos,TRUE,e7 position,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e8_pos,TRUE,e8 position,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e10_ord,TRUE,e10 scale order,for the bill=1 | against the bill=2,"Replication, item-selection, or knowledge-measurement field"
+2008,e11e12_ord,FALSE,e11 e12 order,e11 shown first=1 | e12  shown first=2,Not needed for these analyses; omitted from public projection
+2008,f4f5_ord,FALSE,f4 f5 order,f4=1 | f5=2,Not needed for these analyses; omitted from public projection
+2008,f7f8_ord,FALSE,f7 f8 order,f7=1 | f8=2,Not needed for these analyses; omitted from public projection
+2008,k3a_ori,FALSE,k3a scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,l1l3_ord1,FALSE,l1 - l3 question shown 1st :,l1=1 | l2=2 | l3=3,Not needed for these analyses; omitted from public projection
+2008,l1l3_ord2,FALSE,l1 - l3 question shown 2nd :,l1=1 | l2=2 | l3=3,Not needed for these analyses; omitted from public projection
+2008,l1l3_ord3,FALSE,l1 - l3 question shown 3rd :,l1=1 | l2=2 | l3=3,Not needed for these analyses; omitted from public projection
+2008,l1_ori,FALSE,l1 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,l4_ori,FALSE,l4 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,m1_ori,FALSE,m1 scale orientation,yes reverse=1 | no reverse=2,Not needed for these analyses; omitted from public projection
+2008,ra,TRUE,location of party id questions,value 1=1 | value 2=2,"Replication, item-selection, or knowledge-measurement field"
+2008,rb,TRUE,sequence of enough time question and interest prime,value 0=0 | value 1=1 | value 2=2 | value 3=3 | value 4=4 | value 5=5,"Replication, item-selection, or knowledge-measurement field"
+2008,rc,TRUE,anchor statement for network news question,value 0=0 | value 1=1 | value 2=2 | value 3=3 | value 4=4 | value 5=5 | value 6=6 | value 7=7,"Replication, item-selection, or knowledge-measurement field"
+2008,rd,TRUE,"0: control, 1: verbal accuracy reminder, 2: monetary incentive",control=0 | verbal accuracy reminder=1 | monetary incentive=2,"Replication, item-selection, or knowledge-measurement field"
+2008,re,TRUE,"1: neutral frame, 2: reference to bush in economics questions",neutral frame=0 | Bush reference=1,"Replication, item-selection, or knowledge-measurement field"
+2008,rf,TRUE,"(block 1) 1: verbal, 2: visual, 3: verbal and visual",verbal=1 | visual=2 | verbal and visual=3,"Replication, item-selection, or knowledge-measurement field"
+2008,rg,TRUE,(block 2 & 3),value 1=1 | value 2=2,"Replication, item-selection, or knowledge-measurement field"
+2008,rj,TRUE,"1: left response option is never, 2: left response options is regularly","left response option is ""never""=1 | left response options is ""regularly""=2","Replication, item-selection, or knowledge-measurement field"
+2008,rk,TRUE,"1: democratic, 2: republican [congressional majorities]",democratic=1 | republican [congressional majorities]=2,"Replication, item-selection, or knowledge-measurement field"
+2008,rl,TRUE,"1: cable channels, 2: cable programs",cable channels=1 | cable programs=2,"Replication, item-selection, or knowledge-measurement field"
+2008,rm,TRUE,"(cable anchors) 1: verbal, 2: visual, 3: verbal and visual",verbal=1 | visual=2 | verbal and visual=3,"Replication, item-selection, or knowledge-measurement field"
+2008,rn,TRUE,"(np frame) 1: news, 2: politics",news=1 | politics=2,"Replication, item-selection, or knowledge-measurement field"
+2008,rp,TRUE,"1: explicit dk, 2: no explicit dk",explicit=1 | no explicit dk=2,"Replication, item-selection, or knowledge-measurement field"
+2008,a1,FALSE,some people seem to follow whats going on in government and public affairs most,not asked=-2 | refused=-1 | most of the time=1 | some of the time=2 | only now and then=3 | hardly at all=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn1_1,FALSE, [following the news is fun.] please indicate whether you agree or disagree with,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn1_2,FALSE, [i like complex news stories even if they require my full attention. ] please i,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn1_3,FALSE, [i prefer detailed news coverage to news headlines even if it requires more tim,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn1_4,FALSE, [i prefer a concise summary of the news to in-depth reporting. ] please indicat,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn1_5,FALSE, [i hate to miss the news. ] please indicate whether you agree or disagree with,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn2_1,FALSE, [following politics is fun.] please indicate whether you agree or disagree with,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn2_2,FALSE, [i like complex political issues even if they require my full attention. ] plea,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn2_3,FALSE, [i prefer detailed news coverage to news headlines even if it requires more tim,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn2_4,FALSE, [i prefer a concise summary of political events to in-depth information. ] plea,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a2_rn2_5,FALSE, [i hate to miss the news. ] please indicate whether you agree or disagree with,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a3_1,FALSE, [i use the internet mainly for amusement and socializing. ] please indicate whe,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a3_2,FALSE, [it bothers me to miss my favorite tv show. ] please indicate whether you agree,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a3_3,FALSE, [i enjoy spending an entire evening watching movies and tv shows. ] please indi,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a3_4,FALSE, [spending time on entertainment or gaming websites is boring.] please indicate,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a3_5,FALSE," [after watching my favorite tv show, i often cant wait to see the next episode.",not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a4a,FALSE,"thinking back to the presidential election in november 2004, which of the follow","not asked=-2 | refused=-1 | i did not vote=1 | i thought about voting - but didn't=2 | i usually vote, but didn't in the 2004 presidential election=3 | i was too young to vote in 2004=4 | i am sure i voted in the 2004 presidential election=5",Not needed for these analyses; omitted from public projection
+2008,a4b,FALSE,fewer people vote in congressional elections. thinking back to the 2006 congress,"not asked=-2 | refused=-1 | i did not vote=1 | i thought about voting - but didn't=2 | i usually vote, but didn't in the 2006 congressional electio=3 | i was too young to vote in 2006=4 | i am sure i voted in the 2006 congressional election=5",Not needed for these analyses; omitted from public projection
+2008,a5_1,FALSE,"during the last presidential campaign in 2004, did you…talk to any people and tr",not asked=-2 | refused=-1 | yes=1 | no=2,Not needed for these analyses; omitted from public projection
+2008,a5_2,FALSE,"during the last presidential campaign in 2004, did you…wear a campaign button, p",not asked=-2 | refused=-1 | yes=1 | no=2,Not needed for these analyses; omitted from public projection
+2008,a5_3,FALSE,"during the last presidential campaign in 2004, did you…go to any political meeti",not asked=-2 | refused=-1 | yes=1 | no=2,Not needed for these analyses; omitted from public projection
+2008,a6,FALSE,which candidate did you vote for in the 2004 presidential election?,not asked=-2 | refused=-1 | george bush=1 | john kerry=2 | ralph nader=3 | another candidate=4 | i don't remember=5 | i did not vote=6,Not needed for these analyses; omitted from public projection
+2008,a7,FALSE,which candidate did you vote for in the 2006 election to the u.s. house of repre,not asked=-2 | refused=-1 | the republican candidate=1 | the democratic candidate=2 | another candidate=3 | i don't remember=4 | i did not vote=5,Not needed for these analyses; omitted from public projection
+2008,a8a9_1,FALSE, [i can easily think of synonyms for words. ] please indicate if you agree or di,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a8a9_2,FALSE, [i have better than average fluency in using words. ] please indicate if you ag,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a8a9_3,FALSE, [i enjoy doing work that requires the use of words. ] please indicate if you ag,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a8a9_6,FALSE, [i prefer activities that dont require a lot of reading. ] please indicate if y,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a8a9_7,FALSE, [i dont like maps or diagrams in books. ] please indicate if you agree or disag,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a8a9_8,FALSE, [the old saying a picture is worth a thousand words is certainly true for me. ],not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a8a9_10,FALSE," [i am good at learning from labeled pictures, illustrations, and graphs. ] plea",not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,a8a9_11,FALSE, [my thinking often consists of mental pictures or images. ] please indicate if,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,b1,FALSE,how many days in the past week did you watch the national network news on televi,not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,b2,FALSE,do you think you watch the national network news on television...,not asked=-2 | refused=-1 | more often than most other americans=1 | less often than most other americans=2 | about as often as most other americans=3,Not needed for these analyses; omitted from public projection
+2008,b3a,FALSE,"in talking to people about the news, we often find that a lot of people dont hav","not asked=-2 | refused=-1 | yes, i always have enough time to follow the news as much as=1 | yes, i usually have enough time to follow the news as much a=2 | no, often i don't have enough time to follow the news as muc=3 | no, i never have enough time to follow the news as much as i=4",Not needed for these analyses; omitted from public projection
+2008,b3b,FALSE,which of these aspects of politics do you find most interesting?,"not asked=-2 | refused=-1 | elections=1 | what the president is doing=2 | polls and which politicians are currently popular=3 | domestic policy (such health care, education, and social sec=4 | foreign policy=5 | something else. (please specify):=6",Not needed for these analyses; omitted from public projection
+2008,b3b_other,FALSE," [something else, please specify:]which of these aspects of politics do you find",=,Not needed for these analyses; omitted from public projection
+2008,b4,FALSE,"generally speaking, how interested are you in information about whats going on i",not asked=-2 | refused=-1 | extremely interested=1 | very interested=2 | moderately interested=3 | slightly interested=4 | not interested at all=5,Not needed for these analyses; omitted from public projection
+2008,b5_1,FALSE,"in the past week, how many days did you…watch cable news for at least 10 minutes",not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,b5_2,FALSE,"in the past week, how many days did you…read a daily newspaper (paper or online",not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,b5_3,FALSE,"in the past week, how many days did you…listen to a radio news program (live or",not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,b5_4,FALSE,"in the past week, how many days did you…go online to get news?",not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,b6a_1,FALSE, [cnn ] how often do you watch each of these cable news channels?,not asked=-2 | refused=-1 | never=1 | hardly ever=2 | sometimes=3 | regularly=4,Not needed for these analyses; omitted from public projection
+2008,b6a_2,FALSE, [fox news channel ] how often do you watch each of these cable news channels?,not asked=-2 | refused=-1 | never=1 | hardly ever=2 | sometimes=3 | regularly=4,Not needed for these analyses; omitted from public projection
+2008,b6a_3,FALSE, [msnbc ] how often do you watch each of these cable news channels?,not asked=-2 | refused=-1 | never=1 | hardly ever=2 | sometimes=3 | regularly=4,Not needed for these analyses; omitted from public projection
+2008,b6a_4,FALSE, [cnbc ] how often do you watch each of these cable news channels?,not asked=-2 | refused=-1 | never=1 | hardly ever=2 | sometimes=3 | regularly=4,Not needed for these analyses; omitted from public projection
+2008,b6a_5,FALSE, [c-span ] how often do you watch each of these cable news channels?,not asked=-2 | refused=-1 | never=1 | hardly ever=2 | sometimes=3 | regularly=4,Not needed for these analyses; omitted from public projection
+2008,b6b_1,FALSE, [lou dobbs tonight (on cnn) ] how often do you watch each of these cable news p,not asked=-2 | refused=-1 | never=1 | hardly ever=2 | sometimes=3 | regularly=4,Not needed for these analyses; omitted from public projection
+2008,b6b_2,FALSE, [hannity &amp; colmes (on fox news channel) ] how often do you watch each of th,not asked=-2 | refused=-1 | never=1 | hardly ever=2 | sometimes=3 | regularly=4,Not needed for these analyses; omitted from public projection
+2008,b6b_3,FALSE, [fox report with shepard smith (on fox news channel) ] how often do you watch e,not asked=-2 | refused=-1 | never=1 | hardly ever=2 | sometimes=3 | regularly=4,Not needed for these analyses; omitted from public projection
+2008,b6b_4,FALSE, [the situation room (on cnn) ] how often do you watch each of these cable news,not asked=-2 | refused=-1 | never=1 | hardly ever=2 | sometimes=3 | regularly=4,Not needed for these analyses; omitted from public projection
+2008,b7a,FALSE,"generally speaking, how interested are you in information about whats going on i",not asked=-2 | refused=-1 | extremely interested=1 | very interested=2 | moderately interested=3 | slightly interested=4 | not interested at all=5,Not needed for these analyses; omitted from public projection
+2008,b7b,FALSE,"in talking to people about the news, we often find that a lot of people dont hav","not asked=-2 | refused=-1 | yes, i always have enough time to follow the news as much as=1 | yes, i usually have enough time to follow the news as much a=2 | no, often i don't have enough time to follow the news as muc=3 | no, i never have enough time to follow the news as much as i=4",Not needed for these analyses; omitted from public projection
+2008,c3_1,FALSE, [it is my duty as a citizen to follow the news. ] please indicate whether you a,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,c3_2,FALSE, [everyone should know about the important political issues of the day. ] please,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,c3_3,FALSE, [sometimes politics and government seem so complicated that a person like me ca,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,c3_4,FALSE, [people like me dont have any say about what the government does. ] please indi,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,c3_5,FALSE, [public officials dont care much what people like me think. ] please indicate w,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,c4,FALSE,from which of these media do you typically get most of your news?,"not asked=-2 | refused=-1 | print media (newspapers, magazines, online newspapers)=1 | radio (radio news, talk radio, online radio)=2 | television (newscasts, news magazines, online news clips)=3 | other news websites or blogs (e.g., yahoo news or dailykos)=4",Not needed for these analyses; omitted from public projection
+2008,c4a1,FALSE," [print media (newspapers, magazines, online newspapers)] do you regularly get n",not asked=-2 | refused=-1 | no=0 | yes=1,Not needed for these analyses; omitted from public projection
+2008,c4a2,FALSE," [radio (radio news, talk radio, online radio)] do you regularly get news from a",not asked=-2 | refused=-1 | no=0 | yes=1,Not needed for these analyses; omitted from public projection
+2008,c4a3,FALSE," [television (newscasts, news magazines, online news clips)] do you regularly ge",not asked=-2 | refused=-1 | no=0 | yes=1,Not needed for these analyses; omitted from public projection
+2008,c4a4,FALSE," [news websites or blogs (e.g., yahoo news or dailykos)] do you regularly get ne",not asked=-2 | refused=-1 | no=0 | yes=1,Not needed for these analyses; omitted from public projection
+2008,c4a5,FALSE, [none of these] do you regularly get news from any other medium?,not asked=-2 | refused=-1 | no=0 | yes=1,Not needed for these analyses; omitted from public projection
+2008,c4a6,FALSE, [refused] do you regularly get news from any other medium?,not asked=-2 | refused=-1 | no=0 | yes=1,Not needed for these analyses; omitted from public projection
+2008,ideo7,FALSE,where would you place yourself on this scale?,not asked=-2 | refused=-1 | extremely liberal=1 | liberal=2 | slightly liberal=3 | moderate; middle of the road=4 | slightly conservative=5 | conservative=6 | extremely conservative=7,Not needed for these analyses; omitted from public projection
+2008,d2_1,FALSE, [a pregnant woman should be able to obtain a legal abortion if there is a stron,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,d2_2,FALSE, [the federal government should make it more difficult for people to buy a handg,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,d2_3,FALSE," [the 2001 tax cuts for people with incomes over $200,000 should be renewed when",not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,d2_4,FALSE," [the government should protect the environment, even if it costs jobs and lower",not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,d2_5,FALSE, [the united states should try harder to solve international problems by using d,not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,d2_6,FALSE, [defense spending should be raised even if that increases the budget deficit. ],not asked=-2 | refused=-1 | strongly disagree=1 | disagree=2 | agree=3 | strongly agree=4,Not needed for these analyses; omitted from public projection
+2008,e1,TRUE,who is the current secretary of defense?,not asked=-2 | refused=-1 | donald rumsfeld=1 | john ashcroft=2 | robert gates=3 | colin powell=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e1_timing,TRUE,e1_timing,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e2,TRUE,who is the current speaker of the u.s. house of representatives?,not asked=-2 | refused=-1 | nancy pelosi=1 | dana perino=2 | barbara boxer=3 | elizabeth edwards=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e2_timing,TRUE,e1_timing,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e3,TRUE,who is the chief justice on the u.s. supreme court?,not asked=-2 | refused=-1 | william rehnquist=1 | john roberts=2 | antonin scalia=3 | samuel alito=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e3_timing,TRUE,e1_timing,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e4,TRUE,who is the president of iran?,not asked=-2 | refused=-1 | mahmoud ahmadinejad=1 | nouri al-maliki=2 | hamid karzai=3 | pervez musharraf=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e4_timing,TRUE,e1_timing,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e5,TRUE,what office is currently held by {condoleezza (“condi”) rice/the person shown in,not asked=-2 | refused=-1 | director of the central intelligence agency=1 | national security adviser=2 | secretary of state=3 | white house chief of staff=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e5_timing,TRUE,e1_timing,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e6,TRUE,what position is currently held by {ben bernanke /the person shown in this pictu,not asked=-2 | refused=-1 | treasury secretary=1 | chairman of the federal reserve=2 | secretary of homeland security=3 | chairman of the national economic council=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e6_timing,TRUE,e1_timing,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e7,TRUE,what position is currently held by {michael mukasey/the person shown in this pic,not asked=-2 | refused=-1 | u.s. attorney general=1 | president's general counsel=2 | senate majority leader=3 | supreme court justice=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e7_timing,TRUE,e1_timing,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e8,TRUE,what position is currently held by {nicolas sarkozy/the person shown in this pic,not asked=-2 | refused=-1 | president of france=1 | foreign minister of the european union (eu)=2 | prime minister of turkey=3 | un secretary general=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e8_timing,TRUE,e1_timing,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e9_1,TRUE," [bill richardson] for each of these politicians, please indicate to which party",not asked=-2 | refused=-1 | republican=1 | democrat=2 | green party=3 | reform party=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e9_2,TRUE," [fred thompson] for each of these politicians, please indicate to which party t",not asked=-2 | refused=-1 | republican=1 | democrat=2 | green party=3 | reform party=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e9_3,TRUE," [mike huckabee] for each of these politicians, please indicate to which party t",not asked=-2 | refused=-1 | republican=1 | democrat=2 | green party=3 | reform party=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e9_4,TRUE," [ron paul] for each of these politicians, please indicate to which party they b",not asked=-2 | refused=-1 | republican=1 | democrat=2 | green party=3 | reform party=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e10_1,TRUE," [barack obama] on october 11, 2002, the u.s. senate voted to give president bus",not asked=-2 | refused=-1 | for the bill=1 | against the bill=2 | missed the vote=3 | not a u.s. senator at the time=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e10_2,TRUE," [hillary clinton] on october 11, 2002, the u.s. senate voted to give president",not asked=-2 | refused=-1 | for the bill=1 | against the bill=2 | missed the vote=3 | not a u.s. senator at the time=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e10_3,TRUE," [john edwards] on october 11, 2002, the u.s. senate voted to give president bus",not asked=-2 | refused=-1 | for the bill=1 | against the bill=2 | missed the vote=3 | not a u.s. senator at the time=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e10_4,TRUE," [joe biden] on october 11, 2002, the u.s. senate voted to give president bush t",not asked=-2 | refused=-1 | for the bill=1 | against the bill=2 | missed the vote=3 | not a u.s. senator at the time=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e11,TRUE,"of these four politicians, who is the most conservative?",not asked=-2 | refused=-1 | newt gingrich=1 | arnold schwarzenegger=2 | joe lieberman=3 | john kerry=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,e12,TRUE,"of these four politicians, who is the most liberal?",not asked=-2 | refused=-1 | newt gingrich=1 | arnold schwarzenegger=2 | joe lieberman=3 | john kerry=4 | don't know=5,"Replication, item-selection, or knowledge-measurement field"
+2008,f1_rl1_1,FALSE," [john roberts] for each of these tv anchors, please indicate for which cable ne",not asked=-2 | refused=-1 | cnn=1 | fox news=2 | msnbc=3 | cnbc=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,f1_rl1_2,FALSE," [joe scarborough] for each of these tv anchors, please indicate for which cable",not asked=-2 | refused=-1 | cnn=1 | fox news=2 | msnbc=3 | cnbc=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,f1_rl1_3,FALSE," [sanjay gupta] for each of these tv anchors, please indicate for which cable ne",not asked=-2 | refused=-1 | cnn=1 | fox news=2 | msnbc=3 | cnbc=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,f1_rl1_4,FALSE," [bill hemmer] for each of these tv anchors, please indicate for which cable new",not asked=-2 | refused=-1 | cnn=1 | fox news=2 | msnbc=3 | cnbc=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,f1_rl2_1,FALSE," [sean hannity] for each of these tv anchors, please indicate for which cable ne",not asked=-2 | refused=-1 | cnn=1 | fox news=2 | msnbc=3 | cnbc=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,f1_rl2_2,FALSE," [jack cafferty] for each of these tv anchors, please indicate for which cable n",not asked=-2 | refused=-1 | cnn=1 | fox news=2 | msnbc=3 | cnbc=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,f1_rl2_3,FALSE," [christine romans] for each of these tv anchors, please indicate for which cabl",not asked=-2 | refused=-1 | cnn=1 | fox news=2 | msnbc=3 | cnbc=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,f1_rl2_4,FALSE," [shepard smith] for each of these tv anchors, please indicate for which cable n",not asked=-2 | refused=-1 | cnn=1 | fox news=2 | msnbc=3 | cnbc=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,f2,TRUE,"of the 100 members of the u.s. senate, how many are members of the {democratic/r",not asked=-2 | refused=-1,"Replication, item-selection, or knowledge-measurement field"
+2008,f3,FALSE,where would you place yourself on this scale?,not asked=-2 | refused=-1 | govt should provide many fewer services=1 | 2=2 | 3=3 | 4=4 | 5=5 | 6=6 | govt should provide many more services=7,Not needed for these analyses; omitted from public projection
+2008,f4,FALSE,"on the same scale, where would you place the democratic party?",not asked=-2 | refused=-1 | govt should provide many fewer services=1 | 2=2 | 3=3 | 4=4 | 5=5 | 6=6 | govt should provide many more services=7,Not needed for these analyses; omitted from public projection
+2008,f5,FALSE,"on the same scale, where would you place the republican party?",not asked=-2 | refused=-1 | govt should provide many fewer services=1 | 2=2 | 3=3 | 4=4 | 5=5 | 6=6 | govt should provide many more services=7,Not needed for these analyses; omitted from public projection
+2008,f6,FALSE,where would you place yourself on this scale?,not asked=-2 | refused=-1 | govt should see to jobs and standard of living=1 | 2=2 | 3=3 | 4=4 | 5=5 | 6=6 | govt should let each person get ahead on own=7,Not needed for these analyses; omitted from public projection
+2008,f7,FALSE,"on the same scale, where would you place the democratic party?",not asked=-2 | refused=-1 | govt should see to jobs and standard of living=1 | 2=2 | 3=3 | 4=4 | 5=5 | 6=6 | govt should let each person get ahead on own=7,Not needed for these analyses; omitted from public projection
+2008,f8,FALSE,"on the same scale, where would you place the republican party?",not asked=-2 | refused=-1 | govt should see to jobs and standard of living=1 | 2=2 | 3=3 | 4=4 | 5=5 | 6=6 | govt should let each person get ahead on own=7,Not needed for these analyses; omitted from public projection
+2008,h1a,FALSE,"imagine that we flip a fair coin 1,000 times. what is your best guess about how",not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,h1b,FALSE,"in a lottery, the chance of winning a $10 prize is 1%. what is your best guess a",not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,h1c,TRUE,"if the chance of getting a disease is 20 out of 100, this would be the same as h",not asked=-2 | refused=-1,"Replication, item-selection, or knowledge-measurement field"
+2008,k1,FALSE,"generally speaking, do you think of yourself as a republican, a democrat, an ind",not asked=-2 | refused=-1 | democrat=1 | republican=2 | independent=3 | no preference=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,k2a,FALSE,would you call yourself a strong democrat or a not very strong democrat?,not asked=-2 | refused=-1 | strong=1 | not very strong=2,Not needed for these analyses; omitted from public projection
+2008,k2b,FALSE,would you call yourself a strong republican or a not very strong republican?,not asked=-2 | refused=-1 | strong=1 | not very strong=2,Not needed for these analyses; omitted from public projection
+2008,k2c,FALSE,do you think of yourself as closer to the republican party or to the democratic,not asked=-2 | refused=-1 | democrat=1 | republican=2 | neither=3 | don't know=4,Not needed for these analyses; omitted from public projection
+2008,k3a,TRUE,do you approve or disapprove of the way president bush is handling the economy?,not asked=-2 | refused=-1 | strongly approve=1 | approve=2 | disapprove=3 | strongly disapprove=4,"Replication, item-selection, or knowledge-measurement field"
+2008,l1,TRUE,which of the following responses is closest to the outstanding public debt today,not asked=-2 | refused=-1 | less than 5.5 trillion dollars=1 | 6.5 trillion dollars=2 | 7.5 trillion dollars=3 | 8.5 trillion dollars=4 | 9.5 trillion dollars=5 | 10.5 trillion dollars=6 | more than 11.5 trillion dollars=7,"Replication, item-selection, or knowledge-measurement field"
+2008,l2,TRUE,what percentage of americans are currently unemployed? if you do not know the an,not asked=-2 | refused=-1,"Replication, item-selection, or knowledge-measurement field"
+2008,l3,TRUE,"according to the latest estimate (for 2006), what percentage of americans do not",e1_e4=1 | e5_e8=2 | e9_e12=3,"Replication, item-selection, or knowledge-measurement field"
+2008,l4,TRUE,what percentage of americans leave enough money to others for the federal estate,not asked=-2 | refused=-1 | less than 5% of all americans=1 | about 25% of all americans=2 | about 50% of all americans=3 | about 75% of all americans=4 | about 95% of all americans=5,"Replication, item-selection, or knowledge-measurement field"
+2008,l5,TRUE,what is the current national average price for a gallon of regular gasoline? if,not asked=-2 | refused=-1,"Replication, item-selection, or knowledge-measurement field"
+2008,m1_1,TRUE,do you approve or disapprove of the way president bush is handling the economy?,not asked=-2 | refused=-1 | strongly approve=1 | approve=2 | disapprove=3 | strongly disapprove=4,"Replication, item-selection, or knowledge-measurement field"
+2008,n1_1,FALSE, [space] select the word that comes closest to the meaning of the word in capita,not asked=-2 | refused=-1 | school=1 | noon=2 | captain=3 | room=4 | board=5 | don't know=6,Not needed for these analyses; omitted from public projection
+2008,n1_3,FALSE, [emanate] select the word that comes closest to the meaning of the word in capi,not asked=-2 | refused=-1 | populate=1 | free=2 | prominent=3 | rival=4 | come=5 | don't know=6,Not needed for these analyses; omitted from public projection
+2008,n1_5,FALSE, [animosity] select the word that comes closest to the meaning of the word in ca,not asked=-2 | refused=-1 | hatred=1 | animation=2 | disobedience=3 | diversity=4 | friendship=5 | don't know=6,Not needed for these analyses; omitted from public projection
+2008,n2_1,FALSE, [pact] select the word that comes closest to the meaning of the word in capital,not asked=-2 | refused=-1 | puissance=1 | remonstrance=2 | agreement=3 | skillet=4 | pressure=5 | don't know=6,Not needed for these analyses; omitted from public projection
+2008,n2_2,FALSE, [cloistered] select the word that comes closest to the meaning of the word in c,not asked=-2 | refused=-1 | miniature=1 | bunched=2 | arched=3 | malady=4 | secluded=5 | don't know=6,Not needed for these analyses; omitted from public projection
+2008,n2_3,FALSE, [caprice] select the word that comes closest to the meaning of the word in capi,not asked=-2 | refused=-1 | value=1 | a star=2 | grimace=3 | whim=4 | inducement=5 | don't know=6,Not needed for these analyses; omitted from public projection
+2008,n2_4,FALSE, [accustom] select the word that comes closest to the meaning of the word in cap,not asked=-2 | refused=-1 | disappoint=1 | customary=2 | encounter=3 | get used to=4 | business=5 | don't know=6,Not needed for these analyses; omitted from public projection
+2008,n2_5,FALSE, [allusion] select the word that comes closest to the meaning of the word in cap,not asked=-2 | refused=-1 | reference=1 | dream=2 | eulogy=3 | illusion=4 | aria=5 | don't know=6,Not needed for these analyses; omitted from public projection
+2008,y1,FALSE,"generally speaking, do you think of yourself as a republican, a democrat, an ind",not asked=-2 | refused=-1 | democrat=1 | republican=2 | independent=3 | no preference=4 | don't know=5,Not needed for these analyses; omitted from public projection
+2008,y2a,FALSE,would you call yourself a strong democrat or a not very strong democrat?,not asked=-2 | refused=-1 | strong=1 | not very strong=2,Not needed for these analyses; omitted from public projection
+2008,y2b,FALSE,would you call yourself a strong republican or a not very strong republican?,not asked=-2 | refused=-1 | strong=1 | not very strong=2,Not needed for these analyses; omitted from public projection
+2008,y2c,FALSE,do you think of yourself as closer to the republican party or to the democratic,not asked=-2 | refused=-1 | democrat=1 | republican=2 | neither=3 | don't know=4,Not needed for these analyses; omitted from public projection
+2008,score_l,FALSE,number of correct answers to l1 - l5,not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,ppage,FALSE,age,not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,ppagecat,FALSE,age - 7 categories,18-24=1 | 25-34=2 | 35-44=3 | 45-54=4 | 55-64=5 | 65-74=6 | 75+=7 | under 18=99,Not needed for these analyses; omitted from public projection
+2008,ppagect4,FALSE,age - 4 categories,18-29=1 | 30-44=2 | 45-59=3 | 60+=4 | under 18=99,Not needed for these analyses; omitted from public projection
+2008,ppeduc,FALSE,education (highest degree received),"not asked=-2 | refused=-1 | no formal education=1 | 1st, 2nd, 3rd, or 4th grade=2 | 5th or 6th grade=3 | 7th or 8th grade=4 | 9th grade=5 | 10th grade=6 | 11th grade=7 | 12th grade no diploma=8 | high school graduate - high school diploma or the equivalent=9 | some college, no degree=10 | associate degree=11 | bachelors degree=12 | masters degree=13 | professional or doctorate degree=14",Not needed for these analyses; omitted from public projection
+2008,ppeducat,FALSE,education (categorical),not asked=-2 | refused=-1 | less than high school=1 | high school=2 | some college=3 | bachelor's degree or higher=4,Not needed for these analyses; omitted from public projection
+2008,ppethm,FALSE,race / ethnicity,"not asked=-2 | refused=-1 | white, non-hispanic=1 | black, non-hispanic=2 | other, non-hispanic=3 | hispanic=4 | 2+ races, non-hispanic=5",Not needed for these analyses; omitted from public projection
+2008,ppgender,FALSE,gender,not asked=-2 | refused=-1 | male=1 | female=2,Not needed for these analyses; omitted from public projection
+2008,pphhhead,FALSE,household head,not asked=-2 | refused=-1 | no=0 | yes=1,Not needed for these analyses; omitted from public projection
+2008,pphhsize,FALSE,household size,not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,pphouse,FALSE,housing type,"not asked=-2 | refused=-1 | a one-family house detached from any other house=1 | a one-family house attached to one or more houses=2 | a building with 2 or more apartments=3 | a mobile home=4 | boat, rv, van, etc.=5",Not needed for these analyses; omitted from public projection
+2008,ppincimp,FALSE,household income,"not asked=-2 | refused=-1 | less than $5,000=1 | $5,000 to $7,499=2 | $7,500 to $9,999=3 | $10,000 to $12,499=4 | $12,500 to $14,999=5 | $15,000 to $19,999=6 | $20,000 to $24,999=7 | $25,000 to $29,999=8 | $30,000 to $34,999=9 | $35,000 to $39,999=10 | $40,000 to $49,999=11 | $50,000 to $59,999=12 | $60,000 to $74,999=13 | $75,000 to $84,999=14 | $85,000 to $99,999=15 | $100,000 to $124,999=16 | $125,000 to $149,999=17 | $150,000 to $174,999=18 | $175,000 or more=19",Not needed for these analyses; omitted from public projection
+2008,ppmarit,FALSE,marital status,not asked=-2 | refused=-1 | married=1 | widowed=2 | divorced=3 | separated=4 | never married=5 | living with partner=6,Not needed for these analyses; omitted from public projection
+2008,ppmsacat,FALSE,msa status,not asked=-2 | refused=-1 | non-metro=0 | metro=1,Not needed for these analyses; omitted from public projection
+2008,ppreg4,FALSE,region 4 - based on state of residence,not asked=-2 | refused=-1 | northeast=1 | midwest=2 | south=3 | west=4,Not needed for these analyses; omitted from public projection
+2008,ppreg9,FALSE,region 9 - based on state of residence,new england=1 | mid-atlantic=2 | east-north central=3 | west-north central=4 | south atlantic=5 | east-south central=6 | west-south central=7 | mountain=8 | pacific=9,Not needed for these analyses; omitted from public projection
+2008,pprent,FALSE,ownership status of living quarters,not asked=-2 | refused=-1 | owned or being bought by you or someone in your household=1 | rented for cash=2 | occupied without payment of cash rent=3,Not needed for these analyses; omitted from public projection
+2008,ppstaten,FALSE,state,not asked=-2 | refused=-1 | me=11 | nh=12 | vt=13 | ma=14 | ri=15 | ct=16 | ny=21 | nj=22 | pa=23 | oh=31 | in=32 | il=33 | mi=34 | wi=35 | mn=41 | ia=42 | mo=43 | nd=44 | sd=45 | ne=46 | ks=47 | de=51 | md=52 | dc=53 | va=54 | wv=55 | nc=56 | sc=57 | ga=58 | fl=59 | ky=61 | tn=62 | al=63 | ms=64 | ar=71 | la=72 | ok=73 | tx=74 | mt=81 | id=82 | wy=83 | co=84 | nm=85 | az=86 | ut=87 | nv=88 | wa=91 | or=92 | ca=93 | ak=94 | hi=95 | as=96 | gu=97 | pr=98 | vi=99,Not needed for these analyses; omitted from public projection
+2008,ppt01,FALSE,presence of household members - children 0-2,not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,ppt25,FALSE,presence of household members - children 2-5,not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,ppt612,FALSE,presence of household members - children 6-12,not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,ppt1317,FALSE,presence of household members - children 13-17,not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,ppt18ov,FALSE,presence of household members - adults 18+,not asked=-2 | refused=-1,Not needed for these analyses; omitted from public projection
+2008,ppwork,FALSE,current employment status,not asked=-2 | refused=-1 | working - as a paid employee=1 | working - self-employed=2 | not working - on temporary layoff from a job=3 | not working - looking for work=4 | not working - retired=5 | not working - disabled=6 | not working - other=7,Not needed for these analyses; omitted from public projection
+2008,ppnet,TRUE,hh internet access,no=0 | yes=1,"Replication, item-selection, or knowledge-measurement field"
+2008,tenure_month,FALSE,number of months on the panel,=,Not needed for these analyses; omitted from public projection
+2008,political_complete,FALSE,completed ap or annenberg survey,did not complete=0 | completed=1,Not needed for these analyses; omitted from public projection
+2008,cu07www,FALSE,are any computers in your household connected to the internet?,not asked=-2 | refused=-1 | yes=1 | no=2,Not needed for these analyses; omitted from public projection
+2008,cu07serv,TRUE,what kind of internet service do you or anyone in your household currently use f,not asked=-2 | refused=-1 | dialup modem=1 | isdn line=2 | cable modem=3 | digital subscriber line (dsl)=4 | satellite dish=5 | t1 / t3 line=6,"Replication, item-selection, or knowledge-measurement field"
+2008,t_a1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_a3,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_a2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_a4a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_a4b,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_a5,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_a6,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_a7,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_a8a9,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_b1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_b2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_b4,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_b5,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_b6a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_b7b,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_c3,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_c4,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_c4a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_d1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_d2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_displa,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_e1,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e2,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e3,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e4,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e5,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e6,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_b6b,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_e7,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_b7a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_e8,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e9,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e9_1,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e10,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e10_1,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e12,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_e11,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_f1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_f1_1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_f2,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_f3,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_f4,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_f5,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_f6,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_f7,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_f8,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_h1a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_h1b,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_h1c,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_disp2,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_l3,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_l1,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_l2,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_l4,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_l5,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_dispn2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_m1_1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_n1_n2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_y1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_y2b,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_dispen,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_qf1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_b3a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_b3b,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_disrp1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_disp1,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_dispn1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_k1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_k2c,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_k3a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_disp3,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,t_k2a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_dispn3,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_y2a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_k2b,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,t_y2c,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,female,FALSE,RECODE of ppgender (gender),=,Not needed for these analyses; omitted from public projection
+2008,edu,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,dedu,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,edu2,FALSE,RECODE of edu,=,Not needed for these analyses; omitted from public projection
+2008,minority,FALSE,RECODE of ppethm (race / ethnicity),=,Not needed for these analyses; omitted from public projection
+2008,white,FALSE,RECODE of minority (RECODE of ppethm (race / ethnicity)),minority=0 | white=1,Not needed for these analyses; omitted from public projection
+2008,black,FALSE,RECODE of ppethm (race / ethnicity),=,Not needed for these analyses; omitted from public projection
+2008,hisp,FALSE,RECODE of ppethm (race / ethnicity),=,Not needed for these analyses; omitted from public projection
+2008,other,FALSE,RECODE of ppethm (race / ethnicity),=,Not needed for these analyses; omitted from public projection
+2008,age,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,dage,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,income,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,dincome,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,employed,FALSE,RECODE of ppwork (current employment status),=,Not needed for these analyses; omitted from public projection
+2008,retired,FALSE,RECODE of ppwork (current employment status),=,Not needed for these analyses; omitted from public projection
+2008,married,FALSE,RECODE of ppmarit (marital status),=,Not needed for these analyses; omitted from public projection
+2008,dtenure,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,polint,FALSE,RECODE of a1 (some people seem to follow whats going on in government and public,=,Not needed for these analyses; omitted from public projection
+2008,polint2,FALSE,RECODE of polint (RECODE of a1 (some people seem to follow whats going on in gov,=,Not needed for these analyses; omitted from public projection
+2008,polint_veryint,FALSE,RECODE of a1 (some people seem to follow whats going on in government and public,=,Not needed for these analyses; omitted from public projection
+2008,polint_somewhat,FALSE,RECODE of a1 (some people seem to follow whats going on in government and public,=,Not needed for these analyses; omitted from public projection
+2008,interest_all,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,interest_scale,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,interest_scale_sd,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,didvotep,FALSE,"RECODE of a4a (thinking back to the presidential election in november 2004, whic",=,Not needed for these analyses; omitted from public projection
+2008,didvoteh,FALSE,RECODE of a4b (fewer people vote in congressional elections. thinking back to th,=,Not needed for these analyses; omitted from public projection
+2008,voteBush,FALSE,RECODE of a6 (which candidate did you vote for in the 2004 presidential election,=,Not needed for these analyses; omitted from public projection
+2008,voteRep,FALSE,RECODE of a7 (which candidate did you vote for in the 2006 election to the u.s.,=,Not needed for these analyses; omitted from public projection
+2008,part_talk,FALSE,"RECODE of a5_1 (during the last presidential campaign in 2004, did you…talk to a",=,Not needed for these analyses; omitted from public projection
+2008,part_button,FALSE,"RECODE of a5_2 (during the last presidential campaign in 2004, did you…wear a ca",=,Not needed for these analyses; omitted from public projection
+2008,part_rallies,FALSE,"RECODE of a5_3 (during the last presidential campaign in 2004, did you…go to any",=,Not needed for these analyses; omitted from public projection
+2008,part_tot,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,voc_blanks,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,voc,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,voc3,FALSE,RECODE of voc,=,Not needed for these analyses; omitted from public projection
+2008,dvoc,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,voc1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,dvoc1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,dvoc1IMP,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,dvoc1MV,FALSE,RECODE of dvoc1,=,Not needed for these analyses; omitted from public projection
+2008,num,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,likenews,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,likenews2,FALSE,RECODE of likenews,=,Not needed for these analyses; omitted from public projection
+2008,duty,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,duty3,FALSE,RECODE of duty,=,Not needed for these analyses; omitted from public projection
+2008,dutyIMP,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,dutyMV,FALSE,RECODE of duty,=,Not needed for these analyses; omitted from public projection
+2008,efficacy,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,tvmost,FALSE,RECODE of c4 (from which of these media do you typically get most of your news?),=,Not needed for these analyses; omitted from public projection
+2008,tvmost2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,pid3,FALSE,"RECODE of k1 (generally speaking, do you think of yourself as a republican, a de",Republican=1 | All others=2 | Democrat=3,Not needed for these analyses; omitted from public projection
+2008,pid7,TRUE,,Strong Republican=1 | Independent/No pref/DK=4 | Strong Democrat=7,"Replication, item-selection, or knowledge-measurement field"
+2008,pidstr,FALSE,RECODE of pid7,=,Not needed for these analyses; omitted from public projection
+2008,ideo3,FALSE,RECODE of ideo7 (where would you place yourself on this scale?),"Conservative=1 | Moderate, DK, Other=2 | Liberal=3",Not needed for these analyses; omitted from public projection
+2008,ideo3ms,FALSE,RECODE of ideo3 (RECODE of ideo7 (where would you place yourself on this scale?),=,Not needed for these analyses; omitted from public projection
+2008,ideo3MV,FALSE,RECODE of ideo3ms (RECODE of ideo3 (RECODE of ideo7 (where would you place yours,=,Not needed for these analyses; omitted from public projection
+2008,rset,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,flag_vvq,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,sty_fver,FALSE,Scores for factor 1,=,Not needed for these analyses; omitted from public projection
+2008,sty_fvis,FALSE,Scores for factor 2,=,Not needed for these analyses; omitted from public projection
+2008,sty_vis,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,sty_ver,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,visver_std,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,visver,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,syns,FALSE,RECODE of a8a9_1 ( [i can easily think of synonyms for words. ] please indicate,=,Not needed for these analyses; omitted from public projection
+2008,fluent,FALSE,RECODE of a8a9_2 ( [i have better than average fluency in using words. ] please,=,Not needed for these analyses; omitted from public projection
+2008,enjoy,FALSE,RECODE of a8a9_3 ( [i enjoy doing work that requires the use of words. ] please,=,Not needed for these analyses; omitted from public projection
+2008,noread,FALSE,RECODE of a8a9_6 ( [i prefer activities that dont require a lot of reading. ] pl,=,Not needed for these analyses; omitted from public projection
+2008,mapsinbooks,FALSE,RECODE of a8a9_7 ( [i dont like maps or diagrams in books. ] please indicate if,=,Not needed for these analyses; omitted from public projection
+2008,thousand,FALSE,RECODE of a8a9_8 ( [the old saying a picture is worth a thousand words is certai,=,Not needed for these analyses; omitted from public projection
+2008,goodat,FALSE,"RECODE of a8a9_10 ( [i am good at learning from labeled pictures, illustrations,",=,Not needed for these analyses; omitted from public projection
+2008,mental,FALSE,RECODE of a8a9_11 ( [my thinking often consists of mental pictures or images. ],=,Not needed for these analyses; omitted from public projection
+2008,r_PIDloc,TRUE,RECODE of ra (location of party id questions),PID after=0 | PID before=1,"Replication, item-selection, or knowledge-measurement field"
+2008,r_bushref,TRUE,"RECODE of re (1: neutral frame, 2: reference to bush in economics questions)",neutral frame=0 | Bush reference=1,"Replication, item-selection, or knowledge-measurement field"
+2008,r_blck1,TRUE,,verbal=1 | visual=2 | both=3,"Replication, item-selection, or knowledge-measurement field"
+2008,r_blck2,TRUE,,verbal=1 | visual=2 | both=3,"Replication, item-selection, or knowledge-measurement field"
+2008,r_blck3,TRUE,,verbal=1 | visual=2 | both=3,"Replication, item-selection, or knowledge-measurement field"
+2008,kn_snmaj,TRUE,RECODE of f2_dem,=,"Replication, item-selection, or knowledge-measurement field"
+2008,kn_serv,FALSE,RECODE of f3 (where would you place yourself on this scale?),=,Not needed for these analyses; omitted from public projection
+2008,kn_serv1,FALSE,RECODE of f3 (where would you place yourself on this scale?),=,Not needed for these analyses; omitted from public projection
+2008,kn_jobs,FALSE,RECODE of f6 (where would you place yourself on this scale?),=,Not needed for these analyses; omitted from public projection
+2008,kn_jobs1,FALSE,RECODE of f6 (where would you place yourself on this scale?),=,Not needed for these analyses; omitted from public projection
+2008,kn_gen,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,l1_tflag,FALSE,RECODE of t_l1,=,Not needed for these analyses; omitted from public projection
+2008,l2_tflag,FALSE,RECODE of t_l2,=,Not needed for these analyses; omitted from public projection
+2008,l3_tflag,FALSE,RECODE of t_l3,=,Not needed for these analyses; omitted from public projection
+2008,l4_tflag,FALSE,RECODE of t_l4,=,Not needed for these analyses; omitted from public projection
+2008,l5_tflag,FALSE,RECODE of t_l5,=,Not needed for these analyses; omitted from public projection
+2008,kn_debt,FALSE,RECODE of l1 (which of the following responses is closest to the outstanding pub,=,Not needed for these analyses; omitted from public projection
+2008,kn_unempl,FALSE,RECODE of l2 (what percentage of americans are currently unemployed? if you do n,=,Not needed for these analyses; omitted from public projection
+2008,kn_health,FALSE,"RECODE of l3 (according to the latest estimate (for 2006), what percentage of am",=,Not needed for these analyses; omitted from public projection
+2008,kn_estate,FALSE,RECODE of l4 (what percentage of americans leave enough money to others for the,=,Not needed for these analyses; omitted from public projection
+2008,f1a_comp,FALSE,RECODE of t_f1,did not complete screen=0 | completed screen: less than 3 secs=1 | completed screen: 3-60 secs=2 | completed screen: over 60 secs=3,Not needed for these analyses; omitted from public projection
+2008,f1b_comp,FALSE,RECODE of t_f1_1,did not complete screen=0 | completed screen: less than 3 secs=1 | completed screen: 3-60 secs=2 | completed screen: over 60 secs=3,Not needed for these analyses; omitted from public projection
+2008,anch_roberts,FALSE,"RECODE of f1_rl1_1 ( [john roberts] for each of these tv anchors, please indicat",incorrect/DK=0 | correct=1,Not needed for these analyses; omitted from public projection
+2008,anch_scarb,FALSE,"RECODE of f1_rl1_2 ( [joe scarborough] for each of these tv anchors, please indi",incorrect/DK=0 | correct=1,Not needed for these analyses; omitted from public projection
+2008,anch_gupta,FALSE,"RECODE of f1_rl1_3 ( [sanjay gupta] for each of these tv anchors, please indicat",incorrect/DK=0 | correct=1,Not needed for these analyses; omitted from public projection
+2008,anch_hemmer,FALSE,"RECODE of f1_rl1_4 ( [bill hemmer] for each of these tv anchors, please indicate",incorrect/DK=0 | correct=1,Not needed for these analyses; omitted from public projection
+2008,anch_hannity,FALSE,"RECODE of f1_rl2_1 ( [sean hannity] for each of these tv anchors, please indicat",incorrect/DK=0 | correct=1,Not needed for these analyses; omitted from public projection
+2008,anch_cafferty,FALSE,"RECODE of f1_rl2_2 ( [jack cafferty] for each of these tv anchors, please indica",incorrect/DK=0 | correct=1,Not needed for these analyses; omitted from public projection
+2008,anch_romans,FALSE,"RECODE of f1_rl2_3 ( [christine romans] for each of these tv anchors, please ind",incorrect/DK=0 | correct=1,Not needed for these analyses; omitted from public projection
+2008,anch_smith,FALSE,"RECODE of f1_rl2_4 ( [shepard smith] for each of these tv anchors, please indica",incorrect/DK=0 | correct=1,Not needed for these analyses; omitted from public projection
+2008,e1_tflag,TRUE,RECODE of t_e1,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e2_tflag,TRUE,RECODE of t_e2,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e3_tflag,TRUE,RECODE of t_e3,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e4_tflag,TRUE,RECODE of t_e4,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e5_tflag,TRUE,RECODE of t_e5,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e6_tflag,TRUE,RECODE of t_e6,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e7_tflag,TRUE,RECODE of t_e7,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e8_tflag,TRUE,RECODE of t_e8,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e11_tflag,TRUE,RECODE of t_e11,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e12_tflag,TRUE,RECODE of t_e12,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e9_tflag,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e10_tflag,TRUE,,=,"Replication, item-selection, or knowledge-measurement field"
+2008,ecomp,TRUE,Number of E-Section responses in at least 3 seconds,=,"Replication, item-selection, or knowledge-measurement field"
+2008,e_tgt70,FALSE,Number of E-Section responses exceeding 70 seconds,=,Not needed for these analyses; omitted from public projection
+2008,e_tlt3,FALSE,Number of E-Section responses in under 3 seconds,=,Not needed for these analyses; omitted from public projection
+2008,e_ttot,FALSE,Total seconds spent answering E-section,=,Not needed for these analyses; omitted from public projection
+2008,kne1,TRUE,RECODE of e1 (who is the current secretary of defense?),=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne2,TRUE,RECODE of e2 (who is the current speaker of the u.s. house of representatives?),=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne3,TRUE,RECODE of e3 (who is the chief justice on the u.s. supreme court?),=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne4,TRUE,RECODE of e4 (who is the president of iran?),=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne5,TRUE,RECODE of e5 (what office is currently held by {condoleezza (“condi”) rice/the p,=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne6,TRUE,RECODE of e6 (what position is currently held by {ben bernanke /the person shown,=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne7,TRUE,RECODE of e7 (what position is currently held by {michael mukasey/the person sho,=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne8,TRUE,RECODE of e8 (what position is currently held by {nicolas sarkozy/the person sho,=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne9a,TRUE,"RECODE of e9_1 ( [bill richardson] for each of these politicians, please indicat",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne9b,TRUE,"RECODE of e9_2 ( [fred thompson] for each of these politicians, please indicate",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne9c,TRUE,"RECODE of e9_3 ( [mike huckabee] for each of these politicians, please indicate",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne9d,TRUE,"RECODE of e9_4 ( [ron paul] for each of these politicians, please indicate to wh",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne10a,TRUE,"RECODE of e10_1 ( [barack obama] on october 11, 2002, the u.s. senate voted to g",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne10b,TRUE,"RECODE of e10_2 ( [hillary clinton] on october 11, 2002, the u.s. senate voted t",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne10c,TRUE,"RECODE of e10_3 ( [john edwards] on october 11, 2002, the u.s. senate voted to g",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne10d,TRUE,"RECODE of e10_4 ( [joe biden] on october 11, 2002, the u.s. senate voted to give",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne11,TRUE,"RECODE of e11 (of these four politicians, who is the most conservative?)",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne12,TRUE,"RECODE of e12 (of these four politicians, who is the most liberal?)",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne1wDK,TRUE,RECODE of e1 (who is the current secretary of defense?),=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne2wDK,TRUE,RECODE of e2 (who is the current speaker of the u.s. house of representatives?),=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne3wDK,TRUE,RECODE of e3 (who is the chief justice on the u.s. supreme court?),=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne4wDK,TRUE,RECODE of e4 (who is the president of iran?),=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne5wDK,TRUE,RECODE of e5 (what office is currently held by {condoleezza (“condi”) rice/the p,=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne6wDK,TRUE,RECODE of e6 (what position is currently held by {ben bernanke /the person shown,=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne7wDK,TRUE,RECODE of e7 (what position is currently held by {michael mukasey/the person sho,=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne8wDK,TRUE,RECODE of e8 (what position is currently held by {nicolas sarkozy/the person sho,=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne9awDK,TRUE,"RECODE of e9_1 ( [bill richardson] for each of these politicians, please indicat",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne9bwDK,TRUE,"RECODE of e9_2 ( [fred thompson] for each of these politicians, please indicate",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne9cwDK,TRUE,"RECODE of e9_3 ( [mike huckabee] for each of these politicians, please indicate",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne9dwDK,TRUE,"RECODE of e9_4 ( [ron paul] for each of these politicians, please indicate to wh",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne10awDK,TRUE,"RECODE of e10_1 ( [barack obama] on october 11, 2002, the u.s. senate voted to g",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne10bwDK,TRUE,"RECODE of e10_2 ( [hillary clinton] on october 11, 2002, the u.s. senate voted t",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne10cwDK,TRUE,"RECODE of e10_3 ( [john edwards] on october 11, 2002, the u.s. senate voted to g",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne10dwDK,TRUE,"RECODE of e10_4 ( [joe biden] on october 11, 2002, the u.s. senate voted to give",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne11wDK,TRUE,"RECODE of e11 (of these four politicians, who is the most conservative?)",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kne12wDK,TRUE,"RECODE of e12 (of these four politicians, who is the most liberal?)",=,"Replication, item-selection, or knowledge-measurement field"
+2008,kn_blck1,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,kn_blck2,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,kn_blck3,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,kn_blck3a,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,kn_blck3b,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,kn_tote,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,kn_blck1wDK,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,kn_blck2wDK,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,kn_blck3wDK,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,kn_totewDK,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,verkn,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,viskn,FALSE,,=,Not needed for these analyses; omitted from public projection
+2008,bothkn,FALSE,,=,Not needed for these analyses; omitted from public projection

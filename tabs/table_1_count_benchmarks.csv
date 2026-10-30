@@ -1,0 +1,8 @@
+study,treatment,published_respondents,published_responses,reproduced_respondents,usable_respondents,reproduced_responses,respondents_match,responses_match
+pooled,0,455,2217,455,450,2217,TRUE,TRUE
+pooled,2,430,2107,430,428,2107,TRUE,TRUE
+study_2004,0,242,1158,242,237,1158,TRUE,TRUE
+study_2004,2,229,1109,229,227,1109,TRUE,TRUE
+study_2008,0,213,1059,213,213,1059,TRUE,TRUE
+study_2008,1,246,1219,246,246,1219,TRUE,TRUE
+study_2008,2,201,998,201,201,998,TRUE,TRUE

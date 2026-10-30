@@ -1,0 +1,262 @@
+audit_data.py  archive/data/raw/final_bundle/psk_wide_recode.dta
+
+========================================================================
+1. SHAPE AND KEYS
+========================================================================
+rows 2,251   columns 60
+key ['caseid']: 2,251 distinct, 0 duplicate rows
+
+========================================================================
+2. MISSINGNESS (level, and -- what matters -- differential)
+========================================================================
+columns with any missing:
+  inet_sp                                       72.72%  (1,637)
+  l6                                            72.55%  (1,633)
+  l10                                           72.55%  (1,633)
+  l9                                            72.55%  (1,633)
+  l8                                            72.55%  (1,633)
+  l7                                            72.55%  (1,633)
+  consis                                        43.98%  (990)
+  cu07serv                                      39.18%  (882)
+  approve                                       33.36%  (751)
+  pres_app                                      33.36%  (751)
+  h1c                                           33.32%  (750)
+  t_l4                                          32.87%  (740)
+  l5                                            32.87%  (740)
+  t_l5                                          32.87%  (740)
+  l4                                            32.87%  (740)
+  t_l3                                          32.74%  (737)
+  l3                                            32.74%  (737)
+  t_l1                                          32.70%  (736)
+  l2                                            32.70%  (736)
+  l1                                            32.70%  (736)
+  t_l2                                          32.70%  (736)
+  t_disp                                        32.47%  (731)
+  pk                                            32.03%  (721)
+  kn_snmajr                                     32.03%  (721)
+  kn_snmaj                                      32.03%  (721)
+  kne8                                          31.41%  (707)
+  e8                                            31.41%  (707)
+  kne7                                          31.27%  (704)
+  kne6                                          31.27%  (704)
+  kne4                                          31.27%  (704)
+  e6                                            31.27%  (704)
+  e7                                            31.27%  (704)
+  e4                                            31.27%  (704)
+  e9_1                                          31.23%  (703)
+  kne9_2                                        31.23%  (703)
+  kne9_3                                        31.23%  (703)
+  kne9_4                                        31.23%  (703)
+  kne9_1                                        31.23%  (703)
+  e9_4                                          31.23%  (703)
+  e9_2                                          31.23%  (703)
+  e9_3                                          31.23%  (703)
+  e5                                            31.19%  (702)
+  e3                                            31.19%  (702)
+  kne5                                          31.19%  (702)
+  kne3                                          31.19%  (702)
+  kne2                                          31.10%  (700)
+  e2                                            31.10%  (700)
+  kne1                                          31.05%  (699)
+  e1                                            31.05%  (699)
+  r_PIDloc                                      29.36%  (661)
+  complete                                      27.45%  (618)
+  ppnet                                         27.45%  (618)
+  dem                                           22.92%  (516)
+  nohispeed                                     10.48%  (236)
+  pid7                                           5.42%  (122)
+  rd                                             1.91%  (43)
+  r_bushref                                      1.91%  (43)
+
+differential missingness by 'pollid' (max-min fill rate > 2pp):
+  l6                                   spread 100.0pp   2004.0=0.0%  2008.0=100.0%
+  l7                                   spread 100.0pp   2004.0=0.0%  2008.0=100.0%
+  l8                                   spread 100.0pp   2004.0=0.0%  2008.0=100.0%
+  l9                                   spread 100.0pp   2004.0=0.0%  2008.0=100.0%
+  l10                                  spread 100.0pp   2004.0=0.0%  2008.0=100.0%
+  complete                             spread 100.0pp   2004.0=100.0%  2008.0=0.0%
+  ppnet                                spread 100.0pp   2004.0=100.0%  2008.0=0.0%
+  inet_sp                              spread  99.4pp   2004.0=0.6%  2008.0=100.0%
+  r_PIDloc                             spread  97.4pp   2004.0=100.0%  2008.0=2.6%
+  e1                                   spread  95.0pp   2004.0=100.0%  2008.0=5.0%
+  kne1                                 spread  95.0pp   2004.0=100.0%  2008.0=5.0%
+  e2                                   spread  95.0pp   2004.0=100.0%  2008.0=5.0%
+  kne2                                 spread  95.0pp   2004.0=100.0%  2008.0=5.0%
+  kne3                                 spread  94.9pp   2004.0=100.0%  2008.0=5.1%
+  kne5                                 spread  94.9pp   2004.0=100.0%  2008.0=5.1%
+  e5                                   spread  94.9pp   2004.0=100.0%  2008.0=5.1%
+  e3                                   spread  94.9pp   2004.0=100.0%  2008.0=5.1%
+  e9_4                                 spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  e9_3                                 spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  e9_2                                 spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  e9_1                                 spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  kne9_4                               spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  kne9_1                               spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  kne9_3                               spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  kne9_2                               spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  kne6                                 spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  kne4                                 spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  kne7                                 spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  e7                                   spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  e6                                   spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  e4                                   spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  kne8                                 spread  94.5pp   2004.0=100.0%  2008.0=5.5%
+  e8                                   spread  94.5pp   2004.0=100.0%  2008.0=5.5%
+  kn_snmajr                            spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  kn_snmaj                             spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  pk                                   spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  t_disp                               spread  93.1pp   2004.0=100.0%  2008.0=6.9%
+  l1                                   spread  92.8pp   2004.0=100.0%  2008.0=7.2%
+  t_l2                                 spread  92.8pp   2004.0=100.0%  2008.0=7.2%
+  t_l1                                 spread  92.8pp   2004.0=100.0%  2008.0=7.2%
+  l2                                   spread  92.8pp   2004.0=100.0%  2008.0=7.2%
+  t_l3                                 spread  92.7pp   2004.0=100.0%  2008.0=7.3%
+  l3                                   spread  92.7pp   2004.0=100.0%  2008.0=7.3%
+  t_l5                                 spread  92.5pp   2004.0=100.0%  2008.0=7.5%
+  t_l4                                 spread  92.5pp   2004.0=100.0%  2008.0=7.5%
+  l5                                   spread  92.5pp   2004.0=100.0%  2008.0=7.5%
+  l4                                   spread  92.5pp   2004.0=100.0%  2008.0=7.5%
+  h1c                                  spread  91.9pp   2004.0=100.0%  2008.0=8.1%
+  pres_app                             spread  91.9pp   2004.0=100.0%  2008.0=8.1%
+  approve                              spread  91.9pp   2004.0=100.0%  2008.0=8.1%
+  cu07serv                             spread  83.8pp   2004.0=100.0%  2008.0=16.2%
+  consis                               spread  77.2pp   2004.0=100.0%  2008.0=22.8%
+  nohispeed                            spread  13.6pp   2004.0=0.6%  2008.0=14.2%
+  pid7                                 spread   7.5pp   2004.0=0.0%  2008.0=7.5%
+  r_bushref                            spread   2.6pp   2004.0=0.0%  2008.0=2.6%
+  rd                                   spread   2.6pp   2004.0=0.0%  2008.0=2.6%
+  ^ differential missingness MANUFACTURES trends and gaps.
+    Constant missingness only attenuates. Check each of these.
+
+differential missingness by 'rd' (max-min fill rate > 2pp):
+  e9_4                                 spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  e9_3                                 spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  kne9_2                               spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  kne9_4                               spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  kne9_3                               spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  kne9_1                               spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  e9_1                                 spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  e9_2                                 spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  t_disp                               spread  38.6pp   control=41.7%  verbal accuracy reminder=3.2%  monetary incentive=40.1%
+  e5                                   spread  38.6pp   control=40.5%  verbal accuracy reminder=1.9%  monetary incentive=38.7%
+  kne5                                 spread  38.6pp   control=40.5%  verbal accuracy reminder=1.9%  monetary incentive=38.7%
+  kne8                                 spread  38.5pp   control=40.7%  verbal accuracy reminder=2.3%  monetary incentive=38.8%
+  e8                                   spread  38.5pp   control=40.7%  verbal accuracy reminder=2.3%  monetary incentive=38.8%
+  kne7                                 spread  38.4pp   control=40.5%  verbal accuracy reminder=2.1%  monetary incentive=38.8%
+  kne6                                 spread  38.4pp   control=40.5%  verbal accuracy reminder=2.1%  monetary incentive=38.8%
+  e7                                   spread  38.4pp   control=40.5%  verbal accuracy reminder=2.1%  monetary incentive=38.8%
+  e6                                   spread  38.4pp   control=40.5%  verbal accuracy reminder=2.1%  monetary incentive=38.8%
+  kne2                                 spread  38.4pp   control=40.1%  verbal accuracy reminder=1.8%  monetary incentive=38.9%
+  kne1                                 spread  38.4pp   control=40.1%  verbal accuracy reminder=1.8%  monetary incentive=38.8%
+  e2                                   spread  38.4pp   control=40.1%  verbal accuracy reminder=1.8%  monetary incentive=38.9%
+  e1                                   spread  38.4pp   control=40.1%  verbal accuracy reminder=1.8%  monetary incentive=38.8%
+  kne3                                 spread  38.3pp   control=40.2%  verbal accuracy reminder=1.9%  monetary incentive=38.9%
+  e3                                   spread  38.3pp   control=40.2%  verbal accuracy reminder=1.9%  monetary incentive=38.9%
+  l7                                   spread  38.3pp   control=61.7%  verbal accuracy reminder=100.0%  monetary incentive=62.8%
+  r_PIDloc                             spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  l6                                   spread  38.3pp   control=61.7%  verbal accuracy reminder=100.0%  monetary incentive=62.8%
+  l8                                   spread  38.3pp   control=61.7%  verbal accuracy reminder=100.0%  monetary incentive=62.8%
+  l9                                   spread  38.3pp   control=61.7%  verbal accuracy reminder=100.0%  monetary incentive=62.8%
+  l10                                  spread  38.3pp   control=61.7%  verbal accuracy reminder=100.0%  monetary incentive=62.8%
+  complete                             spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  ppnet                                spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  e4                                   spread  38.3pp   control=40.4%  verbal accuracy reminder=2.1%  monetary incentive=38.9%
+  kne4                                 spread  38.3pp   control=40.4%  verbal accuracy reminder=2.1%  monetary incentive=38.9%
+  kn_snmaj                             spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  pk                                   spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  kn_snmajr                            spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  t_l2                                 spread  38.2pp   control=41.8%  verbal accuracy reminder=3.7%  monetary incentive=40.3%
+  l2                                   spread  38.2pp   control=41.8%  verbal accuracy reminder=3.7%  monetary incentive=40.3%
+  h1c                                  spread  38.1pp   control=42.7%  verbal accuracy reminder=4.6%  monetary incentive=40.5%
+  inet_sp                              spread  38.0pp   control=62.0%  verbal accuracy reminder=100.0%  monetary incentive=63.0%
+  approve                              spread  37.9pp   control=42.5%  verbal accuracy reminder=4.6%  monetary incentive=40.9%
+  pres_app                             spread  37.9pp   control=42.5%  verbal accuracy reminder=4.6%  monetary incentive=40.9%
+  t_l1                                 spread  37.9pp   control=41.7%  verbal accuracy reminder=3.9%  monetary incentive=40.3%
+  l1                                   spread  37.9pp   control=41.7%  verbal accuracy reminder=3.9%  monetary incentive=40.3%
+  l5                                   spread  37.8pp   control=42.0%  verbal accuracy reminder=4.2%  monetary incentive=40.3%
+  l4                                   spread  37.8pp   control=42.0%  verbal accuracy reminder=4.2%  monetary incentive=40.3%
+  t_l4                                 spread  37.8pp   control=42.0%  verbal accuracy reminder=4.2%  monetary incentive=40.3%
+  t_l5                                 spread  37.8pp   control=42.0%  verbal accuracy reminder=4.2%  monetary incentive=40.3%
+  t_l3                                 spread  37.7pp   control=41.7%  verbal accuracy reminder=4.0%  monetary incentive=40.3%
+  l3                                   spread  37.7pp   control=41.7%  verbal accuracy reminder=4.0%  monetary incentive=40.3%
+  cu07serv                             spread  32.7pp   control=47.9%  verbal accuracy reminder=15.6%  monetary incentive=48.3%
+  consis                               spread  30.4pp   control=51.4%  verbal accuracy reminder=21.0%  monetary incentive=49.6%
+  nohispeed                            spread   6.0pp   control=8.0%  verbal accuracy reminder=14.0%  monetary incentive=10.3%
+  ^ differential missingness MANUFACTURES trends and gaps.
+    Constant missingness only attenuates. Check each of these.
+
+========================================================================
+3. ZEROS VS MISSING
+========================================================================
+column                                           zeros       %   missing       %
+kne7                                             1,205   53.5%       704   31.3%
+kne3                                             1,054   46.8%       702   31.2%
+kne6                                               971   43.1%       704   31.3%
+kne8                                               939   41.7%       707   31.4%
+kne1                                               901   40.0%       699   31.1%
+kne9_4                                             888   39.4%       703   31.2%
+nohispeed                                          832   37.0%       236   10.5%
+kne9_1                                             798   35.5%       703   31.2%
+kne4                                               655   29.1%       704   31.3%
+kne9_2                                             504   22.4%       703   31.2%
+kne5                                               440   19.5%       702   31.2%
+kne9_3                                             438   19.5%       703   31.2%
+kne2                                               414   18.4%       700   31.1%
+consis                                             258   11.5%       990   44.0%
+kn_snmaj                                           120    5.3%       721   32.0%
+kn_snmajr                                          120    5.3%       721   32.0%
+pk                                                  13    0.6%       721   32.0%
+t_disp                                               4    0.2%       731   32.5%
+t_l3                                                 2    0.1%       737   32.7%
+t_l2                                                 2    0.1%       736   32.7%
+t_l1                                                 1    0.0%       736   32.7%
+t_l4                                                 1    0.0%       740   32.9%
+t_l5                                                 1    0.0%       740   32.9%
+
+For every column with BOTH: is the zero 'measured, none found' or
+'not measured'? If the data cannot tell them apart, neither can the model.
+
+========================================================================
+4. DTYPE TRAPS
+========================================================================
+none found
+
+========================================================================
+5. VALUES OUTSIDE THEIR LOGICAL RANGE
+========================================================================
+none found
+
+========================================================================
+6. DISTRIBUTIONS, SKEW AND TAILS
+========================================================================
+   column    median           max  max/med   skew  n_top  top_n_mass
+     t_l3    30.000     3,565.000  118.833 34.076     15       0.107
+   t_disp    19.000     6,950.000  365.789 29.737     15       0.311
+   caseid 1,131.000 1,011,543.000  894.379 17.699     22       0.486
+     t_l5    22.000       694.000   31.545 16.199     15       0.066
+     t_l2    26.000       799.000   30.731 14.179     15       0.067
+     t_l4    24.000       297.000   12.375  5.537     15       0.048
+     t_l1    33.000       245.000    7.424  1.878     15       0.030
+ kn_snmaj     2.000         4.000    2.000  0.064     15       0.019
+kn_snmajr     0.500         1.000    2.000  0.064     15       0.019
+       pk     6.500        13.000    2.000  0.051     15       0.019
+
+'top_n_mass' is the share of the total held by the n_top largest values
+(n_top = max(1, n/100), so it is a single value below n = 200). Both it
+and max/med are blank for columns with negative values, where neither is
+interpretable.
+
+6 column(s) are heavily skewed. Before choosing a method,
+decide whether the MEAN or the MEDIAN is the estimand -- see
+checks/tier2-statistical.md section F. Asymptotic SEs are optimistic here.
+
+========================================================================
+7. RATE COLUMNS AND THEIR RECONSTRUCTED DENOMINATORS
+========================================================================
+no columns whose name suggests a rate; skipping
+
+========================================================================
+SUMMARY
+========================================================================
+no hard failures. The soft findings above still need judgement --
+this script narrows where to look, it does not decide.

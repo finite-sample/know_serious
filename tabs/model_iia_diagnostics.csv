@@ -1,0 +1,4 @@
+"omitted_category","reference_category","statistic","degrees_freedom","p_value","positive_covariance_difference","convergence","max_gradient","comparison","corrected_order_statistic","corrected_positive_covariance_difference","valid_chisquare_inference"
+-1,0,1.70406813668591,9,0.995330923280608,FALSE,0,0.00951702847181864,"full_minus_subset_matching_equations",-1.70406813668591,FALSE,FALSE
+0,-1,0.582852145209215,9,0.999941332554658,FALSE,0,0.0101254706480406,"full_minus_subset_matching_equations",-0.582852145209215,FALSE,FALSE
+1,-1,-21.250850231903,9,NA,FALSE,0,0.00391956508863646,"full_minus_subset_matching_equations",21.250850231903,FALSE,FALSE

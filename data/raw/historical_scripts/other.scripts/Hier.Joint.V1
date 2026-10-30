@@ -1,0 +1,471 @@
+** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  **
+**									    	**								
+**  Partisan Inference Analyses			
+**  Last Edited: 4/17/2013 by GS		
+**  Analyses: Hierarchical Joint
+**											
+** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  **
+ 
+* Set Library Location for finding survwgt/gllamm (Leave it for GS)
+	sysdir set PLUS "\\files\dept\WWS\Research\MPRIOR\stata\"
+	* ssc install gllamm
+
+* Estimation Notes
+********************
+	* Some gllamm tips
+		* to do adaptive quadrature: use option adapt. specify # of quadrature points using nip()
+		* for exponentiated coefficients: after the comma, add the word 'eform'; it also gets you 95% CI
+		* to store estimates of a model: after the running the model, enter the following command: estimates store model1
+		* to restore estimates: estimates restore model1
+		* to compare two models: lrtest model1 model2
+		
+	* 2008 subset
+		*keep if pid_app==1 | pid_app==4 | pid_app==.
+
+	* 2004 subset
+		*keep if time==0 & pid7 ~= 4  
+		
+* Using all DVS including Poor
+************************************
+	use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+	reshape long tri_dv pct_dv raw_dv t_l, i(caseid)
+		
+	
+	* Fixing Bushref (as KN 2004 debt bushref is 1)
+		gen nbushref = r_bushref
+		replace nbushref = 1 if mod(_n+2, 10) == 0
+		replace nbushref = 0 if _n < 8
+		replace nbushref = 0 if _n == 9 | _n == 10
+	
+	* Create one new
+		gen payXpid7new = pay*pid7new
+		
+	* For item level effects
+		gen seq = mod(_n-1,10) + 1
+	
+	* for item level f.e
+		gen seq1=1 if seq==1
+		replace seq1=0 if seq~=1
+					
+		gen seq2=1 if seq==2
+		replace seq2=0 if seq~=2
+					
+		gen seq3=1 if seq==3
+		replace seq3=0 if seq~=3
+					
+		gen seq4=1 if seq==4
+		replace seq4=0 if seq~=4
+		
+		gen seq5=1 if seq==5
+		replace seq5=0 if seq~=5
+		
+		gen seq6=1 if seq==6
+		replace seq6=0 if seq~=6
+		
+		gen seq7=1 if seq==7
+		replace seq7=0 if seq~=7
+					
+		gen seq8=1 if seq==8
+		replace seq8=0 if seq~=8
+					
+		gen seq9=1 if seq==9
+		replace seq9=0 if seq~=9
+								
+					
+	* Subset
+		keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1)
+		keep if tri_dv~=. & pid3b~=. & pay~=.
+		
+	**************************************
+		* New Table 1/2 (col 1)
+			* with item level fixed effects (pollid not really needed, var going to be zero)
+				gllamm tri_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid) link(ologit)
+				*gllamm tri_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid pollid) link(ologit)		
+				
+			* New Table 2 (col 7)
+				gllamm tri_dv pay pid7new payXpid7new seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid) link(ologit)
+				
+				* lrtest
+				gllamm tri_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid) link(ologit)
+				estimates store m1
+				gllamm tri_dv pay pid3b strpid payXpid3b payXstrpid seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid) link(ologit)
+				estimates store m2
+				
+				lrtest m1 m2
+				
+		* Percentile 
+			gllamm pct_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid)
+			reg pct_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, cluster (caseid)
+		
+		* Raw
+			gllamm raw_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid)
+			reg raw_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, cluster (caseid)
+		
+		* No Item level fe
+			gllamm tri_dv pay pid7 payXpid7, i(caseid pollid) link(ologit) adapt
+			gllamm tri_dv pay pid3b payXpid3b, i(caseid pollid) link(ologit) adapt
+			
+			* Graphing it
+			* Change folder
+				cd "H:\PartisanInferencePaper\figs\"
+				
+				* Raw Probabilities
+					egen probg0 = mean(tri_dv > 0), by(pid3b pay)
+					egen probg1 = mean(tri_dv > 1), by(pid3b pay)
+					
+				* Pred. Probabilities
+					gllapred mprobg0, mu marginal above(0)
+					gllapred mprobg1, mu marginal above(1)
+					
+					egen mprobg11 = mean(mprobg1), by(pid3b pay)
+					
+					tab mprobg11 if pid3b==1 & rd==0
+					tab mprobg11 if pid3b==0 & rd==0
+					*.15
+					tab mprobg11 if pid3b==1 & pay==1
+					tab mprobg11 if pid3b==0 & pay==1
+					*.07
+					
+					label define payl 0 "Control" 1 "Monetary Incentive"	
+					label val pay payl
+				
+					* Predicted Point Plus Text
+					twoway  (scatter mprobg11  pid3b if pid3b==0,  color("230 120 120")  msize(2)) ///
+							(scatter mprobg11  pid3b if pid3b==1,  color("120 120 230")  msize(2)), ///
+							by(pay, note("")  cols(2)  legend(off) bgcolor(white) plotregion(lcolor(none) lwidth(zero) ilcolor(none) style(none) color(white)) graphregion(color(white))) /// 
+							yscale(range(.35, .6)) ///
+							ylabel(,nogrid) ///
+							xscale(range(-.1, 1.3)) ///
+							xlabel(0 "Republican" 1 "Democrat") ///
+							xlabel(0 "Republican" 1 "Democrat") ///
+							xtitle("Partisan self-identification") ///
+							ytitle("Pr(Overestimation)") ///
+							text(.49 .8 "Partisan Gap = ",    `format'  placement(9) )
+							
+							graph export OverPredictBy2CondJointPredPtTxt.png, height(1500) replace
+						
+							
+							
+				*Pred. Prob for Pr(y < correct)
+					twoway(line pr0 pid3a if pay==0, msymbol(Oh)) ///
+							 (line pr0 pid3a if pay==1, msymbol(Oh)), ///
+							 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+							 xlabel(1 "Republican" 3 "Democrat") ///
+							 xtitle("Partisan self-identification") ///
+							 ytitle("Pr(y < correct)") ///
+							 xscale(range(1, 3.1))
+							 graph export Jointpid3aUnderPredictByCondLine.png, replace
+		
+
+				
+		* PID 7
+			gllamm tri_dv pay pid7new payXpid7new, i(caseid pollid) link(ologit) adapt
+			* with eform
+			*gllamm tri_dv pay pid7new payXpid7new, i(caseid pollid) link(ologit) adapt eform
+			
+			* Graphing it
+			* Change folder
+				cd "H:\PartisanInferencePaper\figs\"
+				
+				* Raw Probabilities
+					egen probg0 = mean(tri_dv > 0), by(pid7 pay)
+					egen probg1 = mean(tri_dv > 1), by(pid7 pay)
+					
+				* Pred. Probabilities
+					gllapred mprobg0, mu marginal above(0)
+					gllapred mprobg1, mu marginal above(1)
+						
+					gen pr0 = 1 - mprobg0
+					gen pr1 = mprobg0 - mprobg1
+					
+					* Raw Probs. also plotted (not happy with poor fit of the model)
+					twoway(line mprobg1 pid7 if pay==0 & nbushref==0 & r_PIDloc==0, sort lpatt(solid)) ///
+							 (line mprobg1 pid7 if pay==1 & nbushref==0 & r_PIDloc==0, sort lpatt(solid)) ///
+							 (line probg1 pid7 if pay==0 & nbushref==0 & r_PIDloc==0, sort lpatt(dash)) ///
+							 (line probg1 pid7 if pay==1 & nbushref==0 & r_PIDloc==0, sort lpatt(dash)), ///
+							 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+							 xlabel(1 "Str. R" 7 "Str. D") ///
+							 xtitle("Partisan self-identification") ///
+							 ytitle("Probability of over-estimation") 
+							 graph export OverPredictByCondPlusRawJoint.png
+							
+					*Pred. Prob for Pr(y > correct)
+						twoway(line mprobg1 pid7 if pay==0, sort lpatt(solid)) ///
+							 (line mprobg1 pid7 if pay==1, sort lpatt(solid)), ///
+							 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+							 xlabel(1 "Str. R" 7 "Str. D") ///
+							 xtitle("Partisan self-identification") ///
+							 ytitle("Pr(y > correct)") 
+							 graph export OverPredictByCond.png
+							 
+					* Predicted for each cat.
+						twoway(line pr0 pid7 if pay==0, sort lpatt(solid)) ///
+							 (line pr0 pid7 if pay==1, sort lpatt(dashed)), ///
+							 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+							 xlabel(1 "Str. R" 7 "Str. D") ///
+							 xtitle("Partisan self-identification") ///
+							 ytitle("Pr(y=Lower)") 
+							 graph export UnderPredictByCond.png
+							 
+						twoway(line mprobg1 pid3a if pay==0, sort lpatt(solid)) ///
+							 (line mprobg1 pid3a if pay==1, sort lpatt(solid)), ///
+							 legend(order(1 "Control" 2 "Pay") size(medlarge)) ///
+							 xlabel(1 "Str. R" 7 "Str. D") ///
+							 xtitle("Partisan self-identification") ///
+							 ytitle("Pr(y > correct)") 
+							 graph export OverPredictByCond.png
+							 
+							 
+		* pg. 2 (with bushref, pidloc)
+			gllamm tri_dv pay pid7 payXpid7 nbushref r_PIDloc, i(caseid pollid) link(ologit)
+			gllamm, eform
+			
+			** Graphing using Ologit
+			** Try clustered ologit with poll fixed effect
+				ologit tri_dv pay pid7 payXpid7 nbushref r_PIDloc pollid, vce(cluster caseid)
+						margins, at(c.pid7=(1/7) pay=(0,.5, 1)) predict(outcome(0))
+						marginsplot, title(Probability of Underestimating, size(small)) name(debt, replace) noci ///
+						ytitle(" ", size(small)) ylabel(0 (.1) .6, labsize(vsmall)) ///
+						xscale(range(7.4)) xsize(4) xtitle("") xlabel(1 "Strong Republican" 2 " " 3 " " 4 " " 5 " " 6 " " 7 "Strong Democrat", labsize(vsmall)) ///
+						plot1opts(lcolor(black) mstyle(none)) plot2opts(lcolor(green) lpattern(dash) mstyle(none)) legend(size(vsmall))	
+						
+		* Appendix C: mlogit
+		* some identification issues - see the condition #
+			gllamm tri_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid) link(mlogit)
+			mlogit tri_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, base(0) cluster(caseid)
+			
+		* Exploring item level
+		* We are already smoothing over items about equally etc. 
+		* In fact it doesn't net us anything.
+			* Using fixed effects via ologit
+				ologit tri_dv pay pid3b payXpid3b i.seq, cluster(caseid)
+			
+			* with item level random effects only 			
+				gllamm tri_dv pay pid3b payXpid3b, i(seq) link(ologit)
+				gllamm tri_dv pay pid3b payXpid3b, i(seq pollid) link(ologit)
+				*gllamm tri_dv pay pid3b payXpid3b pollid, i(seq caseid) link(ologit)
+			
+			* Table 1 (col 1)
+			* with item level fixed effects (pollid not really needed, var going to be zero)
+				gllamm tri_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid) link(ologit)
+				*gllamm tri_dv pay pid3b payXpid3b seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid pollid) link(ologit)
+			* Table 1 (col 2)
+				gllamm tri_dv pay pid7new payXpid7new seq1 seq2 seq3 seq4 seq5 seq6 seq7 seq8 seq9, i(caseid) link(ologit)
+		
+		* Exploring time
+			* Hi-speed/No hi-speed interact
+				use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+				keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1)
+				reshape long tri_dv t_l, i(caseid)
+				
+				gen pid3bXnohispeed = pid3b*nohispeed
+				gen payXnohispeed	= pay*nohispeed
+				gen payXpid3bXnohispeed = pid3b*pay*nohispeed
+				
+				keep if nohispeed~=.
+				gllamm tri_dv pay nohispeed pid3b payXpid3b, i(caseid pollid) link(ologit)
+				estimates store model1
+				
+				gllamm tri_dv pay nohispeed pid3b pid3bXnohispeed payXnohispeed payXpid3b payXpid3bXnohispeed, i(caseid  pollid) link(ologit)
+				estimates store model2
+				
+				lrtest model1 model2 
+				
+				* no hispeed
+				use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+				keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1) & nohispeed==1
+				reshape long tri_dv t_l, i(caseid)
+				gllamm tri_dv pay pid3b payXpid3b, i(caseid pollid) link(ologit) 
+				
+				* hispeed
+				use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+				keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1) & nohispeed==0
+				reshape long tri_dv t_l, i(caseid)
+				gllamm tri_dv pay pid3b payXpid3b, i(caseid pollid) link(ologit) 
+			
+			* Alone/Not Alone
+				use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+				keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1)
+				reshape long tri_dv t_l, i(caseid pollid)
+				
+				gen pid3bXalone = pid3b*alone
+				gen payXalone	= pay*alone
+				gen payXpid3bXalone= pid3b*pay*alone
+				
+				keep if nohispeed~=.
+				gllamm tri_dv pay pid3b payXpid3b, i(caseid pollid) link(ologit)
+				estimates store model1
+				
+				gllamm tri_dv pay alone pid3b pid3bXalone payXalone payXpid3b payXpid3bXalone, i(caseid pollid) link(ologit)
+				estimates store model2
+				
+				lrtest model1 model2 
+			
+				* alone
+					use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+					keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1) & alone==1
+					reshape long tri_dv t_l, i(caseid)
+					gllamm tri_dv pay pid3b payXpid3b, i(caseid pollid) link(ologit) 
+					
+				* not alone
+					use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+					keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1) & alone==0
+					reshape long tri_dv t_l, i(caseid)
+					gllamm tri_dv pay pid3b payXpid3b, i(caseid pollid) link(ologit) 
+				
+		* Pay
+			use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+			* pg. 4
+				gllamm tri_dv pay pid7 payXpid7, i(caseid pollid) link(ologit) 
+				
+			* with pay2 (pay for 2008 as 2, and pay for 2004 as 1)
+			* pg. 27
+				gllamm tri_dv pay2 pid7 pay2Xpid7, i(caseid pollid) link(ologit)
+				
+		* Education, PK, Polint etc.
+			* Add edu
+			* pg. 25, 26
+				gllamm tri_dv pay pid7 ppeducat payXpid7 payXedu, i(caseid pollid) link(ologit)
+				gllamm tri_dv pay pid7 ppeducat payXpid7 payXedu pid7Xedu payXpid7Xedu, i(caseid pollid) link(ologit)
+				
+			* Add kn_tote 
+			* Hairy; kn_tote scales are very diff. across polls
+				gllamm tri_dv pay pid7 kn_tote payXpid7 payXpk, i(caseid pollid) link(ologit)
+				gllamm tri_dv pay pid7 kn_tote payXpid7 payXpk pid7Xpk payXpid7Xpk, i(caseid pollid) link(ologit)
+					
+			* Add polint
+				gllamm tri_dv pay pid7 polint payXpid7 payXint, i(caseid pollid) link(ologit)
+				gllamm tri_dv pay pid7 polint payXpid7 payXint pid7Xint payXpid7Xint, i(caseid pollid) link(ologit)
+				
+			* The full monty (not including pk due to commensurability concerns; one can calibrate scores across polls using IRT)
+				gllamm tri_dv pay pid7 ppeducat polint payXpid7 pid7Xedu pid7Xint payXedu payXint payXpid7Xint payXpid7Xedu, i(caseid pollid) link(ologit)
+			
+
+		* subsetting on voteint for 2004 (works)
+			keep if voteint ==. | (~(voteint==0 & pid3a==3) & ~(voteint==1 & pid3a==3) & ~(voteint==3 & pid3a==1)& ~(voteint==4 & pid3a==1))
+		
+			* pg. 5
+				gllamm tri_dv pay pid7 payXpid7, i(caseid pollid) link(ologit) 	
+
+		* by nbushref
+			* nbushref==0
+			* assuming that one should take out the 2004 Bush item
+				use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+				
+				* Fixing Bushref (as KN 2004 debt bushref is 1)
+					gen nbushref = r_bushref
+					replace nbushref = 1 if mod(_n+2, 10) == 0
+					replace nbushref = 0 if _n < 8
+					replace nbushref = 0 if _n == 9 | _n == 10
+				
+				* Subset and then reshape
+					keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1)
+					keep if nbushref==0
+					reshape long tri_dv, i(caseid)
+				
+				* Analyses
+					* pg. 6
+						gllamm tri_dv pay pid7 payXpid7, i(caseid pollid) link(ologit) 
+				
+			* nbushref==1
+			* assuming that one should take out the 2004 Bush item
+				use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+				reshape long tri_dv, i(caseid)
+
+				* Fixing Bushref (as KN 2004 debt bushref is 1)
+					gen nbushref = r_bushref
+					replace nbushref = 1 if mod(_n+2, 10) == 0
+					replace nbushref = 0 if _n < 8
+					replace nbushref = 0 if _n == 9 | _n == 10
+				
+				* Subset
+					keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1)
+					keep if nbushref==1
+				
+				* Analyses
+					* pg. 7 
+						gllamm tri_dv pay pid7 payXpid7, i(caseid pollid) link(ologit) 
+				
+		* Take out Poor from 2004
+		******************************************
+			use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+			drop tri_dv10
+			reshape long tri_dv, i(caseid)
+		 
+			* Fixing Bushref (as KN 2004 debt bushref is 1)
+				gen nbushref = r_bushref
+				replace nbushref = 1 if mod(_n+2, 9) == 0
+				replace nbushref = 0 if _n < 8
+				replace nbushref = 0 if _n == 9
+
+			* Analyses
+				keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1)
+				
+				* pg. 1
+					gllamm tri_dv pay pid7 payXpid7 nbushref r_PIDloc, i(caseid pollid) link(ologit)
+					
+				* pg. 3
+					gllamm tri_dv pay pid7 payXpid7, i(caseid pollid) link(ologit) 
+			
+				* Also a mlogit to show that it is convergence in overestimation
+					gllamm tri_dv pay pid7 payXpid7 pollid, i(caseid) link(mlogit) 
+					
+			* subsetting on voteint for 2004 (works)
+			* pg. 5
+				keep if voteint ==. | (~(voteint==0 & pid3a==3) & ~(voteint==1 & pid3a==3) & ~(voteint==3 & pid3a==1)& ~(voteint==4 & pid3a==1))
+				gllamm tri_dv pay pid7 payXpid7, i(caseid pollid) link(ologit) 	
+	
+		* Curtailing the DV to only where we find PID7 in CG is sig.
+		* 2004: Unemployment, Debt, Uninsured, Poor; Does not hold: Estate
+		* 2008: Debt, Health, Gas, Unemployment; Does not hold: Estate (Also tried with setting both r_PIDloc and r_bushref==0)
+		***********************************************************************************************************************
+		* Load data	
+			use "H:\PartisanInferencePaper\data\KN0408.hier.merge.dta", clear
+			
+			drop tri_dv5 tri_dv7
+			
+		* Reshape data
+			reshape long tri_dv, i(caseid)
+		  
+		* 2008 subset
+			*keep if pid_app==1 | pid_app==4 | pid_app==.
+			*gllamm tri_dv rd1 rd2 pid7 rd1Xpid7 rd2Xpid7, i(caseid) link(ologit)
+
+		* 2004 subset
+			*keep if time==0
+			*& pid7 ~= 4  
+			*gllamm tri_dv pay, i(caseid) link(ologit)
+
+			* Chosen Subset
+			keep if (time ==0 | time ==.) & pid7~=4 & (pid_app==1 | pid_app==4 | pid_app==.) & (rd1~=1)
+			*gllamm tri_dv pay pid7 payXpid7 nbushref r_PIDloc, i(caseid pollid) link(ologit) 
+			* pg. 8
+				gllamm tri_dv pay pid7 payXpid7, i(caseid pollid) link(ologit) 
+		
+		
+		
+		
+		
+			* Scrap
+			*******************************
+			*******************************
+					* Conditional
+						gen u1 = 0
+						gen u2 = 0
+						gllapred probg1, mu us(u) above(0)
+						gllapred probg2, mu us(u) above(1)
+						twoway (line probg1 pid7, sort lpatt(solid)) (line probg2 pid7, sort lpatt(vshortdash)) , by(pay)
+						twoway (line probg1 pid7 if pay==0, sort lpatt(solid))  (line probg1 pid7 if pay==1, sort lpatt(vshortdash))  (line probg2 pid7 if pay==0, sort lpatt(solid)) (line probg2 pid7 if pay==1, sort lpatt(vshortdash))
+						
+					**** Cumulative log-odds
+							estimates restore model1
+							gllapred xb, xb
+							generate xb0 = xb - [_cut11]_cons
+							generate xb1 = xb - [_cut12]_cons
+							twoway (line xb0 pid7) (line xb1 pid7, lpatt(dash)), by(pay)
+							twoway (bar xb0 pay), by(pid7)
+					
+			**
+			
+			    *******************************
+				*******************************

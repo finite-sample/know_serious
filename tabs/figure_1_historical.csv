@@ -1,0 +1,11 @@
+study,condition,outcome,estimate_pct,lower_pct,upper_pct
+pooled,control,congenial,38.79942121858619,36.92,40.73
+pooled,control,uncongenial,27.031296666395654,25.35,28.74
+pooled,monetary,congenial,35.89369849650493,33.95,37.92
+pooled,monetary,uncongenial,29.559751848545634,27.85,31.33
+study_2,accuracy_appeal,congenial,34.64755500530019,32.3,37.03
+study_2,accuracy_appeal,uncongenial,31.180977860901272,29.06,33.47
+study_2,control,congenial,38.06380019511116,35.45,40.56
+study_2,control,uncongenial,28.09776627251484,25.98,30.6
+study_2,monetary,congenial,34.88521864513541,32.3,37.86
+study_2,monetary,uncongenial,30.957084058519108,28.5,33.43

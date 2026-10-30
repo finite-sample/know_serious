@@ -1,0 +1,148 @@
+dataset,legacy_name,modern_name,description,value_labels,missing_count,observed_count
+wide,caseid,respondent_id,Respondent ID,,0,2251
+wide,rd,treatment_arm,"0: control, 1: verbal accuracy reminder, 2: monetary incentive",control=0; verbal accuracy reminder=1; monetary incentive=2,43,2208
+wide,e1,knowledge_response_1,who is the current secretary of defense?,not asked=-2; refused=-1; donald rumsfeld=1; john ashcroft=2; robert gates=3; colin powell=4; don't know=5,699,1552
+wide,e2,knowledge_response_2,who is the current speaker of the u.s. house of representatives?,not asked=-2; refused=-1; nancy pelosi=1; dana perino=2; barbara boxer=3; elizabeth edwards=4; don't know=5,700,1551
+wide,e3,knowledge_response_3,who is the chief justice on the u.s. supreme court?,not asked=-2; refused=-1; william rehnquist=1; john roberts=2; antonin scalia=3; samuel alito=4; don't know=5,702,1549
+wide,e4,knowledge_response_4,who is the president of iran?,not asked=-2; refused=-1; mahmoud ahmadinejad=1; nouri al-maliki=2; hamid karzai=3; pervez musharraf=4; don't know=5,704,1547
+wide,e5,knowledge_response_5,what office is currently held by {condoleezza (“condi”) rice/the person shown in,not asked=-2; refused=-1; director of the central intelligence agency=1; national security adviser=2; secretary of state=3; white house chief of staff=4; don't know=5,702,1549
+wide,e6,knowledge_response_6,what position is currently held by {ben bernanke /the person shown in this pictu,not asked=-2; refused=-1; treasury secretary=1; chairman of the federal reserve=2; secretary of homeland security=3; chairman of the national economic council=4; don't know=5,704,1547
+wide,e7,knowledge_response_7,what position is currently held by {michael mukasey/the person shown in this pic,not asked=-2; refused=-1; u.s. attorney general=1; president's general counsel=2; senate majority leader=3; supreme court justice=4; don't know=5,704,1547
+wide,e8,knowledge_response_8,what position is currently held by {nicolas sarkozy/the person shown in this pic,not asked=-2; refused=-1; president of france=1; foreign minister of the european union (eu)=2; prime minister of turkey=3; un secretary general=4; don't know=5,707,1544
+wide,e9_1,knowledge_response_9," [bill richardson] for each of these politicians, please indicate to which party",not asked=-2; refused=-1; republican=1; democrat=2; green party=3; reform party=4; don't know=5,703,1548
+wide,e9_2,knowledge_response_10," [fred thompson] for each of these politicians, please indicate to which party t",not asked=-2; refused=-1; republican=1; democrat=2; green party=3; reform party=4; don't know=5,703,1548
+wide,e9_3,knowledge_response_11," [mike huckabee] for each of these politicians, please indicate to which party t",not asked=-2; refused=-1; republican=1; democrat=2; green party=3; reform party=4; don't know=5,703,1548
+wide,e9_4,knowledge_response_12," [ron paul] for each of these politicians, please indicate to which party they b",not asked=-2; refused=-1; republican=1; democrat=2; green party=3; reform party=4; don't know=5,703,1548
+wide,h1c,numeracy_disease_response,"if the chance of getting a disease is 20 out of 100, this would be the same as h",not asked=-2; refused=-1,750,1501
+wide,l1,response_1,Item 1. Public Debt (2008),not asked=-2; refused=-1; less than 5.5 trillion dollars=1; 6.5 trillion dollars=2; 7.5 trillion dollars=3; 8.5 trillion dollars=4; 9.5 trillion dollars=5; 10.5 trillion dollars=6; more than 11.5 trillion dollars=7,736,1515
+wide,l2,response_2,Item 2. Unemployment (2008),not asked=-2; refused=-1,736,1515
+wide,l3,response_3,Item 3. Uninsured (2008),e1_e4=1; e5_e8=2; e9_e12=3,737,1514
+wide,l4,response_4,Item 4. Estate Tax (2008),not asked=-2; refused=-1; less than 5% of all americans=1; about 25% of all americans=2; about 50% of all americans=3; about 75% of all americans=4; about 95% of all americans=5,740,1511
+wide,l5,response_5,Item 5. Gas Price (2008),not asked=-2; refused=-1,740,1511
+wide,ppnet,household_internet_access_raw,hh internet access,no=0; yes=1,618,1633
+wide,cu07serv,household_internet_service_raw,what kind of internet service do you or anyone in your household currently use f,not asked=-2; refused=-1; dialup modem=1; isdn line=2; cable modem=3; digital subscriber line (dsl)=4; satellite dish=5; t1 / t3 line=6,882,1369
+wide,t_l3,response_time_seconds_3,Item 3 Completion Time,,737,1514
+wide,t_l1,response_time_seconds_1,Item 1 Completion Time,,736,1515
+wide,t_l2,response_time_seconds_2,Item 2 Completion Time,,736,1515
+wide,t_l4,response_time_seconds_4,Item 4 Completion Time,,740,1511
+wide,t_l5,response_time_seconds_5,Item 5 Completion Time,,740,1511
+wide,pid7,party_identification,Party Identification (7-point scale),Strong Republican=1; Independent/No pref/DK=4; Strong Democrat=7,122,2129
+wide,r_PIDloc,party_identification_before_items,"0: Party ID Measured After Economic Knowledge, 1: Party ID Measured Before Econo",PID after=0; PID before=1,661,1590
+wide,r_bushref,has_bush_reference,"0: No Bush reference, 1: Bush reference",neutral frame=0; Bush reference=1,43,2208
+wide,kn_snmaj,senate_majority_raw,RECODE of f2_dem,,721,1530
+wide,pollid,study_year,"Study 1: 2004, Study 2: 2008",,0,2251
+wide,t_disp,screen_time_seconds,Instructions Screen Completion Time,,731,1520
+wide,pres_app,presidential_approval_raw,Do you approve or disapprove of the way President Bush is handling the economy?,Strongly Approve=1; Approve=2; Disapprove=3; Strongly Disapprove=4,751,1500
+wide,inet_sp,internet_speed_raw,Speed of Internet connection,Not asked=-2; REFUSED=-1; No connection=0; Dial-up or NA=1; Broadband=2,1637,614
+wide,dropout,dropped_out_after_randomization,Respondent Dropout,Did not drop out after randomization=0; Dropped out after randomization=1,0,2251
+wide,l6,response_6,Item 6. Unemployed (2004),Not Asked=-2; Refused=-1; around 3 percent=1; around 5 percent=2; around 7 percent=3; around 9 percent=4; around 11 percent=5,1633,618
+wide,l7,response_7,Item 7. Estate Tax (2004),Not Asked=-2; Refused=-1; Less than 5 percent of all Americans=1; About 25 percent of all Americans=2; About 50 percent of all Americans=3; About 75 percent of all Americans=4; About 90 percent of all Americans=5,1633,618
+wide,l8,response_8,Item 8. Debt (2004),Not Asked=-2; Refused=-1; Less than 3.5 trillion dollars=1; 4.5 trillion dollars=2; 5.5 trillion dollars=3; 6.5 trillion dollars=4; 7.5 trillion dollars=5; 8.5 trillion dollars=6; More than 9.5 trillion dollars=7,1633,618
+wide,l9,response_9,Item 9. Uninsured (2004,Not Asked=-2; Refused=-1,1633,618
+wide,l10,response_10,Item 10. Poverty (2004),Not Asked=-2; Refused=-1,1633,618
+wide,complete,is_complete,Completed Study 2,No=0; Yes=1,618,1633
+wide,dem,is_democrat,RECODE of pid7 (Party Identification (7-point scale)),Republicans=0; Democrats=1,516,1735
+wide,approve,approves_president,RECODE of pres_app (Do you approve or disapprove of the way President Bush is ha,Disapprove=0; Approve=1,751,1500
+wide,consis,is_consistent_partisan,"Consistent Partisan Dummy (i.e., PID and Pres App match)",,990,1261
+wide,kne1,knowledge_score_1,RECODE of e1 (who is the current secretary of defense?),,699,1552
+wide,kne2,knowledge_score_2,RECODE of e2 (who is the current speaker of the u.s. house of representatives?),,700,1551
+wide,kne3,knowledge_score_3,RECODE of e3 (who is the chief justice on the u.s. supreme court?),,702,1549
+wide,kne4,knowledge_score_4,RECODE of e4 (who is the president of iran?),,704,1547
+wide,kne5,knowledge_score_5,RECODE of e5 (what office is currently held by {condoleezza (“condi”) rice/the p,,702,1549
+wide,kne6,knowledge_score_6,RECODE of e6 (what position is currently held by {ben bernanke /the person shown,,704,1547
+wide,kne7,knowledge_score_7,RECODE of e7 (what position is currently held by {michael mukasey/the person sho,,704,1547
+wide,kne8,knowledge_score_8,RECODE of e8 (what position is currently held by {nicolas sarkozy/the person sho,,707,1544
+wide,kne9_1,knowledge_score_9,"RECODE of e9_1 ( [bill richardson] for each of these politicians, please indicat",,703,1548
+wide,kne9_2,knowledge_score_10,"RECODE of e9_2 ( [fred thompson] for each of these politicians, please indicate",,703,1548
+wide,kne9_3,knowledge_score_11,"RECODE of e9_3 ( [mike huckabee] for each of these politicians, please indicate",,703,1548
+wide,kne9_4,knowledge_score_12,"RECODE of e9_4 ( [ron paul] for each of these politicians, please indicate to wh",,703,1548
+wide,kn_snmajr,senate_majority_score,RECODE of kn_snmaj (RECODE of f2_dem),,721,1530
+wide,pk,knowledge_score,General Political Knowledge (0-13),,721,1530
+wide,nohispeed,has_no_high_speed_internet,"0: High-speed connection, 1: No high-speed connection",,236,2015
+long,caseid,respondent_id,Respondent ID,,0,11255
+long,rd,treatment_arm,"0: control, 1: verbal accuracy reminder, 2: monetary incentive",control=0; verbal accuracy reminder=1; monetary incentive=2,215,11040
+long,e1,knowledge_response_1,who is the current secretary of defense?,not asked=-2; refused=-1; donald rumsfeld=1; john ashcroft=2; robert gates=3; colin powell=4; don't know=5,3495,7760
+long,e2,knowledge_response_2,who is the current speaker of the u.s. house of representatives?,not asked=-2; refused=-1; nancy pelosi=1; dana perino=2; barbara boxer=3; elizabeth edwards=4; don't know=5,3500,7755
+long,e3,knowledge_response_3,who is the chief justice on the u.s. supreme court?,not asked=-2; refused=-1; william rehnquist=1; john roberts=2; antonin scalia=3; samuel alito=4; don't know=5,3510,7745
+long,e4,knowledge_response_4,who is the president of iran?,not asked=-2; refused=-1; mahmoud ahmadinejad=1; nouri al-maliki=2; hamid karzai=3; pervez musharraf=4; don't know=5,3520,7735
+long,e5,knowledge_response_5,what office is currently held by {condoleezza (“condi”) rice/the person shown in,not asked=-2; refused=-1; director of the central intelligence agency=1; national security adviser=2; secretary of state=3; white house chief of staff=4; don't know=5,3510,7745
+long,e6,knowledge_response_6,what position is currently held by {ben bernanke /the person shown in this pictu,not asked=-2; refused=-1; treasury secretary=1; chairman of the federal reserve=2; secretary of homeland security=3; chairman of the national economic council=4; don't know=5,3520,7735
+long,e7,knowledge_response_7,what position is currently held by {michael mukasey/the person shown in this pic,not asked=-2; refused=-1; u.s. attorney general=1; president's general counsel=2; senate majority leader=3; supreme court justice=4; don't know=5,3520,7735
+long,e8,knowledge_response_8,what position is currently held by {nicolas sarkozy/the person shown in this pic,not asked=-2; refused=-1; president of france=1; foreign minister of the european union (eu)=2; prime minister of turkey=3; un secretary general=4; don't know=5,3535,7720
+long,e9_1,knowledge_response_9," [bill richardson] for each of these politicians, please indicate to which party",not asked=-2; refused=-1; republican=1; democrat=2; green party=3; reform party=4; don't know=5,3515,7740
+long,e9_2,knowledge_response_10," [fred thompson] for each of these politicians, please indicate to which party t",not asked=-2; refused=-1; republican=1; democrat=2; green party=3; reform party=4; don't know=5,3515,7740
+long,e9_3,knowledge_response_11," [mike huckabee] for each of these politicians, please indicate to which party t",not asked=-2; refused=-1; republican=1; democrat=2; green party=3; reform party=4; don't know=5,3515,7740
+long,e9_4,knowledge_response_12," [ron paul] for each of these politicians, please indicate to which party they b",not asked=-2; refused=-1; republican=1; democrat=2; green party=3; reform party=4; don't know=5,3515,7740
+long,h1c,numeracy_disease_response,"if the chance of getting a disease is 20 out of 100, this would be the same as h",not asked=-2; refused=-1,3750,7505
+long,ppnet,household_internet_access_raw,hh internet access,no=0; yes=1,3090,8165
+long,cu07serv,household_internet_service_raw,what kind of internet service do you or anyone in your household currently use f,not asked=-2; refused=-1; dialup modem=1; isdn line=2; cable modem=3; digital subscriber line (dsl)=4; satellite dish=5; t1 / t3 line=6,4410,6845
+long,pid7,party_identification,Party Identification (7-point scale),Strong Republican=1; Independent/No pref/DK=4; Strong Democrat=7,610,10645
+long,r_PIDloc,party_identification_before_items,"0: Party ID Measured After Economic Knowledge, 1: Party ID Measured Before Econo",PID after=0; PID before=1,3305,7950
+long,r_bushref,has_bush_reference,"0: No Bush reference, 1: Bush reference",neutral frame=0; Bush reference=1,215,11040
+long,kn_snmaj,senate_majority_raw,RECODE of f2_dem,,3605,7650
+long,pollid,study_year,"Study 1: 2004, Study 2: 2008",,0,11255
+long,t_disp,screen_time_seconds,Instructions Screen Completion Time,,3655,7600
+long,pres_app,presidential_approval_raw,Do you approve or disapprove of the way President Bush is handling the economy?,Strongly Approve=1; Approve=2; Disapprove=3; Strongly Disapprove=4,3755,7500
+long,inet_sp,internet_speed_raw,Speed of Internet connection,Not asked=-2; REFUSED=-1; No connection=0; Dial-up or NA=1; Broadband=2,8185,3070
+long,dropout,dropped_out_after_randomization,Respondent Dropout,Did not drop out after randomization=0; Dropped out after randomization=1,0,11255
+long,l,response,Economic Knowledge Item Response (Clean),Not Asked=-2; Refused=-1,851,10404
+long,complete,is_complete,Completed Study 2,No=0; Yes=1,3090,8165
+long,dem,is_democrat,RECODE of pid7 (Party Identification (7-point scale)),Republicans=0; Democrats=1,2580,8675
+long,approve,approves_president,RECODE of pres_app (Do you approve or disapprove of the way President Bush is ha,Disapprove=0; Approve=1,3755,7500
+long,consis,is_consistent_partisan,"Consistent Partisan Dummy (i.e., PID and Pres App match)",,4950,6305
+long,kne1,knowledge_score_1,RECODE of e1 (who is the current secretary of defense?),,3495,7760
+long,kne2,knowledge_score_2,RECODE of e2 (who is the current speaker of the u.s. house of representatives?),,3500,7755
+long,kne3,knowledge_score_3,RECODE of e3 (who is the chief justice on the u.s. supreme court?),,3510,7745
+long,kne4,knowledge_score_4,RECODE of e4 (who is the president of iran?),,3520,7735
+long,kne5,knowledge_score_5,RECODE of e5 (what office is currently held by {condoleezza (“condi”) rice/the p,,3510,7745
+long,kne6,knowledge_score_6,RECODE of e6 (what position is currently held by {ben bernanke /the person shown,,3520,7735
+long,kne7,knowledge_score_7,RECODE of e7 (what position is currently held by {michael mukasey/the person sho,,3520,7735
+long,kne8,knowledge_score_8,RECODE of e8 (what position is currently held by {nicolas sarkozy/the person sho,,3535,7720
+long,kne9_1,knowledge_score_9,"RECODE of e9_1 ( [bill richardson] for each of these politicians, please indicat",,3515,7740
+long,kne9_2,knowledge_score_10,"RECODE of e9_2 ( [fred thompson] for each of these politicians, please indicate",,3515,7740
+long,kne9_3,knowledge_score_11,"RECODE of e9_3 ( [mike huckabee] for each of these politicians, please indicate",,3515,7740
+long,kne9_4,knowledge_score_12,"RECODE of e9_4 ( [ron paul] for each of these politicians, please indicate to wh",,3515,7740
+long,kn_snmajr,senate_majority_score,RECODE of kn_snmaj (RECODE of f2_dem),,3605,7650
+long,pk,knowledge_score,General Political Knowledge (0-13),,3605,7650
+long,nohispeed,has_no_high_speed_internet,"0: High-speed connection, 1: No high-speed connection",,1180,10075
+long,t_l,response_time_seconds,Item Completion Time,,3689,7566
+long,l_raw,response_raw,Economic Knowledge Item Response (Raw),,599,10656
+long,item,item_label,Economic Knowledge Item,,0,11255
+long,tri_33,response_category_33,Trichotomized Response (33% Window),Under=0; Correct=1; Over=2,851,10404
+long,tri_23,response_category_23,Trichotomized Response (23% Window),Under=0; Correct=1; Over=2,851,10404
+long,tri_10,response_category_10,Trichotomized Response (+/- 10% Window),Under=0; Correct=1; Over=2,851,10404
+long,tri_po,response_category_po,Trichotomized Response (Payout Window),Under=0; Correct=1; Over=2,851,10404
+long,tri_pp,response_category_pp,Trichotomized Response (1 Pct Pt Window),Under=0; Correct=1; Over=2,851,10404
+long,cong_33,congeniality_33,Recoded DV (33% Window),Uncongenial=-1; Correct=0; Congenial=1,2755,8500
+long,cong_23,congeniality_23,Recoded DV (23% Window),Uncongenial=-1; Correct=0; Congenial=1,2755,8500
+long,cong_10,congeniality_10,Recoded DV (+/- 10% Window),Uncongenial=-1; Correct=0; Congenial=1,2755,8500
+long,cong_po,congeniality_po,Recoded DV (Payout Window),Uncongenial=-1; Correct=0; Congenial=1,2755,8500
+long,cong_33r,congeniality_33_reversed,Reverse Coded DV (33% Window),,2755,8500
+long,congenial,is_congenial,RECODE of cong_33 (Recoded DV (33% Window)),,2755,8500
+long,correct,is_correct,RECODE of cong_33 (Recoded DV (33% Window)),,2755,8500
+long,uncongenial,is_uncongenial,RECODE of cong_33 (Recoded DV (33% Window)),,2755,8500
+long,pay,monetary_pooled,,,3070,8185
+long,app,accuracy_appeal,,,3305,7950
+long,mon,monetary_incentive,,,3305,7950
+long,acc,accuracy_incentive,,,3305,7950
+long,seq,item_id,,,0,11255
+long,seq1,is_item_1,,,0,11255
+long,seq2,is_item_2,,,0,11255
+long,seq3,is_item_3,,,0,11255
+long,seq4,is_item_4,,,0,11255
+long,seq5,is_item_5,,,0,11255
+long,seq6,is_item_6,,,0,11255
+long,seq7,is_item_7,,,0,11255
+long,seq8,is_item_8,,,0,11255
+long,seq9,is_item_9,,,0,11255
+long,monxbush,monetary_by_bush,,,3305,7950
+long,appxbush,appeal_by_bush,,,3305,7950
+long,accxbush,accuracy_by_bush,,,3305,7950
+long,payxnohs,monetary_pooled_by_internet,,,3820,7435
+long,monxnohs,monetary_by_internet,,,4435,6820
+long,appxnohs,appeal_by_internet,,,4435,6820
+long,monxpk,monetary_by_knowledge,,,3605,7650
+long,appxpk,appeal_by_knowledge,,,3605,7650
+long,accxpk,accuracy_by_knowledge,,,3605,7650
+long,bushxpk,bush_by_knowledge,,,3605,7650
+long,accxbushxpk,accuracy_by_bush_by_knowledge,,,3605,7650

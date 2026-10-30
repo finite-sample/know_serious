@@ -1,0 +1,27 @@
+check,status,evidence
+source_identity,checked,archive_manifest.csv and verify_sources.R
+source_reconstruction,partial,all41 July29 release columns reconstructed;2008 original delivery absent
+recode_reconstruction,checked,all wide and long values and missingness agree
+keys_and_reshape,checked,respondent and respondent-item uniqueness and exact checkpoint comparisons
+response_denominators,checked,table_1_count_benchmarks.csv distinguishes raw and classifiable answers
+missingness,checked,response_missingness.csv and knowledge_components.csv
+published_prose,partial,prose_claims.csv and source_audit.md
+main_model_coefficients,checked,model_benchmarks.csv
+appendix_model_coefficients,checked,appendix_model_benchmarks.csv
+likelihood_integration,checked,independent adaptive integrals and quadrature refinement
+bootstrap_sampling_frame,unverified,Stata executable unavailable; see descriptive_audit.md
+bootstrap_random_stream,different,R sampling uses explicit seed; does not reproduce Stata stream
+mcmc_convergence,checked,both four-chain models pass Rhat<1.01 and ESS>=400; jags_diagnostics.csv and jags_run_settings.csv
+figure_interval_provenance,checked,July29 literal endpoints match archived JAGS CSV at reported precision
+iia_inference,discrepancy,reverse test order and indefinite covariance differences
+randomization_records,partial,treatment fields and questionnaire inspected; assignment log absent
+attrition,checked,July29 dropout construction matches appendix;2004 completion wording differs by4 records
+knowledge_measurement,deferred,user requested separate original-data review after replication
+item_selection,deferred,user requested separate original-data review after replication
+alternative_estimands,deferred,published coding and samples retained in first phase
+external_validity,limited,estimates describe survey respondents with observed classifiable answers
+multinomial_functional_form,assumption,shared random intercept and linear knowledge effects reproduced
+one_sided_tests,discrepancy,pooled prose p<.001 incompatible with exact effect and printed SE; directional test still p<.01
+panel_did_iv_rd,inapplicable,study uses randomized survey incentives rather than these designs
+causal_machine_learning,inapplicable,no learned nuisance models or predictive policy selection
+clean_container,blocked,no running Docker daemon and colima unavailable

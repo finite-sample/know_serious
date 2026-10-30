@@ -1,0 +1,32 @@
+artifact_id,title,publication_location,legacy_producer,target_quantity,status
+table_1,Response proportions and incentive effects,main Table 1,final_bundle/PSK_Analysis.do:17-108; PSK_Functions.do,Observed answer proportions; respondent-cluster bootstrap; respondent and response counts,44 point estimates and14 counts match; bootstrap frame remains qualified
+table_2,Ordinal treatment models,main Table 2,final_bundle/PSK_Analysis.do:111-131,Five model columns; ordinal mixed logit with variance prior,rounded coefficient benchmarks match; see model diagnostics
+table_3,Bush-reference interactions,main Table 3,final_bundle/PSK_Analysis.do:134-143,Two ordinal interaction models and coefficient equality test,rounded coefficient benchmarks match; see model diagnostics
+table_4,Knowledge moderation,main Table 4,final_bundle/PSK_Analysis.do:146-165,Multinomial mixed logit; congenial reference; IIA checks and incentive pooling test,rounded coefficient benchmarks match; see model diagnostics
+figure_1a,Pooled model probabilities,main Figure 1a,final_bundle/PSK_Analysis.do:173-205; PSK_JAGS.R,GLLAMM probabilities and JAGS intervals,point predictions verified; interval audit separate
+figure_1b,Study 2 model probabilities,main Figure 1b,final_bundle/PSK_Analysis.do:208-247; PSK_JAGS.R,GLLAMM probabilities and JAGS intervals,point predictions verified; interval audit separate
+figure_2a,Observed response categories by knowledge,main Figure 2a,final_bundle/PSK_Analysis.do:252-266,LOWESS of cumulative response indicators,formula-checked Stata smoother; tied-sort exactness unverified
+figure_2b,Predicted response categories by knowledge,main Figure 2b,final_bundle/PSK_Analysis.do:268-287,LOWESS of multinomial predicted probabilities,formula-checked Stata smoother; tied-sort exactness unverified
+figure_2c,Observed bias by knowledge,main Figure 2c,final_bundle/PSK_Analysis.do:289-296,LOWESS of congenial minus uncongenial indicators,formula-checked Stata smoother; tied-sort exactness unverified
+figure_2d,Predicted bias by knowledge,main Figure 2d,final_bundle/PSK_Analysis.do:298-304,LOWESS of probability differences,formula-checked Stata smoother; tied-sort exactness unverified
+table_a1,Economic questionnaire wording,appendix Table A1,Questionnaires,Five items per study; answer options; Bush-reference variants,documentary source; no numerical computation
+table_a2,General knowledge questionnaire wording,appendix Table A2,2008 questionnaire,Twelve categorical items and Senate composition; randomized modalities,documentary source; no numerical computation
+figure_a1,Knowledge distribution,appendix Figure A1,final_bundle/PSK_Analysis.do:445-449,Knowledge-score histogram by partisan group,score reproduced; modern histogram binning presentation choice
+table_b1,Completion-time restrictions,appendix Table B1,final_bundle/PSK_Analysis.do:456-467,Study 2 ordinal models at 60/45/40/35 seconds plus unrestricted reference,rounded coefficient benchmarks match; see model diagnostics
+table_b2,Alternative correct intervals,appendix Table B2,final_bundle/PSK_Analysis.do:485-519,Nine ordinal models; payout / ten-percent / 23-percent rules,rounded coefficient benchmarks match; see model diagnostics
+table_b3,Item-specific effects,appendix Table B3,final_bundle/PSK_Analysis.do:521-537,Ten item-specific ordinal logistic regressions,rounded coefficient benchmarks match; see model diagnostics
+sample_sizes,Numerical prose claim,Research design,upstream source audit,775 assigned and 618 completed in 2004; 1633 assigned and 1511 completed in 2008,assignment verified;2004 final-item recorded count614 versus stated618 unresolved
+correct_item_rates,Numerical prose claim,Measures,final_bundle/PSK_Analysis.do:311-312,Estate tax 45% and 42%; poverty less than 3% within one point,targeted numeric claims reproduce
+implausible_responses,Numerical prose claim,Measures,final_bundle/PSK_Analysis.do:314-330,9.97% unemployment above30; 9.78% uninsured at least50; 9.46% gas at least10,targeted numeric claims reproduce
+independents,Numerical prose claim,Measures,final_bundle/PSK_Analysis.do:335-336,Distribution of pid7 by study,targeted numeric claims reproduce
+pooled_effect,Numerical prose claim,Results,Table 1,Congenial decline4.8; bias11.5 to6.1; reduction5.4 percentage points; prose p<.001,effect matches; prose p<.001 incompatible with exact effect and printed SE precision
+appeal_effect,Numerical prose claim,Results,Table 1,Congenial decline3.4; bias reductions6.6 appeal and6.1 monetary; prose p<.05,effects match; prose p<.05 and table+ conflict; rounded SE permits either side
+pooled_predictions,Numerical prose claim,Results,Figure 1a,Bias11.8 to6.3,targeted numeric claims reproduce
+study2_predictions,Numerical prose claim,Results,Figure 1b,Bias reduction over60 percent,targeted numeric claims reproduce
+consistent_partisans,Numerical prose claim,Results,final_bundle/PSK_Analysis.do:338-342; 350-356; PSK_Recodes.do:36-42,Excluded Republicans15% and Democrats2%; bias14.6 versus11.5,values match;14.6 uses Study2 while11.5 pools studies
+cue_attenuation,Numerical prose claim,Results,Table 3,Interaction one-sided p=.23; magnitude about half,model quantities reproduce; nonsignificant interaction does not establish attenuation
+instruction_times,Numerical prose claim,footnote2,final_bundle/PSK_Analysis.do:344-345,Medians9 control;30 monetary;22 appeal seconds,targeted numeric claims reproduce
+refusal_rates,Numerical prose claim,footnote5,final_bundle/PSK_Analysis.do:358-434,Study1 3.2%; Study2 1.7% average item refusal,targeted numeric claims reproduce
+incentive_pooling,Numerical prose claim,footnote12,final_bundle/PSK_Analysis.do:163-165,Likelihood ratio chi-square4=6.5 p=.17,model-statistic benchmarks reproduce
+dropout_counts,Numerical prose claim,appendix A,final_bundle/PSK_Analysis.do:441-443; PSK_Recodes.do:14-24,2004 seven=4 monetary+3 control;2008 eight=1 monetary+5 appeal+2 control,targeted numeric claims reproduce
+internet_interactions,Numerical prose claim,appendix B,final_bundle/PSK_Analysis.do:470-481,Likelihood ratios3.4 df2 p=.18 and2.5 df3 p=.48,model-statistic benchmarks reproduce

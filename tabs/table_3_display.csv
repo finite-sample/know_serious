@@ -1,0 +1,12 @@
+quantity,1,2
+Monetary incentive,-0.14 (0.08),—
+Accuracy appeal,-0.15 (0.08),—
+Accuracy incentive,—,-0.15 (0.07)
+Bush reference,0.12 (0.09),0.12 (0.09)
+Monetary x Bush,0.06 (0.12),—
+Appeal x Bush,0.09 (0.12),—
+Incentive x Bush,—,0.08 (0.10)
+Random-intercept variance,0.03 (0.02),0.03 (0.02)
+Responses,6233,6233
+Respondents,1260,1260
+Log likelihood,-6766,-6766

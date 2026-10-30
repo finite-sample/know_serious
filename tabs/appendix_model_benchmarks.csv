@@ -1,0 +1,157 @@
+model,term,actual,published,tolerance,matches
+table_b1_60,mon,-0.145122541823023,-0.15,0.005,TRUE
+table_b1_60,mon_se,0.0872970349853959,0.09,0.005,TRUE
+table_b1_60,app,-0.140861383482556,-0.14,0.005,TRUE
+table_b1_60,app_se,0.0832938626535783,0.08,0.005,TRUE
+table_b1_45,mon,-0.137488131547619,-0.14,0.005,TRUE
+table_b1_45,mon_se,0.0901581247862288,0.09,0.005,TRUE
+table_b1_45,app,-0.125227152955279,-0.13,0.005,TRUE
+table_b1_45,app_se,0.0857618398339086,0.09,0.005,TRUE
+table_b1_40,mon,-0.181013150854146,-0.18,0.005,TRUE
+table_b1_40,mon_se,0.0955749364670179,0.1,0.005,TRUE
+table_b1_40,app,-0.15227929967845,-0.15,0.005,TRUE
+table_b1_40,app_se,0.0905378396603667,0.09,0.005,TRUE
+table_b1_35,mon,-0.175248370989092,-0.18,0.005,TRUE
+table_b1_35,mon_se,0.101048623728272,0.1,0.005,TRUE
+table_b1_35,app,-0.124765784983973,-0.12,0.005,TRUE
+table_b1_35,app_se,0.0944584011212097,0.09,0.005,TRUE
+table_b2_pooled_po,pay,-0.102042401612803,-0.1,0.005,TRUE
+table_b2_pooled_po,pay_se,0.0602951338616651,0.06,0.005,TRUE
+table_b2_pooled_10,pay,-0.101174089589193,-0.1,0.005,TRUE
+table_b2_pooled_10,pay_se,0.060028553965215,0.06,0.005,TRUE
+table_b2_pooled_23,pay,-0.141928830859131,-0.14,0.005,TRUE
+table_b2_pooled_23,pay_se,0.0600180187816055,0.06,0.005,TRUE
+table_b2_study_two_po,mon,-0.0820178242933025,-0.08,0.005,TRUE
+table_b2_study_two_po,mon_se,0.0851611368982155,0.09,0.005,TRUE
+table_b2_study_two_po,app,-0.128067797217796,-0.13,0.005,TRUE
+table_b2_study_two_po,app_se,0.0813822069318551,0.08,0.005,TRUE
+table_b2_study_two_10,mon,-0.0635700962426179,-0.06,0.005,TRUE
+table_b2_study_two_10,mon_se,0.0834794808880945,0.08,0.005,TRUE
+table_b2_study_two_10,app,-0.172202804212088,-0.17,0.005,TRUE
+table_b2_study_two_10,app_se,0.079658126225756,0.08,0.005,TRUE
+table_b2_study_two_23,mon,-0.131875286703228,-0.13,0.005,TRUE
+table_b2_study_two_23,mon_se,0.0852734602730352,0.09,0.005,TRUE
+table_b2_study_two_23,app,-0.157581569211239,-0.16,0.005,TRUE
+table_b2_study_two_23,app_se,0.0813121521547722,0.08,0.005,TRUE
+table_b2_consistent_po,mon,-0.129310791466343,-0.13,0.005,TRUE
+table_b2_consistent_po,mon_se,0.0991048285724592,0.1,0.005,TRUE
+table_b2_consistent_po,app,-0.138140104695625,-0.14,0.005,TRUE
+table_b2_consistent_po,app_se,0.0955504734166992,0.1,0.005,TRUE
+table_b2_consistent_10,mon,-0.120871955801532,-0.12,0.005,TRUE
+table_b2_consistent_10,mon_se,0.0950677961255004,0.1,0.005,TRUE
+table_b2_consistent_10,app,-0.192519180393254,-0.19,0.005,TRUE
+table_b2_consistent_10,app_se,0.0916385195951005,0.09,0.005,TRUE
+table_b2_consistent_23,mon,-0.190868605621476,-0.19,0.005,TRUE
+table_b2_consistent_23,mon_se,0.0984933707780562,0.1,0.005,TRUE
+table_b2_consistent_23,app,-0.159099574327478,-0.16,0.005,TRUE
+table_b2_consistent_23,app_se,0.094925904618315,0.09,0.005,TRUE
+table_b1_60,random_variance,0.0595342181528345,0.06,0.005,TRUE
+table_b1_60,random_variance_se,0.038769113187433,0.04,0.005,TRUE
+table_b1_60,observations,3085,3085,0.5,TRUE
+table_b1_60,respondents,658,658,0.5,TRUE
+table_b1_60,log_likelihood,-3370.62086626993,-3371,0.5,TRUE
+table_b1_45,random_variance,0.0556514219066526,0.06,0.005,TRUE
+table_b1_45,random_variance_se,0.0389821150539646,0.04,0.005,TRUE
+table_b1_45,observations,2863,2863,0.5,TRUE
+table_b1_45,respondents,655,655,0.5,TRUE
+table_b1_45,log_likelihood,-3129.53459888252,-3130,0.5,TRUE
+table_b1_40,random_variance,0.0901890326371011,0.09,0.005,TRUE
+table_b1_40,random_variance_se,0.0505492055811837,0.05,0.005,TRUE
+table_b1_40,observations,2662,2662,0.5,TRUE
+table_b1_40,respondents,649,649,0.5,TRUE
+table_b1_40,log_likelihood,-2908.00159574183,-2908,0.5,TRUE
+table_b1_35,random_variance,0.0889087520661784,0.09,0.005,TRUE
+table_b1_35,random_variance_se,0.0528808834993029,0.05,0.005,TRUE
+table_b1_35,observations,2395,2395,0.5,TRUE
+table_b1_35,respondents,636,636,0.5,TRUE
+table_b1_35,log_likelihood,-2616.11117468989,-2616,0.5,TRUE
+table_b2_pooled_po,random_variance,0.0905492763685123,0.09,0.005,TRUE
+table_b2_pooled_po,random_variance_se,0.0396251538838274,0.04,0.005,TRUE
+table_b2_pooled_po,observations,4324,4324,0.5,TRUE
+table_b2_pooled_po,respondents,878,878,0.5,TRUE
+table_b2_pooled_po,log_likelihood,-4667.49771764501,-4667,0.5,TRUE
+table_b2_pooled_10,random_variance,0.0848363611309878,0.08,0.005,TRUE
+table_b2_pooled_10,random_variance_se,0.0389003858275312,0.04,0.005,TRUE
+table_b2_pooled_10,observations,4324,4324,0.5,TRUE
+table_b2_pooled_10,respondents,878,878,0.5,TRUE
+table_b2_pooled_10,log_likelihood,-4671.01456772558,-4671,0.5,TRUE
+table_b2_pooled_23,random_variance,0.0816428316127562,0.08,0.005,TRUE
+table_b2_pooled_23,random_variance_se,0.0383532081939547,0.04,0.005,TRUE
+table_b2_pooled_23,observations,4324,4324,0.5,TRUE
+table_b2_pooled_23,respondents,878,878,0.5,TRUE
+table_b2_pooled_23,log_likelihood,-4653.02896500031,-4653,0.5,TRUE
+table_b2_study_two_po,random_variance,0.0625431857322643,0.06,0.005,TRUE
+table_b2_study_two_po,random_variance_se,0.0383479505608608,0.04,0.005,TRUE
+table_b2_study_two_po,observations,3276,3276,0.5,TRUE
+table_b2_study_two_po,respondents,660,660,0.5,TRUE
+table_b2_study_two_po,log_likelihood,-3574.63209778641,-3575,0.5,TRUE
+table_b2_study_two_10,random_variance,0.0294684528339548,0.03,0.005,TRUE
+table_b2_study_two_10,random_variance_se,0.0251525200957631,0.03,0.005,TRUE
+table_b2_study_two_10,observations,3276,3276,0.5,TRUE
+table_b2_study_two_10,respondents,660,660,0.5,TRUE
+table_b2_study_two_10,log_likelihood,-3536.56727204713,-3537,0.5,TRUE
+table_b2_study_two_23,random_variance,0.0574011383945786,0.06,0.005,TRUE
+table_b2_study_two_23,random_variance_se,0.0370424223602875,0.04,0.005,TRUE
+table_b2_study_two_23,observations,3276,3276,0.5,TRUE
+table_b2_study_two_23,respondents,660,660,0.5,TRUE
+table_b2_study_two_23,log_likelihood,-3552.36117865291,-3552,0.5,TRUE
+table_b2_consistent_po,random_variance,0.112288448621583,0.11,0.005,TRUE
+table_b2_consistent_po,random_variance_se,0.0517914727139916,0.05,0.005,TRUE
+table_b2_consistent_po,observations,2614,2614,0.5,TRUE
+table_b2_consistent_po,respondents,525,525,0.5,TRUE
+table_b2_consistent_po,log_likelihood,-2804.05447398568,-2804,0.5,TRUE
+table_b2_consistent_10,random_variance,0.0494847685966788,0.05,0.005,TRUE
+table_b2_consistent_10,random_variance_se,0.0369284339907274,0.04,0.005,TRUE
+table_b2_consistent_10,observations,2614,2614,0.5,TRUE
+table_b2_consistent_10,respondents,525,525,0.5,TRUE
+table_b2_consistent_10,log_likelihood,-2770.45651187103,-2770,0.5,TRUE
+table_b2_consistent_23,random_variance,0.0949558857147215,0.09,0.005,TRUE
+table_b2_consistent_23,random_variance_se,0.0492527331506759,0.05,0.005,TRUE
+table_b2_consistent_23,observations,2614,2614,0.5,TRUE
+table_b2_consistent_23,respondents,525,525,0.5,TRUE
+table_b2_consistent_23,log_likelihood,-2787.07849962113,-2787,0.5,TRUE
+Unemployment 2004,pay,-0.216619443196807,-0.22,0.005,TRUE
+Unemployment 2004,pay_se,0.173848663846858,0.17,0.005,TRUE
+Unemployment 2004,observations,460,460,0.5,TRUE
+Estate Tax 2004,pay,0.107998099264341,0.11,0.005,TRUE
+Estate Tax 2004,pay_se,0.173101720421912,0.17,0.005,TRUE
+Estate Tax 2004,observations,462,462,0.5,TRUE
+Debt 2004,pay,-0.366964037678047,-0.37,0.005,TRUE
+Debt 2004,pay_se,0.178219650271174,0.18,0.005,TRUE
+Debt 2004,observations,433,433,0.5,TRUE
+Uninsured 2004,pay,-0.0776556857953684,-0.08,0.005,TRUE
+Uninsured 2004,pay_se,0.174902722887938,0.17,0.005,TRUE
+Uninsured 2004,observations,451,451,0.5,TRUE
+Poverty 2004,pay,-0.00572113410589687,-0.01,0.005,TRUE
+Poverty 2004,pay_se,0.173112155748888,0.17,0.005,TRUE
+Poverty 2004,observations,461,461,0.5,TRUE
+Unemployment 2008,mon,-0.11310718104966,-0.11,0.005,TRUE
+Unemployment 2008,mon_se,0.182497761931743,0.18,0.005,TRUE
+Unemployment 2008,observations,656,656,0.5,TRUE
+Unemployment 2008,app,-0.152939613109762,-0.15,0.005,TRUE
+Unemployment 2008,app_se,0.173908397106492,0.17,0.005,TRUE
+Unemployment 2008,observations,656,656,0.5,TRUE
+Estate Tax 2008,mon,0.160355317017185,0.16,0.005,TRUE
+Estate Tax 2008,mon_se,0.184282889139158,0.18,0.005,TRUE
+Estate Tax 2008,observations,657,657,0.5,TRUE
+Estate Tax 2008,app,0.0212479346206428,0.02,0.005,TRUE
+Estate Tax 2008,app_se,0.176784466232683,0.18,0.005,TRUE
+Estate Tax 2008,observations,657,657,0.5,TRUE
+Debt 2008,mon,-0.1652693304958,-0.17,0.005,TRUE
+Debt 2008,mon_se,0.187899840541403,0.19,0.005,TRUE
+Debt 2008,observations,654,654,0.5,TRUE
+Debt 2008,app,-0.445801040992281,-0.45,0.005,TRUE
+Debt 2008,app_se,0.179286660473816,0.18,0.005,TRUE
+Debt 2008,observations,654,654,0.5,TRUE
+Uninsured 2008,mon,-0.211762582141704,-0.21,0.005,TRUE
+Uninsured 2008,mon_se,0.181178633862853,0.18,0.005,TRUE
+Uninsured 2008,observations,654,654,0.5,TRUE
+Uninsured 2008,app,-0.132141432546076,-0.13,0.005,TRUE
+Uninsured 2008,app_se,0.173869324518855,0.17,0.005,TRUE
+Uninsured 2008,observations,654,654,0.5,TRUE
+Gas Price 2008,mon,-0.342860782794922,-0.34,0.005,TRUE
+Gas Price 2008,mon_se,0.181984886178837,0.18,0.005,TRUE
+Gas Price 2008,observations,655,655,0.5,TRUE
+Gas Price 2008,app,0.00385685884439003,0.004,5e-4,TRUE
+Gas Price 2008,app_se,0.173620968112982,0.17,0.005,TRUE
+Gas Price 2008,observations,655,655,0.5,TRUE

@@ -1,0 +1,29 @@
+claim_id,estimate,published,tolerance,unit,producer,comparison,status,reference_source
+assigned_2004,775,775,0,respondents,original survey treat==1 (60 seconds),equal,matches,final manuscript
+assigned_2008,1633,1633,0,respondents,released wide,equal,matches,final manuscript
+reached_last_item_2004,614,618,0,respondents,released wide l10 nonmissing and not not-asked (-2),equal,differs,final manuscript
+reached_last_item_2008,1511,1511,0,respondents,released wide l5,equal,matches,final manuscript
+instruction_median_0,9,9,0,seconds,released wide t_disp,equal,matches,final manuscript
+instruction_median_1,22,22,0,seconds,released wide t_disp,equal,matches,final manuscript
+instruction_median_2,30,30,0,seconds,released wide t_disp,equal,matches,final manuscript
+unemployment_above_30,9.966996699669966,9.97,0.005,percent of nonmissing raw responses,legacy main-text rule including negative codes,equal,matches,July 29 final script comment; manuscript says about ten percent
+uninsured_at_least_50,9.775429326287979,9.78,0.005,percent of nonmissing raw responses,legacy main-text rule including negative codes,equal,matches,July 29 final script comment; manuscript says about ten percent
+gas_at_least_10,9.463931171409662,9.46,0.005,percent of nonmissing raw responses,legacy main-text rule including negative codes,equal,matches,July 29 final script comment; manuscript says about ten percent
+estate_correct_2004,42.14876033057851,42,0.5,percent,released long tri_pp,equal,matches,final manuscript
+estate_correct_2008,45.17426273458445,45,0.5,percent,released long tri_pp,equal,matches,final manuscript
+refusal_2004,3.203883495145631,3.2,0.05,mean item refusal percent,released wide,equal,matches,final manuscript
+refusal_2008,1.7311197453377958,1.7,0.05,mean item refusal percent,released wide,equal,matches,final manuscript
+independents_2004,23.78640776699029,24,0.5,percent of observed party IDs,released wide pid7,equal,matches,final manuscript
+independents_2008,16.346790205162147,16,0.5,percent of observed party IDs,released wide pid7,equal,matches,final manuscript
+disapproving_republicans_2008,14.626075446724023,15,0.5,percent of respondents reaching final economic item,released wide dem/approve,equal,matches,final manuscript
+approving_democrats_2008,2.382528127068167,2,0.5,percent of respondents reaching final economic item,released wide dem/approve,equal,matches,final manuscript
+consistent_partisan_control_bias,14.595898673100121,14.6,0.05,percentage points,Study 2 consistent partisans only,equal,matches,final manuscript
+whole_sample_control_bias,11.45692377086155,11.5,0.05,percentage points,Studies 1 and 2 pooled control,equal,matches,final manuscript
+poverty_correct_within_one_point,2.828618968386023,3,0,percent,published one-point window,less,matches,final manuscript
+pooled_bias_reduction_1,46.97539883926468,40,0,percent reduction in bias,Table 1 observed responses; verifies directional magnitude,greater,matches,final manuscript
+study_2008_bias_reduction_1,66.07758115551388,60,0,percent reduction in bias,Table 1 observed responses; verifies directional magnitude,greater,matches,final manuscript
+study_2008_bias_reduction_2,61.597480675637016,60,0,percent reduction in bias,Table 1 observed responses; verifies directional magnitude,greater,matches,final manuscript
+pooled_predicted_bias_control,11.768124552190526,11.8,0.05,percentage points,Table 2 column1 estimation-sample marginal predictions,equal,matches,final manuscript
+pooled_predicted_bias_monetary,6.333946647959299,6.3,0.05,percentage points,Table 2 column1 estimation-sample marginal predictions,equal,matches,final manuscript
+study2_predicted_bias_reduction_1,65.21608122827043,60,0,percent reduction in bias,Table 2 column2a estimation-sample marginal predictions,greater,matches,final manuscript
+study2_predicted_bias_reduction_2,60.58477607917915,60,0,percent reduction in bias,Table 2 column2a estimation-sample marginal predictions,greater,matches,final manuscript

@@ -1,0 +1,324 @@
+audit_data.py  archive/data/raw/final_bundle/psk_long_recode.dta
+
+========================================================================
+1. SHAPE AND KEYS
+========================================================================
+rows 11,255   columns 87
+key ['caseid', 'seq']: 11,255 distinct, 0 duplicate rows
+
+========================================================================
+2. MISSINGNESS (level, and -- what matters -- differential)
+========================================================================
+columns with any missing:
+  inet_sp                                       72.72%  (8,185)
+  consis                                        43.98%  (4,950)
+  appxnohs                                      39.40%  (4,435)
+  monxnohs                                      39.40%  (4,435)
+  cu07serv                                      39.18%  (4,410)
+  payxnohs                                      33.94%  (3,820)
+  pres_app                                      33.36%  (3,755)
+  approve                                       33.36%  (3,755)
+  h1c                                           33.32%  (3,750)
+  t_l                                           32.78%  (3,689)
+  t_disp                                        32.47%  (3,655)
+  pk                                            32.03%  (3,605)
+  kn_snmaj                                      32.03%  (3,605)
+  monxpk                                        32.03%  (3,605)
+  appxpk                                        32.03%  (3,605)
+  accxpk                                        32.03%  (3,605)
+  bushxpk                                       32.03%  (3,605)
+  kn_snmajr                                     32.03%  (3,605)
+  accxbushxpk                                   32.03%  (3,605)
+  e8                                            31.41%  (3,535)
+  kne8                                          31.41%  (3,535)
+  e6                                            31.27%  (3,520)
+  e4                                            31.27%  (3,520)
+  e7                                            31.27%  (3,520)
+  kne7                                          31.27%  (3,520)
+  kne6                                          31.27%  (3,520)
+  kne4                                          31.27%  (3,520)
+  e9_1                                          31.23%  (3,515)
+  kne9_4                                        31.23%  (3,515)
+  kne9_3                                        31.23%  (3,515)
+  kne9_1                                        31.23%  (3,515)
+  kne9_2                                        31.23%  (3,515)
+  e9_2                                          31.23%  (3,515)
+  e9_3                                          31.23%  (3,515)
+  e9_4                                          31.23%  (3,515)
+  kne5                                          31.19%  (3,510)
+  e5                                            31.19%  (3,510)
+  e3                                            31.19%  (3,510)
+  kne3                                          31.19%  (3,510)
+  kne2                                          31.10%  (3,500)
+  e2                                            31.10%  (3,500)
+  kne1                                          31.05%  (3,495)
+  e1                                            31.05%  (3,495)
+  acc                                           29.36%  (3,305)
+  mon                                           29.36%  (3,305)
+  app                                           29.36%  (3,305)
+  r_PIDloc                                      29.36%  (3,305)
+  appxbush                                      29.36%  (3,305)
+  monxbush                                      29.36%  (3,305)
+  accxbush                                      29.36%  (3,305)
+  complete                                      27.45%  (3,090)
+  ppnet                                         27.45%  (3,090)
+  pay                                           27.28%  (3,070)
+  cong_33                                       24.48%  (2,755)
+  cong_23                                       24.48%  (2,755)
+  cong_10                                       24.48%  (2,755)
+  cong_po                                       24.48%  (2,755)
+  cong_33r                                      24.48%  (2,755)
+  congenial                                     24.48%  (2,755)
+  correct                                       24.48%  (2,755)
+  uncongenial                                   24.48%  (2,755)
+  dem                                           22.92%  (2,580)
+  nohispeed                                     10.48%  (1,180)
+  tri_po                                         7.56%  (851)
+  tri_10                                         7.56%  (851)
+  tri_23                                         7.56%  (851)
+  tri_33                                         7.56%  (851)
+  l                                              7.56%  (851)
+  tri_pp                                         7.56%  (851)
+  pid7                                           5.42%  (610)
+  l_raw                                          5.32%  (599)
+  r_bushref                                      1.91%  (215)
+  rd                                             1.91%  (215)
+
+differential missingness by 'pollid' (max-min fill rate > 2pp):
+  ppnet                                spread 100.0pp   2004.0=100.0%  2008.0=0.0%
+  complete                             spread 100.0pp   2004.0=100.0%  2008.0=0.0%
+  inet_sp                              spread  99.4pp   2004.0=0.6%  2008.0=100.0%
+  accxbush                             spread  97.4pp   2004.0=100.0%  2008.0=2.6%
+  appxbush                             spread  97.4pp   2004.0=100.0%  2008.0=2.6%
+  r_PIDloc                             spread  97.4pp   2004.0=100.0%  2008.0=2.6%
+  acc                                  spread  97.4pp   2004.0=100.0%  2008.0=2.6%
+  mon                                  spread  97.4pp   2004.0=100.0%  2008.0=2.6%
+  app                                  spread  97.4pp   2004.0=100.0%  2008.0=2.6%
+  monxbush                             spread  97.4pp   2004.0=100.0%  2008.0=2.6%
+  e1                                   spread  95.0pp   2004.0=100.0%  2008.0=5.0%
+  kne1                                 spread  95.0pp   2004.0=100.0%  2008.0=5.0%
+  kne2                                 spread  95.0pp   2004.0=100.0%  2008.0=5.0%
+  e2                                   spread  95.0pp   2004.0=100.0%  2008.0=5.0%
+  kne3                                 spread  94.9pp   2004.0=100.0%  2008.0=5.1%
+  kne5                                 spread  94.9pp   2004.0=100.0%  2008.0=5.1%
+  e5                                   spread  94.9pp   2004.0=100.0%  2008.0=5.1%
+  e3                                   spread  94.9pp   2004.0=100.0%  2008.0=5.1%
+  kne9_4                               spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  kne9_1                               spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  kne9_2                               spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  kne9_3                               spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  e9_4                                 spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  e9_2                                 spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  e9_3                                 spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  e9_1                                 spread  94.8pp   2004.0=100.0%  2008.0=5.2%
+  e7                                   spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  kne4                                 spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  e6                                   spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  kne6                                 spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  kne7                                 spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  e4                                   spread  94.7pp   2004.0=100.0%  2008.0=5.3%
+  e8                                   spread  94.5pp   2004.0=100.0%  2008.0=5.5%
+  kne8                                 spread  94.5pp   2004.0=100.0%  2008.0=5.5%
+  bushxpk                              spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  accxpk                               spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  kn_snmajr                            spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  appxpk                               spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  monxpk                               spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  pk                                   spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  accxbushxpk                          spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  kn_snmaj                             spread  93.7pp   2004.0=100.0%  2008.0=6.3%
+  t_disp                               spread  93.1pp   2004.0=100.0%  2008.0=6.9%
+  t_l                                  spread  92.7pp   2004.0=100.0%  2008.0=7.3%
+  h1c                                  spread  91.9pp   2004.0=100.0%  2008.0=8.1%
+  pres_app                             spread  91.9pp   2004.0=100.0%  2008.0=8.1%
+  approve                              spread  91.9pp   2004.0=100.0%  2008.0=8.1%
+  cu07serv                             spread  83.8pp   2004.0=100.0%  2008.0=16.2%
+  appxnohs                             spread  83.5pp   2004.0=100.0%  2008.0=16.5%
+  monxnohs                             spread  83.5pp   2004.0=100.0%  2008.0=16.5%
+  consis                               spread  77.2pp   2004.0=100.0%  2008.0=22.8%
+  payxnohs                             spread  45.9pp   2004.0=0.6%  2008.0=46.5%
+  pay                                  spread  37.6pp   2004.0=0.0%  2008.0=37.6%
+  nohispeed                            spread  13.6pp   2004.0=0.6%  2008.0=14.2%
+  pid7                                 spread   7.5pp   2004.0=0.0%  2008.0=7.5%
+  l_raw                                spread   7.3pp   2004.0=0.0%  2008.0=7.3%
+  l                                    spread   5.0pp   2004.0=3.9%  2008.0=8.9%
+  tri_pp                               spread   5.0pp   2004.0=3.9%  2008.0=8.9%
+  tri_po                               spread   5.0pp   2004.0=3.9%  2008.0=8.9%
+  tri_10                               spread   5.0pp   2004.0=3.9%  2008.0=8.9%
+  tri_23                               spread   5.0pp   2004.0=3.9%  2008.0=8.9%
+  tri_33                               spread   5.0pp   2004.0=3.9%  2008.0=8.9%
+  cong_33r                             spread   3.0pp   2004.0=26.6%  2008.0=23.7%
+  cong_23                              spread   3.0pp   2004.0=26.6%  2008.0=23.7%
+  congenial                            spread   3.0pp   2004.0=26.6%  2008.0=23.7%
+  cong_33                              spread   3.0pp   2004.0=26.6%  2008.0=23.7%
+  cong_10                              spread   3.0pp   2004.0=26.6%  2008.0=23.7%
+  cong_po                              spread   3.0pp   2004.0=26.6%  2008.0=23.7%
+  uncongenial                          spread   3.0pp   2004.0=26.6%  2008.0=23.7%
+  correct                              spread   3.0pp   2004.0=26.6%  2008.0=23.7%
+  rd                                   spread   2.6pp   2004.0=0.0%  2008.0=2.6%
+  r_bushref                            spread   2.6pp   2004.0=0.0%  2008.0=2.6%
+  ^ differential missingness MANUFACTURES trends and gaps.
+    Constant missingness only attenuates. Check each of these.
+
+differential missingness by 'rd' (max-min fill rate > 2pp):
+  pay                                  spread 100.0pp   control=0.0%  verbal accuracy reminder=100.0%  monetary incentive=0.0%
+  payxnohs                             spread  92.0pp   control=8.0%  verbal accuracy reminder=100.0%  monetary incentive=10.3%
+  kne9_4                               spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  e9_2                                 spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  kne9_3                               spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  kne9_2                               spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  kne9_1                               spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  e9_4                                 spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  e9_3                                 spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  e9_1                                 spread  38.9pp   control=40.5%  verbal accuracy reminder=1.6%  monetary incentive=39.1%
+  t_disp                               spread  38.6pp   control=41.7%  verbal accuracy reminder=3.2%  monetary incentive=40.1%
+  kne5                                 spread  38.6pp   control=40.5%  verbal accuracy reminder=1.9%  monetary incentive=38.7%
+  e5                                   spread  38.6pp   control=40.5%  verbal accuracy reminder=1.9%  monetary incentive=38.7%
+  e8                                   spread  38.5pp   control=40.7%  verbal accuracy reminder=2.3%  monetary incentive=38.8%
+  kne8                                 spread  38.5pp   control=40.7%  verbal accuracy reminder=2.3%  monetary incentive=38.8%
+  e7                                   spread  38.4pp   control=40.5%  verbal accuracy reminder=2.1%  monetary incentive=38.8%
+  kne7                                 spread  38.4pp   control=40.5%  verbal accuracy reminder=2.1%  monetary incentive=38.8%
+  kne6                                 spread  38.4pp   control=40.5%  verbal accuracy reminder=2.1%  monetary incentive=38.8%
+  e6                                   spread  38.4pp   control=40.5%  verbal accuracy reminder=2.1%  monetary incentive=38.8%
+  e2                                   spread  38.4pp   control=40.1%  verbal accuracy reminder=1.8%  monetary incentive=38.9%
+  kne2                                 spread  38.4pp   control=40.1%  verbal accuracy reminder=1.8%  monetary incentive=38.9%
+  kne1                                 spread  38.4pp   control=40.1%  verbal accuracy reminder=1.8%  monetary incentive=38.8%
+  e1                                   spread  38.4pp   control=40.1%  verbal accuracy reminder=1.8%  monetary incentive=38.8%
+  e3                                   spread  38.3pp   control=40.2%  verbal accuracy reminder=1.9%  monetary incentive=38.9%
+  kne3                                 spread  38.3pp   control=40.2%  verbal accuracy reminder=1.9%  monetary incentive=38.9%
+  app                                  spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  complete                             spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  mon                                  spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  acc                                  spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  monxbush                             spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  appxbush                             spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  accxbush                             spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  r_PIDloc                             spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  ppnet                                spread  38.3pp   control=38.3%  verbal accuracy reminder=0.0%  monetary incentive=37.2%
+  kne4                                 spread  38.3pp   control=40.4%  verbal accuracy reminder=2.1%  monetary incentive=38.9%
+  e4                                   spread  38.3pp   control=40.4%  verbal accuracy reminder=2.1%  monetary incentive=38.9%
+  kn_snmajr                            spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  monxpk                               spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  appxpk                               spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  accxpk                               spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  bushxpk                              spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  pk                                   spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  accxbushxpk                          spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  kn_snmaj                             spread  38.2pp   control=41.2%  verbal accuracy reminder=3.0%  monetary incentive=39.5%
+  h1c                                  spread  38.1pp   control=42.7%  verbal accuracy reminder=4.6%  monetary incentive=40.5%
+  inet_sp                              spread  38.0pp   control=62.0%  verbal accuracy reminder=100.0%  monetary incentive=63.0%
+  approve                              spread  37.9pp   control=42.5%  verbal accuracy reminder=4.6%  monetary incentive=40.9%
+  pres_app                             spread  37.9pp   control=42.5%  verbal accuracy reminder=4.6%  monetary incentive=40.9%
+  t_l                                  spread  37.8pp   control=41.8%  verbal accuracy reminder=4.0%  monetary incentive=40.3%
+  monxnohs                             spread  33.3pp   control=46.0%  verbal accuracy reminder=14.0%  monetary incentive=47.3%
+  appxnohs                             spread  33.3pp   control=46.0%  verbal accuracy reminder=14.0%  monetary incentive=47.3%
+  cu07serv                             spread  32.7pp   control=47.9%  verbal accuracy reminder=15.6%  monetary incentive=48.3%
+  consis                               spread  30.4pp   control=51.4%  verbal accuracy reminder=21.0%  monetary incentive=49.6%
+  nohispeed                            spread   6.0pp   control=8.0%  verbal accuracy reminder=14.0%  monetary incentive=10.3%
+  ^ differential missingness MANUFACTURES trends and gaps.
+    Constant missingness only attenuates. Check each of these.
+
+========================================================================
+3. ZEROS VS MISSING
+========================================================================
+column                                           zeros       %   missing       %
+seq6                                            10,637   94.5%         0    0.0%
+seq7                                            10,637   94.5%         0    0.0%
+seq8                                            10,637   94.5%         0    0.0%
+seq9                                            10,637   94.5%         0    0.0%
+seq1                                             9,622   85.5%         0    0.0%
+seq2                                             9,622   85.5%         0    0.0%
+seq3                                             9,622   85.5%         0    0.0%
+seq4                                             9,622   85.5%         0    0.0%
+seq5                                             9,622   85.5%         0    0.0%
+appxbush                                         6,675   59.3%     3,305   29.4%
+monxbush                                         6,625   58.9%     3,305   29.4%
+uncongenial                                      6,081   54.0%     2,755   24.5%
+kne7                                             6,025   53.5%     3,520   31.3%
+monxnohs                                         5,725   50.9%     4,435   39.4%
+correct                                          5,644   50.1%     2,755   24.5%
+appxnohs                                         5,605   49.8%     4,435   39.4%
+mon                                              5,370   47.7%     3,305   29.4%
+accxbush                                         5,350   47.5%     3,305   29.4%
+congenial                                        5,275   46.9%     2,755   24.5%
+kne3                                             5,270   46.8%     3,510   31.2%
+monxpk                                           5,200   46.2%     3,605   32.0%
+payxnohs                                         5,170   45.9%     3,820   33.9%
+accxbushxpk                                      5,165   45.9%     3,605   32.0%
+app                                              5,095   45.3%     3,305   29.4%
+appxpk                                           4,900   43.5%     3,605   32.0%
+kne6                                             4,855   43.1%     3,520   31.3%
+kne8                                             4,695   41.7%     3,535   31.4%
+kne1                                             4,505   40.0%     3,495   31.1%
+kne9_4                                           4,440   39.4%     3,515   31.2%
+nohispeed                                        4,160   37.0%     1,180   10.5%
+pay                                              4,075   36.2%     3,070   27.3%
+bushxpk                                          4,040   35.9%     3,605   32.0%
+kne9_1                                           3,990   35.5%     3,515   31.2%
+kne4                                             3,275   29.1%     3,520   31.3%
+cong_33r                                         2,856   25.4%     2,755   24.5%
+kne9_2                                           2,520   22.4%     3,515   31.2%
+acc                                              2,515   22.3%     3,305   29.4%
+accxpk                                           2,450   21.8%     3,605   32.0%
+kne5                                             2,200   19.5%     3,510   31.2%
+kne9_3                                           2,190   19.5%     3,515   31.2%
+kne2                                             2,070   18.4%     3,500   31.1%
+consis                                           1,290   11.5%     4,950   44.0%
+kn_snmaj                                           600    5.3%     3,605   32.0%
+kn_snmajr                                          600    5.3%     3,605   32.0%
+pk                                                  65    0.6%     3,605   32.0%
+t_disp                                              20    0.2%     3,655   32.5%
+t_l                                                  7    0.1%     3,689   32.8%
+l_raw                                                7    0.1%       599    5.3%
+
+For every column with BOTH: is the zero 'measured, none found' or
+'not measured'? If the data cannot tell them apart, neither can the model.
+
+========================================================================
+4. DTYPE TRAPS
+========================================================================
+none found
+
+========================================================================
+5. VALUES OUTSIDE THEIR LOGICAL RANGE
+========================================================================
+none found
+
+========================================================================
+6. DISTRIBUTIONS, SKEW AND TAILS
+========================================================================
+     column    median           max  max/med   skew  n_top  top_n_mass
+        t_l    26.000     3,565.000  137.115 55.785     75       0.065
+     t_disp    19.000     6,950.000  365.789 29.713     76       0.312
+     caseid 1,131.000 1,011,543.000  894.379 17.689    112       0.487
+      l_raw     4.700     1,110.000      NaN  8.337    106         NaN
+     monxpk     0.000        13.000      NaN  1.518     76       0.061
+accxbushxpk     0.000        13.000      NaN  1.474     76       0.060
+     appxpk     0.000        13.000      NaN  1.242     76       0.053
+    bushxpk     0.000        13.000      NaN  0.924     76       0.041
+        seq     4.000        10.000    2.500  0.609    112       0.023
+     accxpk     4.250        13.000    3.059  0.332     76       0.028
+   cong_33r     0.000         1.000      NaN  0.174     85         NaN
+   kn_snmaj     2.000         4.000    2.000  0.064     76       0.019
+  kn_snmajr     0.500         1.000    2.000  0.064     76       0.019
+         pk     6.500        13.000    2.000  0.051     76       0.020
+
+'top_n_mass' is the share of the total held by the n_top largest values
+(n_top = max(1, n/100), so it is a single value below n = 200). Both it
+and max/med are blank for columns with negative values, where neither is
+interpretable.
+
+4 column(s) are heavily skewed. Before choosing a method,
+decide whether the MEAN or the MEDIAN is the estimand -- see
+checks/tier2-statistical.md section F. Asymptotic SEs are optimistic here.
+
+========================================================================
+7. RATE COLUMNS AND THEIR RECONSTRUCTED DENOMINATORS
+========================================================================
+no columns whose name suggests a rate; skipping
+
+========================================================================
+SUMMARY
+========================================================================
+no hard failures. The soft findings above still need judgement --
+this script narrows where to look, it does not decide.

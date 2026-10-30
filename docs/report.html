@@ -1,0 +1,599 @@
+<!doctype html><html lang='en'><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Accuracy incentives: replication and audit</title>
+<style>body{font:16px/1.5 system-ui;max-width:1100px;margin:3rem auto;padding:0 1rem;color:#243447}
+table{border-collapse:collapse;font-size:13px}td,th{padding:7px;border-bottom:1px solid #ddd;text-align:left}
+.scroll{overflow:auto}h2{margin-top:2.5rem}th{background:#eef2f5}img{max-width:100%}</style>
+<h1>Accuracy incentives: replication and audit</h1>
+<p>Prior, Sood, and Khanna (2015). Published coding and item selection are retained.</p>
+<p>This report shows numerical reproduction and diagnostics. See <a href='source_audit.md'>
+the source audit</a> for missing upstream inputs and interpretation limits. Different random streams
+produce different bootstrap and MCMC draws; deterministic counts are compared exactly.</p>
+<h2>Table 1: response shares and incentive contrasts</h2><p><a href='../tabs/table_1_display.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>study</th><th>statistic</th><th>estimate_se_pct</th></tr></thead><tbody><tr><td>pooled</td><td>group_0_uncongenial</td><td>28.1 (1.0)</td></tr>
+<tr><td>pooled</td><td>group_0_correct</td><td>32.3 (1.2)</td></tr>
+<tr><td>pooled</td><td>group_0_congenial</td><td>39.6 (1.1)</td></tr>
+<tr><td>pooled</td><td>group_0_bias</td><td>11.5 (1.7)</td></tr>
+<tr><td>pooled</td><td>group_1_uncongenial</td><td>28.7 (1.0)</td></tr>
+<tr><td>pooled</td><td>group_1_correct</td><td>36.5 (1.2)</td></tr>
+<tr><td>pooled</td><td>group_1_congenial</td><td>34.8 (1.2)</td></tr>
+<tr><td>pooled</td><td>group_1_bias</td><td>6.1 (1.8)</td></tr>
+<tr><td>pooled</td><td>contrast_1_uncongenial</td><td>0.6 (1.4)</td></tr>
+<tr><td>pooled</td><td>contrast_1_correct</td><td>4.2 (1.7)</td></tr>
+<tr><td>pooled</td><td>contrast_1_congenial</td><td>-4.8 (1.6)</td></tr>
+<tr><td>pooled</td><td>contrast_1_bias</td><td>-5.4 (2.5)</td></tr>
+<tr><td>study_2004</td><td>group_0_uncongenial</td><td>27.8 (1.3)</td></tr>
+<tr><td>study_2004</td><td>group_0_correct</td><td>31.5 (1.8)</td></tr>
+<tr><td>study_2004</td><td>group_0_congenial</td><td>40.7 (1.6)</td></tr>
+<tr><td>study_2004</td><td>group_0_bias</td><td>12.9 (2.3)</td></tr>
+<tr><td>study_2004</td><td>group_1_uncongenial</td><td>27.3 (1.4)</td></tr>
+<tr><td>study_2004</td><td>group_1_correct</td><td>37.2 (1.8)</td></tr>
+<tr><td>study_2004</td><td>group_1_congenial</td><td>35.4 (1.7)</td></tr>
+<tr><td>study_2004</td><td>group_1_bias</td><td>8.1 (2.5)</td></tr>
+<tr><td>study_2004</td><td>contrast_1_uncongenial</td><td>-0.5 (1.9)</td></tr>
+<tr><td>study_2004</td><td>contrast_1_correct</td><td>5.7 (2.5)</td></tr>
+<tr><td>study_2004</td><td>contrast_1_congenial</td><td>-5.2 (2.4)</td></tr>
+<tr><td>study_2004</td><td>contrast_1_bias</td><td>-4.8 (3.5)</td></tr>
+<tr><td>study_2008</td><td>group_0_uncongenial</td><td>28.4 (1.4)</td></tr>
+<tr><td>study_2008</td><td>group_0_correct</td><td>33.2 (1.5)</td></tr>
+<tr><td>study_2008</td><td>group_0_congenial</td><td>38.3 (1.5)</td></tr>
+<tr><td>study_2008</td><td>group_0_bias</td><td>9.9 (2.6)</td></tr>
+<tr><td>study_2008</td><td>group_1_uncongenial</td><td>31.6 (1.3)</td></tr>
+<tr><td>study_2008</td><td>group_1_correct</td><td>33.5 (1.4)</td></tr>
+<tr><td>study_2008</td><td>group_1_congenial</td><td>34.9 (1.4)</td></tr>
+<tr><td>study_2008</td><td>group_1_bias</td><td>3.4 (2.3)</td></tr>
+<tr><td>study_2008</td><td>group_2_uncongenial</td><td>30.3 (1.5)</td></tr>
+<tr><td>study_2008</td><td>group_2_correct</td><td>35.7 (1.7)</td></tr>
+<tr><td>study_2008</td><td>group_2_congenial</td><td>34.1 (1.7)</td></tr>
+<tr><td>study_2008</td><td>group_2_bias</td><td>3.8 (2.6)</td></tr>
+<tr><td>study_2008</td><td>contrast_1_uncongenial</td><td>3.2 (2.1)</td></tr>
+<tr><td>study_2008</td><td>contrast_1_correct</td><td>0.2 (2.2)</td></tr>
+<tr><td>study_2008</td><td>contrast_1_congenial</td><td>-3.4 (2.0)</td></tr>
+<tr><td>study_2008</td><td>contrast_1_bias</td><td>-6.6 (3.5)</td></tr>
+<tr><td>study_2008</td><td>contrast_2_uncongenial</td><td>1.8 (2.1)</td></tr>
+<tr><td>study_2008</td><td>contrast_2_correct</td><td>2.4 (2.4)</td></tr>
+<tr><td>study_2008</td><td>contrast_2_congenial</td><td>-4.3 (2.2)</td></tr>
+<tr><td>study_2008</td><td>contrast_2_bias</td><td>-6.1 (3.6)</td></tr></tbody></table></div>
+<h2>Table 2: incentive effects</h2><p><a href='../tabs/table_2_display.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>quantity</th><th>1</th><th>2a</th><th>2b</th><th>3a</th><th>3b</th></tr></thead><tbody><tr><td>Monetary incentive (pooled studies)</td><td>-0.13 (0.06)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Monetary incentive</td><td>—</td><td>-0.14 (0.09)</td><td>—</td><td>-0.21 (0.10)</td><td>—</td></tr>
+<tr><td>Accuracy appeal</td><td>—</td><td>-0.15 (0.08)</td><td>—</td><td>-0.17 (0.10)</td><td>—</td></tr>
+<tr><td>Accuracy incentive</td><td>—</td><td>—</td><td>-0.15 (0.07)</td><td>—</td><td>-0.19 (0.08)</td></tr>
+<tr><td>Random-intercept variance</td><td>0.07 (0.04)</td><td>0.06 (0.04)</td><td>0.06 (0.04)</td><td>0.11 (0.05)</td><td>0.11 (0.05)</td></tr>
+<tr><td>Responses</td><td>4324</td><td>3276</td><td>3276</td><td>2614</td><td>2614</td></tr>
+<tr><td>Respondents</td><td>878</td><td>660</td><td>660</td><td>525</td><td>525</td></tr>
+<tr><td>Log likelihood</td><td>-4685</td><td>-3579</td><td>-3579</td><td>-2815</td><td>-2815</td></tr></tbody></table></div>
+<h2>Table 3: partisan reference</h2><p><a href='../tabs/table_3_display.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>quantity</th><th>1</th><th>2</th></tr></thead><tbody><tr><td>Monetary incentive</td><td>-0.14 (0.08)</td><td>—</td></tr>
+<tr><td>Accuracy appeal</td><td>-0.15 (0.08)</td><td>—</td></tr>
+<tr><td>Accuracy incentive</td><td>—</td><td>-0.15 (0.07)</td></tr>
+<tr><td>Bush reference</td><td>0.12 (0.09)</td><td>0.12 (0.09)</td></tr>
+<tr><td>Monetary x Bush</td><td>0.06 (0.12)</td><td>—</td></tr>
+<tr><td>Appeal x Bush</td><td>0.09 (0.12)</td><td>—</td></tr>
+<tr><td>Incentive x Bush</td><td>—</td><td>0.08 (0.10)</td></tr>
+<tr><td>Random-intercept variance</td><td>0.03 (0.02)</td><td>0.03 (0.02)</td></tr>
+<tr><td>Responses</td><td>6233</td><td>6233</td></tr>
+<tr><td>Respondents</td><td>1260</td><td>1260</td></tr>
+<tr><td>Log likelihood</td><td>-6766</td><td>-6766</td></tr></tbody></table></div>
+<h2>Table 4: knowledge moderation</h2><p><a href='../tabs/table_4_display.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>quantity</th><th>correct</th><th>uncongenial</th></tr></thead><tbody><tr><td>Accuracy incentive</td><td>-0.20 (0.17)</td><td>-0.21 (0.16)</td></tr>
+<tr><td>Political knowledge</td><td>0.10 (0.02)</td><td>-0.05 (0.02)</td></tr>
+<tr><td>Incentive x knowledge</td><td>0.04 (0.02)</td><td>0.05 (0.02)</td></tr>
+<tr><td>Shared random-intercept variance</td><td>0.09 (0.04)</td><td>—</td></tr>
+<tr><td>Responses</td><td>6233</td><td>—</td></tr>
+<tr><td>Respondents</td><td>1260</td><td>—</td></tr>
+<tr><td>Log likelihood</td><td>-6510</td><td>—</td></tr></tbody></table></div>
+<h2>Table B1: completion time restrictions</h2><p><a href='../tabs/table_b1_display.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>quantity</th><th>Unrestricted</th><th>60 seconds</th><th>45 seconds</th><th>40 seconds</th><th>35 seconds</th></tr></thead><tbody><tr><td>Monetary incentive</td><td>-0.14 (0.09)</td><td>-0.15 (0.09)</td><td>-0.14 (0.09)</td><td>-0.18 (0.10)</td><td>-0.18 (0.10)</td></tr>
+<tr><td>Accuracy appeal</td><td>-0.15 (0.08)</td><td>-0.14 (0.08)</td><td>-0.13 (0.09)</td><td>-0.15 (0.09)</td><td>-0.12 (0.09)</td></tr>
+<tr><td>Random-intercept variance</td><td>0.06 (0.04)</td><td>0.06 (0.04)</td><td>0.06 (0.04)</td><td>0.09 (0.05)</td><td>0.09 (0.05)</td></tr>
+<tr><td>Responses</td><td>3276</td><td>3085</td><td>2863</td><td>2662</td><td>2395</td></tr>
+<tr><td>Respondents</td><td>660</td><td>658</td><td>655</td><td>649</td><td>636</td></tr>
+<tr><td>Log likelihood</td><td>-3579</td><td>-3371</td><td>-3130</td><td>-2908</td><td>-2616</td></tr></tbody></table></div>
+<h2>Table B2: published coding windows</h2><p><a href='../tabs/table_b2_display.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>quantity</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr></thead><tbody><tr><td>Monetary incentive (pooled studies)</td><td>-0.10 (0.06)</td><td>-0.10 (0.06)</td><td>-0.14 (0.06)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>Monetary incentive</td><td>—</td><td>—</td><td>—</td><td>-0.08 (0.09)</td><td>-0.06 (0.08)</td><td>-0.13 (0.09)</td><td>-0.13 (0.10)</td><td>-0.12 (0.10)</td><td>-0.19 (0.10)</td></tr>
+<tr><td>Accuracy appeal</td><td>—</td><td>—</td><td>—</td><td>-0.13 (0.08)</td><td>-0.17 (0.08)</td><td>-0.16 (0.08)</td><td>-0.14 (0.10)</td><td>-0.19 (0.09)</td><td>-0.16 (0.09)</td></tr>
+<tr><td>Random-intercept variance</td><td>0.09 (0.04)</td><td>0.08 (0.04)</td><td>0.08 (0.04)</td><td>0.06 (0.04)</td><td>0.03 (0.03)</td><td>0.06 (0.04)</td><td>0.11 (0.05)</td><td>0.05 (0.04)</td><td>0.09 (0.05)</td></tr>
+<tr><td>Responses</td><td>4324</td><td>4324</td><td>4324</td><td>3276</td><td>3276</td><td>3276</td><td>2614</td><td>2614</td><td>2614</td></tr>
+<tr><td>Respondents</td><td>878</td><td>878</td><td>878</td><td>660</td><td>660</td><td>660</td><td>525</td><td>525</td><td>525</td></tr>
+<tr><td>Log likelihood</td><td>-4667</td><td>-4671</td><td>-4653</td><td>-3575</td><td>-3537</td><td>-3552</td><td>-2804</td><td>-2770</td><td>-2787</td></tr></tbody></table></div>
+<h2>Table B3: item-specific estimates</h2><p><a href='../tabs/table_b3_display.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>item</th><th>term</th><th>coefficient_se</th><th>observations</th></tr></thead><tbody><tr><td>Debt 2008</td><td>mon</td><td>-0.17 (0.19)</td><td>654</td></tr>
+<tr><td>Debt 2008</td><td>app</td><td>-0.45 (0.18)</td><td>654</td></tr>
+<tr><td>Unemployment 2008</td><td>mon</td><td>-0.11 (0.18)</td><td>656</td></tr>
+<tr><td>Unemployment 2008</td><td>app</td><td>-0.15 (0.17)</td><td>656</td></tr>
+<tr><td>Uninsured 2008</td><td>mon</td><td>-0.21 (0.18)</td><td>654</td></tr>
+<tr><td>Uninsured 2008</td><td>app</td><td>-0.13 (0.17)</td><td>654</td></tr>
+<tr><td>Estate Tax 2008</td><td>mon</td><td>0.16 (0.18)</td><td>657</td></tr>
+<tr><td>Estate Tax 2008</td><td>app</td><td>0.02 (0.18)</td><td>657</td></tr>
+<tr><td>Gas Price 2008</td><td>mon</td><td>-0.34 (0.18)</td><td>655</td></tr>
+<tr><td>Gas Price 2008</td><td>app</td><td>0.00 (0.17)</td><td>655</td></tr>
+<tr><td>Unemployment 2004</td><td>pay</td><td>-0.22 (0.17)</td><td>460</td></tr>
+<tr><td>Estate Tax 2004</td><td>pay</td><td>0.11 (0.17)</td><td>462</td></tr>
+<tr><td>Debt 2004</td><td>pay</td><td>-0.37 (0.18)</td><td>433</td></tr>
+<tr><td>Uninsured 2004</td><td>pay</td><td>-0.08 (0.17)</td><td>451</td></tr>
+<tr><td>Poverty 2004</td><td>pay</td><td>-0.01 (0.17)</td><td>461</td></tr></tbody></table></div>
+<h2>Model benchmarks</h2><p><a href='../tabs/model_benchmarks.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>model</th><th>term</th><th>published_estimate</th><th>published_se</th><th>estimate</th><th>standard_error</th><th>estimate_matches</th><th>se_matches</th></tr></thead><tbody><tr><td>table_2_1</td><td>pay</td><td>-0.13</td><td>0.06</td><td>-0.127710</td><td>0.059306</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_2_2a</td><td>app</td><td>-0.15</td><td>0.08</td><td>-0.150870</td><td>0.081473</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_2_2a</td><td>mon</td><td>-0.14</td><td>0.09</td><td>-0.139710</td><td>0.085243</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_2_2b</td><td>acc</td><td>-0.15</td><td>0.07</td><td>-0.145800</td><td>0.072391</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_2_3a</td><td>app</td><td>-0.17</td><td>0.10</td><td>-0.171540</td><td>0.095393</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_2_3a</td><td>mon</td><td>-0.21</td><td>0.10</td><td>-0.213120</td><td>0.098868</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_2_3b</td><td>acc</td><td>-0.19</td><td>0.08</td><td>-0.190790</td><td>0.084598</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>app</td><td>-0.15</td><td>0.08</td><td>-0.149980</td><td>0.079533</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>appxbush</td><td> 0.09</td><td>0.12</td><td> 0.091956</td><td>0.118100</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>mon</td><td>-0.14</td><td>0.08</td><td>-0.139110</td><td>0.083214</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>monxbush</td><td> 0.06</td><td>0.12</td><td> 0.059659</td><td>0.119660</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>r_bushref</td><td> 0.12</td><td>0.09</td><td> 0.118700</td><td>0.085864</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_3_2</td><td>acc</td><td>-0.15</td><td>0.07</td><td>-0.145050</td><td>0.070667</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_3_2</td><td>accxbush</td><td> 0.08</td><td>0.10</td><td> 0.075966</td><td>0.103620</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_3_2</td><td>r_bushref</td><td> 0.12</td><td>0.09</td><td> 0.118710</td><td>0.085865</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>correct_acc</td><td>-0.20</td><td>0.17</td><td>-0.198790</td><td>0.173380</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>correct_accxpk</td><td> 0.04</td><td>0.02</td><td> 0.039259</td><td>0.021843</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>correct_pk</td><td> 0.10</td><td>0.02</td><td> 0.099831</td><td>0.017858</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>uncongenial_acc</td><td>-0.21</td><td>0.16</td><td>-0.213940</td><td>0.162760</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>uncongenial_accxpk</td><td> 0.05</td><td>0.02</td><td> 0.054872</td><td>0.022279</td><td>TRUE</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>uncongenial_pk</td><td>-0.05</td><td>0.02</td><td>-0.047815</td><td>0.018486</td><td>TRUE</td><td>TRUE</td></tr></tbody></table></div>
+<h2>Appendix model benchmarks</h2><p><a href='../tabs/appendix_model_benchmarks.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>model</th><th>term</th><th>actual</th><th>published</th><th>tolerance</th><th>matches</th></tr></thead><tbody><tr><td>table_b1_60</td><td>mon</td><td>-1.4512e-01</td><td>   -0.150</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>mon_se</td><td> 8.7297e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>app</td><td>-1.4086e-01</td><td>   -0.140</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>app_se</td><td> 8.3294e-02</td><td>    0.080</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>mon</td><td>-1.3749e-01</td><td>   -0.140</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>mon_se</td><td> 9.0158e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>app</td><td>-1.2523e-01</td><td>   -0.130</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>app_se</td><td> 8.5762e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>mon</td><td>-1.8101e-01</td><td>   -0.180</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>mon_se</td><td> 9.5575e-02</td><td>    0.100</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>app</td><td>-1.5228e-01</td><td>   -0.150</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>app_se</td><td> 9.0538e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>mon</td><td>-1.7525e-01</td><td>   -0.180</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>mon_se</td><td> 1.0105e-01</td><td>    0.100</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>app</td><td>-1.2477e-01</td><td>   -0.120</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>app_se</td><td> 9.4458e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_po</td><td>pay</td><td>-1.0204e-01</td><td>   -0.100</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_po</td><td>pay_se</td><td> 6.0295e-02</td><td>    0.060</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_10</td><td>pay</td><td>-1.0117e-01</td><td>   -0.100</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_10</td><td>pay_se</td><td> 6.0029e-02</td><td>    0.060</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_23</td><td>pay</td><td>-1.4193e-01</td><td>   -0.140</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_23</td><td>pay_se</td><td> 6.0018e-02</td><td>    0.060</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>mon</td><td>-8.2018e-02</td><td>   -0.080</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>mon_se</td><td> 8.5161e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>app</td><td>-1.2807e-01</td><td>   -0.130</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>app_se</td><td> 8.1382e-02</td><td>    0.080</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>mon</td><td>-6.3570e-02</td><td>   -0.060</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>mon_se</td><td> 8.3479e-02</td><td>    0.080</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>app</td><td>-1.7220e-01</td><td>   -0.170</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>app_se</td><td> 7.9658e-02</td><td>    0.080</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>mon</td><td>-1.3188e-01</td><td>   -0.130</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>mon_se</td><td> 8.5273e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>app</td><td>-1.5758e-01</td><td>   -0.160</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>app_se</td><td> 8.1312e-02</td><td>    0.080</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>mon</td><td>-1.2931e-01</td><td>   -0.130</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>mon_se</td><td> 9.9105e-02</td><td>    0.100</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>app</td><td>-1.3814e-01</td><td>   -0.140</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>app_se</td><td> 9.5550e-02</td><td>    0.100</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>mon</td><td>-1.2087e-01</td><td>   -0.120</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>mon_se</td><td> 9.5068e-02</td><td>    0.100</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>app</td><td>-1.9252e-01</td><td>   -0.190</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>app_se</td><td> 9.1639e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>mon</td><td>-1.9087e-01</td><td>   -0.190</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>mon_se</td><td> 9.8493e-02</td><td>    0.100</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>app</td><td>-1.5910e-01</td><td>   -0.160</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>app_se</td><td> 9.4926e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>random_variance</td><td> 5.9534e-02</td><td>    0.060</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>random_variance_se</td><td> 3.8769e-02</td><td>    0.040</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>observations</td><td> 3.0850e+03</td><td> 3085.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>respondents</td><td> 6.5800e+02</td><td>  658.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>log_likelihood</td><td>-3.3706e+03</td><td>-3371.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>random_variance</td><td> 5.5651e-02</td><td>    0.060</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>random_variance_se</td><td> 3.8982e-02</td><td>    0.040</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>observations</td><td> 2.8630e+03</td><td> 2863.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>respondents</td><td> 6.5500e+02</td><td>  655.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>log_likelihood</td><td>-3.1295e+03</td><td>-3130.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>random_variance</td><td> 9.0189e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>random_variance_se</td><td> 5.0549e-02</td><td>    0.050</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>observations</td><td> 2.6620e+03</td><td> 2662.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>respondents</td><td> 6.4900e+02</td><td>  649.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>log_likelihood</td><td>-2.9080e+03</td><td>-2908.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>random_variance</td><td> 8.8909e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>random_variance_se</td><td> 5.2881e-02</td><td>    0.050</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>observations</td><td> 2.3950e+03</td><td> 2395.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>respondents</td><td> 6.3600e+02</td><td>  636.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>log_likelihood</td><td>-2.6161e+03</td><td>-2616.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_po</td><td>random_variance</td><td> 9.0549e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_po</td><td>random_variance_se</td><td> 3.9625e-02</td><td>    0.040</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_po</td><td>observations</td><td> 4.3240e+03</td><td> 4324.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_po</td><td>respondents</td><td> 8.7800e+02</td><td>  878.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_po</td><td>log_likelihood</td><td>-4.6675e+03</td><td>-4667.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_10</td><td>random_variance</td><td> 8.4836e-02</td><td>    0.080</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_10</td><td>random_variance_se</td><td> 3.8900e-02</td><td>    0.040</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_10</td><td>observations</td><td> 4.3240e+03</td><td> 4324.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_10</td><td>respondents</td><td> 8.7800e+02</td><td>  878.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_10</td><td>log_likelihood</td><td>-4.6710e+03</td><td>-4671.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_23</td><td>random_variance</td><td> 8.1643e-02</td><td>    0.080</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_23</td><td>random_variance_se</td><td> 3.8353e-02</td><td>    0.040</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_23</td><td>observations</td><td> 4.3240e+03</td><td> 4324.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_23</td><td>respondents</td><td> 8.7800e+02</td><td>  878.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_pooled_23</td><td>log_likelihood</td><td>-4.6530e+03</td><td>-4653.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>random_variance</td><td> 6.2543e-02</td><td>    0.060</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>random_variance_se</td><td> 3.8348e-02</td><td>    0.040</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>observations</td><td> 3.2760e+03</td><td> 3276.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>respondents</td><td> 6.6000e+02</td><td>  660.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>log_likelihood</td><td>-3.5746e+03</td><td>-3575.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>random_variance</td><td> 2.9468e-02</td><td>    0.030</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>random_variance_se</td><td> 2.5153e-02</td><td>    0.030</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>observations</td><td> 3.2760e+03</td><td> 3276.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>respondents</td><td> 6.6000e+02</td><td>  660.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>log_likelihood</td><td>-3.5366e+03</td><td>-3537.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>random_variance</td><td> 5.7401e-02</td><td>    0.060</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>random_variance_se</td><td> 3.7042e-02</td><td>    0.040</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>observations</td><td> 3.2760e+03</td><td> 3276.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>respondents</td><td> 6.6000e+02</td><td>  660.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>log_likelihood</td><td>-3.5524e+03</td><td>-3552.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>random_variance</td><td> 1.1229e-01</td><td>    0.110</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>random_variance_se</td><td> 5.1791e-02</td><td>    0.050</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>observations</td><td> 2.6140e+03</td><td> 2614.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>respondents</td><td> 5.2500e+02</td><td>  525.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>log_likelihood</td><td>-2.8041e+03</td><td>-2804.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>random_variance</td><td> 4.9485e-02</td><td>    0.050</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>random_variance_se</td><td> 3.6928e-02</td><td>    0.040</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>observations</td><td> 2.6140e+03</td><td> 2614.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>respondents</td><td> 5.2500e+02</td><td>  525.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>log_likelihood</td><td>-2.7705e+03</td><td>-2770.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>random_variance</td><td> 9.4956e-02</td><td>    0.090</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>random_variance_se</td><td> 4.9253e-02</td><td>    0.050</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>observations</td><td> 2.6140e+03</td><td> 2614.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>respondents</td><td> 5.2500e+02</td><td>  525.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>log_likelihood</td><td>-2.7871e+03</td><td>-2787.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2004</td><td>pay</td><td>-2.1662e-01</td><td>   -0.220</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2004</td><td>pay_se</td><td> 1.7385e-01</td><td>    0.170</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2004</td><td>observations</td><td> 4.6000e+02</td><td>  460.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2004</td><td>pay</td><td> 1.0800e-01</td><td>    0.110</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2004</td><td>pay_se</td><td> 1.7310e-01</td><td>    0.170</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2004</td><td>observations</td><td> 4.6200e+02</td><td>  462.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Debt 2004</td><td>pay</td><td>-3.6696e-01</td><td>   -0.370</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Debt 2004</td><td>pay_se</td><td> 1.7822e-01</td><td>    0.180</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Debt 2004</td><td>observations</td><td> 4.3300e+02</td><td>  433.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2004</td><td>pay</td><td>-7.7656e-02</td><td>   -0.080</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2004</td><td>pay_se</td><td> 1.7490e-01</td><td>    0.170</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2004</td><td>observations</td><td> 4.5100e+02</td><td>  451.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Poverty 2004</td><td>pay</td><td>-5.7211e-03</td><td>   -0.010</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Poverty 2004</td><td>pay_se</td><td> 1.7311e-01</td><td>    0.170</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Poverty 2004</td><td>observations</td><td> 4.6100e+02</td><td>  461.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>mon</td><td>-1.1311e-01</td><td>   -0.110</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>mon_se</td><td> 1.8250e-01</td><td>    0.180</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>observations</td><td> 6.5600e+02</td><td>  656.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>app</td><td>-1.5294e-01</td><td>   -0.150</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>app_se</td><td> 1.7391e-01</td><td>    0.170</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>observations</td><td> 6.5600e+02</td><td>  656.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>mon</td><td> 1.6036e-01</td><td>    0.160</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>mon_se</td><td> 1.8428e-01</td><td>    0.180</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>observations</td><td> 6.5700e+02</td><td>  657.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>app</td><td> 2.1248e-02</td><td>    0.020</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>app_se</td><td> 1.7678e-01</td><td>    0.180</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>observations</td><td> 6.5700e+02</td><td>  657.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>mon</td><td>-1.6527e-01</td><td>   -0.170</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>mon_se</td><td> 1.8790e-01</td><td>    0.190</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>observations</td><td> 6.5400e+02</td><td>  654.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>app</td><td>-4.4580e-01</td><td>   -0.450</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>app_se</td><td> 1.7929e-01</td><td>    0.180</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>observations</td><td> 6.5400e+02</td><td>  654.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>mon</td><td>-2.1176e-01</td><td>   -0.210</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>mon_se</td><td> 1.8118e-01</td><td>    0.180</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>observations</td><td> 6.5400e+02</td><td>  654.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>app</td><td>-1.3214e-01</td><td>   -0.130</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>app_se</td><td> 1.7387e-01</td><td>    0.170</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>observations</td><td> 6.5400e+02</td><td>  654.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>mon</td><td>-3.4286e-01</td><td>   -0.340</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>mon_se</td><td> 1.8198e-01</td><td>    0.180</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>observations</td><td> 6.5500e+02</td><td>  655.000</td><td>5e-01</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>app</td><td> 3.8569e-03</td><td>    0.004</td><td>5e-04</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>app_se</td><td> 1.7362e-01</td><td>    0.170</td><td>5e-03</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>observations</td><td> 6.5500e+02</td><td>  655.000</td><td>5e-01</td><td>TRUE</td></tr></tbody></table></div>
+<h2>Fit-statistic benchmarks</h2><p><a href='../tabs/model_statistics_benchmarks.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>model</th><th>term</th><th>actual</th><th>published</th><th>tolerance</th><th>matches</th></tr></thead><tbody><tr><td>table_2_2a</td><td>statistic</td><td> 1.8361e-02</td><td>    0.02</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_2a</td><td>p_value</td><td> 8.9221e-01</td><td>    0.89</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_3a</td><td>statistic</td><td> 1.9007e-01</td><td>    0.19</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_3a</td><td>p_value</td><td> 6.6286e-01</td><td>    0.66</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>statistic</td><td> 8.3366e-02</td><td>    0.08</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>p_value</td><td> 9.5917e-01</td><td>    0.96</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>statistic</td><td> 2.5204e-03</td><td>    0.00</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b1_60</td><td>p_value</td><td> 9.5996e-01</td><td>    0.96</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>statistic</td><td> 1.9342e-02</td><td>    0.02</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b1_45</td><td>p_value</td><td> 8.8939e-01</td><td>    0.89</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>statistic</td><td> 9.3833e-02</td><td>    0.09</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b1_40</td><td>p_value</td><td> 7.5936e-01</td><td>    0.76</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>statistic</td><td> 2.5948e-01</td><td>    0.26</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b1_35</td><td>p_value</td><td> 6.1048e-01</td><td>    0.61</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>statistic</td><td> 3.1257e-01</td><td>    0.31</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_po</td><td>p_value</td><td> 5.7611e-01</td><td>    0.58</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>statistic</td><td> 1.8119e+00</td><td>    1.81</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_10</td><td>p_value</td><td> 1.7828e-01</td><td>    0.18</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>statistic</td><td> 9.7498e-02</td><td>    0.10</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_study_two_23</td><td>p_value</td><td> 7.5485e-01</td><td>    0.75</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>statistic</td><td> 8.5440e-03</td><td>    0.01</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_po</td><td>p_value</td><td> 9.2635e-01</td><td>    0.93</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>statistic</td><td> 6.0885e-01</td><td>    0.61</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_10</td><td>p_value</td><td> 4.3522e-01</td><td>    0.44</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>statistic</td><td> 1.1237e-01</td><td>    0.11</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_b2_consistent_23</td><td>p_value</td><td> 7.3746e-01</td><td>    0.74</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2004</td><td>log_likelihood</td><td>-4.8821e+02</td><td> -488.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2004</td><td>likelihood_ratio</td><td> 1.5547e+00</td><td>    1.55</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2004</td><td>p_value</td><td> 2.1244e-01</td><td>    0.21</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2004</td><td>log_likelihood</td><td>-4.9210e+02</td><td> -492.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2004</td><td>likelihood_ratio</td><td> 3.8939e-01</td><td>    0.39</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2004</td><td>p_value</td><td> 5.3262e-01</td><td>    0.53</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Debt 2004</td><td>log_likelihood</td><td>-4.6745e+02</td><td> -467.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Debt 2004</td><td>likelihood_ratio</td><td> 4.2546e+00</td><td>    4.25</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Debt 2004</td><td>p_value</td><td> 3.9143e-02</td><td>    0.04</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2004</td><td>log_likelihood</td><td>-4.8394e+02</td><td> -484.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2004</td><td>likelihood_ratio</td><td> 1.9715e-01</td><td>    0.20</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2004</td><td>p_value</td><td> 6.5703e-01</td><td>    0.66</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Poverty 2004</td><td>log_likelihood</td><td>-4.9052e+02</td><td> -491.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Poverty 2004</td><td>likelihood_ratio</td><td> 1.0920e-03</td><td>    0.00</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Poverty 2004</td><td>p_value</td><td> 9.7364e-01</td><td>    0.97</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>log_likelihood</td><td>-7.0504e+02</td><td> -705.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>likelihood_ratio</td><td> 8.1445e-01</td><td>    0.81</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>p_value</td><td> 6.6549e-01</td><td>    0.67</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>log_likelihood</td><td>-6.8835e+02</td><td> -688.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>likelihood_ratio</td><td> 9.0033e-01</td><td>    0.90</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>p_value</td><td> 6.3752e-01</td><td>    0.64</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>log_likelihood</td><td>-6.5374e+02</td><td> -654.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>likelihood_ratio</td><td> 6.4463e+00</td><td>    6.45</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>p_value</td><td> 3.9829e-02</td><td>    0.04</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>log_likelihood</td><td>-7.1370e+02</td><td> -714.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>likelihood_ratio</td><td> 1.4038e+00</td><td>    1.40</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>p_value</td><td> 4.9563e-01</td><td>    0.50</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>log_likelihood</td><td>-7.1537e+02</td><td> -715.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>likelihood_ratio</td><td> 4.8987e+00</td><td>    4.90</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>p_value</td><td> 8.6351e-02</td><td>    0.09</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>statistic</td><td> 5.0787e-02</td><td>    0.05</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Unemployment 2008</td><td>p_value</td><td> 8.2170e-01</td><td>    0.82</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>statistic</td><td> 6.0642e-01</td><td>    0.61</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Estate Tax 2008</td><td>p_value</td><td> 4.3614e-01</td><td>    0.44</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>statistic</td><td> 2.4263e+00</td><td>    2.43</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Debt 2008</td><td>p_value</td><td> 1.1932e-01</td><td>    0.12</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>statistic</td><td> 2.0543e-01</td><td>    0.21</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Uninsured 2008</td><td>p_value</td><td> 6.5038e-01</td><td>    0.65</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>statistic</td><td> 3.9094e+00</td><td>    3.91</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>Gas Price 2008</td><td>p_value</td><td> 4.8017e-02</td><td>    0.05</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_1</td><td>random_variance</td><td> 7.0449e-02</td><td>    0.07</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_1</td><td>random_variance_se</td><td> 3.6665e-02</td><td>    0.04</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_1</td><td>observations</td><td> 4.3240e+03</td><td> 4324.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_1</td><td>respondents</td><td> 8.7800e+02</td><td>  878.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_1</td><td>log_likelihood</td><td>-4.6846e+03</td><td>-4685.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_2a</td><td>random_variance</td><td> 6.3785e-02</td><td>    0.06</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_2a</td><td>random_variance_se</td><td> 3.8644e-02</td><td>    0.04</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_2a</td><td>observations</td><td> 3.2760e+03</td><td> 3276.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_2a</td><td>respondents</td><td> 6.6000e+02</td><td>  660.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_2a</td><td>log_likelihood</td><td>-3.5789e+03</td><td>-3579.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_2b</td><td>random_variance</td><td> 6.3756e-02</td><td>    0.06</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_2b</td><td>random_variance_se</td><td> 3.8639e-02</td><td>    0.04</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_2b</td><td>observations</td><td> 3.2760e+03</td><td> 3276.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_2b</td><td>respondents</td><td> 6.6000e+02</td><td>  660.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_2b</td><td>log_likelihood</td><td>-3.5789e+03</td><td>-3579.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_3a</td><td>random_variance</td><td> 1.1078e-01</td><td>    0.11</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_3a</td><td>random_variance_se</td><td> 5.1401e-02</td><td>    0.05</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_3a</td><td>observations</td><td> 2.6140e+03</td><td> 2614.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_3a</td><td>respondents</td><td> 5.2500e+02</td><td>  525.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_3a</td><td>log_likelihood</td><td>-2.8146e+03</td><td>-2815.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_3b</td><td>random_variance</td><td> 1.1136e-01</td><td>    0.11</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_3b</td><td>random_variance_se</td><td> 5.1457e-02</td><td>    0.05</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_2_3b</td><td>observations</td><td> 2.6140e+03</td><td> 2614.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_3b</td><td>respondents</td><td> 5.2500e+02</td><td>  525.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_2_3b</td><td>log_likelihood</td><td>-2.8147e+03</td><td>-2815.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>random_variance</td><td> 3.2325e-02</td><td>    0.03</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>random_variance_se</td><td> 2.3416e-02</td><td>    0.02</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>observations</td><td> 6.2330e+03</td><td> 6233.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>respondents</td><td> 1.2600e+03</td><td> 1260.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_3_1</td><td>log_likelihood</td><td>-6.7664e+03</td><td>-6766.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_3_2</td><td>random_variance</td><td> 3.2344e-02</td><td>    0.03</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_3_2</td><td>random_variance_se</td><td> 2.3423e-02</td><td>    0.02</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_3_2</td><td>observations</td><td> 6.2330e+03</td><td> 6233.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_3_2</td><td>respondents</td><td> 1.2600e+03</td><td> 1260.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_3_2</td><td>log_likelihood</td><td>-6.7665e+03</td><td>-6766.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>random_variance</td><td> 8.7594e-02</td><td>    0.09</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>random_variance_se</td><td> 4.1020e-02</td><td>    0.04</td><td>0.005</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>observations</td><td> 6.2330e+03</td><td> 6233.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>respondents</td><td> 1.2600e+03</td><td> 1260.00</td><td>0.500</td><td>TRUE</td></tr>
+<tr><td>table_4</td><td>log_likelihood</td><td>-6.5102e+03</td><td>-6510.00</td><td>0.500</td><td>TRUE</td></tr></tbody></table></div>
+<h2>Bootstrap uncertainty checks</h2><p><a href='../tabs/bootstrap_validation.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>study</th><th>statistic</th><th>estimate</th><th>standard_error</th><th>replicates</th><th>bootstrap_frame_respondents</th><th>bootstrap_frame_responses</th><th>sampling_frame</th><th>delta_standard_error</th><th>approximate_mc_error</th><th>bootstrap_minus_delta</th><th>within_three_mc_errors</th></tr></thead><tbody><tr><td>pooled</td><td>group_0_uncongenial</td><td> 0.2810100</td><td>0.0098373</td><td>1000</td><td> 572</td><td> 2860</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0097123</td><td>0.00022008</td><td> 1.2502e-04</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>group_0_correct</td><td> 0.3234100</td><td>0.0116500</td><td>1000</td><td> 572</td><td> 2860</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0113840</td><td>0.00026063</td><td> 2.6584e-04</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>group_0_congenial</td><td> 0.3955800</td><td>0.0110240</td><td>1000</td><td> 572</td><td> 2860</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0107960</td><td>0.00024663</td><td> 2.2799e-04</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>group_0_bias</td><td> 0.1145700</td><td>0.0170560</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0170930</td><td>0.00038156</td><td>-3.7360e-05</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>group_1_uncongenial</td><td> 0.2871400</td><td>0.0100310</td><td>1000</td><td> 557</td><td> 2785</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0101800</td><td>0.00022442</td><td>-1.4817e-04</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>group_1_correct</td><td> 0.3649700</td><td>0.0123270</td><td>1000</td><td> 557</td><td> 2785</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0125550</td><td>0.00027578</td><td>-2.2794e-04</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>group_1_congenial</td><td> 0.3478900</td><td>0.0119900</td><td>1000</td><td> 557</td><td> 2785</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0118520</td><td>0.00026825</td><td> 1.3884e-04</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>group_1_bias</td><td> 0.0607500</td><td>0.0179750</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0181810</td><td>0.00040213</td><td>-2.0614e-04</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>contrast_1_uncongenial</td><td> 0.0061277</td><td>0.0140050</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0140700</td><td>0.00031331</td><td>-6.4936e-05</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>contrast_1_correct</td><td> 0.0415640</td><td>0.0174300</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0169480</td><td>0.00038993</td><td> 4.8177e-04</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>contrast_1_congenial</td><td>-0.0476920</td><td>0.0164950</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0160320</td><td>0.00036902</td><td> 4.6316e-04</td><td>TRUE</td></tr>
+<tr><td>pooled</td><td>contrast_1_bias</td><td>-0.0538190</td><td>0.0251520</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0249540</td><td>0.00056270</td><td> 1.9802e-04</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>group_0_uncongenial</td><td> 0.2780700</td><td>0.0129440</td><td>1000</td><td> 312</td><td> 1560</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0129410</td><td>0.00028958</td><td> 3.3105e-06</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>group_0_correct</td><td> 0.3152000</td><td>0.0182010</td><td>1000</td><td> 312</td><td> 1560</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0170650</td><td>0.00040719</td><td> 1.1356e-03</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>group_0_congenial</td><td> 0.4067400</td><td>0.0163340</td><td>1000</td><td> 312</td><td> 1560</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0156590</td><td>0.00036543</td><td> 6.7537e-04</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>group_0_bias</td><td> 0.1286700</td><td>0.0228780</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0231110</td><td>0.00051183</td><td>-2.3250e-04</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>group_1_uncongenial</td><td> 0.2732200</td><td>0.0142460</td><td>1000</td><td> 306</td><td> 1530</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0141420</td><td>0.00031872</td><td> 1.0463e-04</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>group_1_correct</td><td> 0.3724100</td><td>0.0181070</td><td>1000</td><td> 306</td><td> 1530</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0180150</td><td>0.00040509</td><td> 9.2308e-05</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>group_1_congenial</td><td> 0.3543700</td><td>0.0167180</td><td>1000</td><td> 306</td><td> 1530</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0168410</td><td>0.00037401</td><td>-1.2265e-04</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>group_1_bias</td><td> 0.0811540</td><td>0.0245230</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0253510</td><td>0.00054862</td><td>-8.2810e-04</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>contrast_1_uncongenial</td><td>-0.0048465</td><td>0.0185090</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0191690</td><td>0.00041408</td><td>-6.6035e-04</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>contrast_1_correct</td><td> 0.0572090</td><td>0.0245970</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0248150</td><td>0.00055028</td><td>-2.1774e-04</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>contrast_1_congenial</td><td>-0.0523620</td><td>0.0236120</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0229960</td><td>0.00052824</td><td> 6.1597e-04</td><td>TRUE</td></tr>
+<tr><td>study_2004</td><td>contrast_1_bias</td><td>-0.0475160</td><td>0.0345710</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0343040</td><td>0.00077343</td><td> 2.6738e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_0_uncongenial</td><td> 0.2842300</td><td>0.0143590</td><td>1000</td><td> 260</td><td> 1300</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0146030</td><td>0.00032123</td><td>-2.4444e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_0_correct</td><td> 0.3323900</td><td>0.0150390</td><td>1000</td><td> 260</td><td> 1300</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0148160</td><td>0.00033645</td><td> 2.2299e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_0_congenial</td><td> 0.3833800</td><td>0.0146910</td><td>1000</td><td> 260</td><td> 1300</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0147180</td><td>0.00032866</td><td>-2.7203e-05</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_0_bias</td><td> 0.0991500</td><td>0.0257380</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0253030</td><td>0.00057581</td><td> 4.3535e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_1_uncongenial</td><td> 0.3158300</td><td>0.0134050</td><td>1000</td><td> 316</td><td> 1580</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0137230</td><td>0.00029990</td><td>-3.1749e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_1_correct</td><td> 0.3347000</td><td>0.0144760</td><td>1000</td><td> 316</td><td> 1580</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0151870</td><td>0.00032386</td><td>-7.1123e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_1_congenial</td><td> 0.3494700</td><td>0.0139400</td><td>1000</td><td> 316</td><td> 1580</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0142330</td><td>0.00031186</td><td>-2.9287e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_1_bias</td><td> 0.0336340</td><td>0.0234080</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0234760</td><td>0.00052368</td><td>-6.7717e-05</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_2_uncongenial</td><td> 0.3026100</td><td>0.0150200</td><td>1000</td><td> 251</td><td> 1255</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0145950</td><td>0.00033602</td><td> 4.2499e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_2_correct</td><td> 0.3567100</td><td>0.0173900</td><td>1000</td><td> 251</td><td> 1255</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0173650</td><td>0.00038905</td><td> 2.5770e-05</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_2_congenial</td><td> 0.3406800</td><td>0.0168050</td><td>1000</td><td> 251</td><td> 1255</td><td>if-qualified arm; missing outcomes retained in frame</td><td>0.0166080</td><td>0.00037596</td><td> 1.9734e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>group_2_bias</td><td> 0.0380760</td><td>0.0255250</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0260020</td><td>0.00057103</td><td>-4.7730e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>contrast_1_uncongenial</td><td> 0.0316020</td><td>0.0207770</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0200390</td><td>0.00046483</td><td> 7.3827e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>contrast_1_correct</td><td> 0.0023115</td><td>0.0216160</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0212170</td><td>0.00048359</td><td> 3.9870e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>contrast_1_congenial</td><td>-0.0339140</td><td>0.0201080</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0204740</td><td>0.00044985</td><td>-3.6642e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>contrast_1_bias</td><td>-0.0655160</td><td>0.0347100</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0345160</td><td>0.00077653</td><td> 1.9428e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>contrast_2_uncongenial</td><td> 0.0183750</td><td>0.0211630</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0206460</td><td>0.00047346</td><td> 5.1720e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>contrast_2_correct</td><td> 0.0243240</td><td>0.0238770</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0228260</td><td>0.00053417</td><td> 1.0504e-03</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>contrast_2_congenial</td><td>-0.0426990</td><td>0.0219610</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0221910</td><td>0.00049130</td><td>-2.3011e-04</td><td>TRUE</td></tr>
+<tr><td>study_2008</td><td>contrast_2_bias</td><td>-0.0610740</td><td>0.0359190</td><td>1000</td><td>2251</td><td>11255</td><td>full long file; rclass wrapper assumption</td><td>0.0362810</td><td>0.00080358</td><td>-3.6187e-04</td><td>TRUE</td></tr></tbody></table></div>
+<h2>IIA diagnostics and test-order correction</h2><p><a href='../tabs/model_iia_diagnostics.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>omitted_category</th><th>reference_category</th><th>statistic</th><th>degrees_freedom</th><th>p_value</th><th>positive_covariance_difference</th><th>convergence</th><th>max_gradient</th><th>comparison</th><th>corrected_order_statistic</th><th>corrected_positive_covariance_difference</th><th>valid_chisquare_inference</th></tr></thead><tbody><tr><td>-1</td><td> 0</td><td>  1.70410</td><td>9</td><td>0.99533</td><td>FALSE</td><td>0</td><td>0.0095170</td><td>full_minus_subset_matching_equations</td><td>-1.70410</td><td>FALSE</td><td>FALSE</td></tr>
+<tr><td> 0</td><td>-1</td><td>  0.58285</td><td>9</td><td>0.99994</td><td>FALSE</td><td>0</td><td>0.0101250</td><td>full_minus_subset_matching_equations</td><td>-0.58285</td><td>FALSE</td><td>FALSE</td></tr>
+<tr><td> 1</td><td>-1</td><td>-21.25100</td><td>9</td><td>NA</td><td>FALSE</td><td>0</td><td>0.0039196</td><td>full_minus_subset_matching_equations</td><td>21.25100</td><td>FALSE</td><td>FALSE</td></tr></tbody></table></div>
+<h2>Historical interval provenance</h2><p><a href='../tabs/figure_1_interval_provenance.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>study</th><th>condition</th><th>outcome</th><th>lower_pct</th><th>upper_pct</th><th>released_lower_pct</th><th>released_upper_pct</th><th>lower_difference_pp</th><th>upper_difference_pp</th></tr></thead><tbody><tr><td>pooled</td><td>control</td><td>congenial</td><td>36.92</td><td>40.73</td><td>36.917</td><td>40.729</td><td> 0.00250090</td><td> 0.00139990</td></tr>
+<tr><td>pooled</td><td>control</td><td>uncongenial</td><td>25.35</td><td>28.74</td><td>25.350</td><td>28.744</td><td>-0.00041710</td><td>-0.00446870</td></tr>
+<tr><td>pooled</td><td>monetary</td><td>congenial</td><td>33.95</td><td>37.92</td><td>33.952</td><td>37.923</td><td>-0.00201620</td><td>-0.00324550</td></tr>
+<tr><td>pooled</td><td>monetary</td><td>uncongenial</td><td>27.85</td><td>31.33</td><td>27.848</td><td>31.334</td><td> 0.00209590</td><td>-0.00357050</td></tr>
+<tr><td>study_2</td><td>accuracy_appeal</td><td>congenial</td><td>32.30</td><td>37.03</td><td>32.299</td><td>37.027</td><td> 0.00072797</td><td> 0.00298810</td></tr>
+<tr><td>study_2</td><td>accuracy_appeal</td><td>uncongenial</td><td>29.06</td><td>33.47</td><td>29.056</td><td>33.470</td><td> 0.00395100</td><td>-0.00019175</td></tr>
+<tr><td>study_2</td><td>control</td><td>congenial</td><td>35.45</td><td>40.56</td><td>35.451</td><td>40.556</td><td>-0.00064936</td><td> 0.00410070</td></tr>
+<tr><td>study_2</td><td>control</td><td>uncongenial</td><td>25.98</td><td>30.60</td><td>25.982</td><td>30.600</td><td>-0.00208450</td><td> 0.00035698</td></tr>
+<tr><td>study_2</td><td>monetary</td><td>congenial</td><td>32.30</td><td>37.86</td><td>32.296</td><td>37.863</td><td> 0.00378080</td><td>-0.00326070</td></tr>
+<tr><td>study_2</td><td>monetary</td><td>uncongenial</td><td>28.50</td><td>33.43</td><td>28.497</td><td>33.427</td><td> 0.00333430</td><td> 0.00257590</td></tr></tbody></table></div>
+<h2>Model fits</h2><p><a href='../tabs/model_fit_statistics.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>model</th><th>random_variance</th><th>random_variance_se</th><th>log_likelihood</th><th>penalized_log_likelihood</th><th>observations</th><th>respondents</th></tr></thead><tbody><tr><td>table_b2_pooled_10</td><td>0.084836</td><td>0.038900</td><td>-4671.0</td><td>-4691.9</td><td>4324</td><td> 878</td></tr>
+<tr><td>table_2_3b</td><td>0.111360</td><td>0.051457</td><td>-2814.7</td><td>-2835.3</td><td>2614</td><td> 525</td></tr>
+<tr><td>table_b2_consistent_10</td><td>0.049485</td><td>0.036928</td><td>-2770.5</td><td>-2791.9</td><td>2614</td><td> 525</td></tr>
+<tr><td>table_b2_study_two_10</td><td>0.029468</td><td>0.025153</td><td>-3536.6</td><td>-3558.5</td><td>3276</td><td> 660</td></tr>
+<tr><td>table_b1_35</td><td>0.088909</td><td>0.052881</td><td>-2616.1</td><td>-2637.0</td><td>2395</td><td> 636</td></tr>
+<tr><td>table_b2_pooled_po</td><td>0.090549</td><td>0.039625</td><td>-4667.5</td><td>-4688.3</td><td>4324</td><td> 878</td></tr>
+<tr><td>table_b2_study_two_po</td><td>0.062543</td><td>0.038348</td><td>-3574.6</td><td>-3595.8</td><td>3276</td><td> 660</td></tr>
+<tr><td>table_b1_40</td><td>0.090189</td><td>0.050549</td><td>-2908.0</td><td>-2928.8</td><td>2662</td><td> 649</td></tr>
+<tr><td>table_2_2a</td><td>0.063785</td><td>0.038644</td><td>-3578.9</td><td>-3600.0</td><td>3276</td><td> 660</td></tr>
+<tr><td>table_b2_pooled_23</td><td>0.081643</td><td>0.038353</td><td>-4653.0</td><td>-4674.0</td><td>4324</td><td> 878</td></tr>
+<tr><td>table_2_2b</td><td>0.063756</td><td>0.038639</td><td>-3578.9</td><td>-3600.0</td><td>3276</td><td> 660</td></tr>
+<tr><td>table_b1_45</td><td>0.055651</td><td>0.038982</td><td>-3129.5</td><td>-3150.8</td><td>2863</td><td> 655</td></tr>
+<tr><td>table_b2_consistent_23</td><td>0.094956</td><td>0.049253</td><td>-2787.1</td><td>-2807.9</td><td>2614</td><td> 525</td></tr>
+<tr><td>table_b2_study_two_23</td><td>0.057401</td><td>0.037042</td><td>-3552.4</td><td>-3573.6</td><td>3276</td><td> 660</td></tr>
+<tr><td>table_4</td><td>0.087594</td><td>0.041020</td><td>-6510.2</td><td>-6531.1</td><td>6233</td><td>1260</td></tr>
+<tr><td>table_b2_consistent_po</td><td>0.112290</td><td>0.051791</td><td>-2804.1</td><td>-2824.7</td><td>2614</td><td> 525</td></tr>
+<tr><td>table_b1_60</td><td>0.059534</td><td>0.038769</td><td>-3370.6</td><td>-3391.9</td><td>3085</td><td> 658</td></tr>
+<tr><td>table_3_1</td><td>0.032325</td><td>0.023416</td><td>-6766.4</td><td>-6788.3</td><td>6233</td><td>1260</td></tr>
+<tr><td>table_3_2</td><td>0.032344</td><td>0.023423</td><td>-6766.5</td><td>-6788.3</td><td>6233</td><td>1260</td></tr>
+<tr><td>table_2_1</td><td>0.070449</td><td>0.036665</td><td>-4684.6</td><td>-4705.7</td><td>4324</td><td> 878</td></tr>
+<tr><td>table_2_3a</td><td>0.110780</td><td>0.051401</td><td>-2814.6</td><td>-2835.2</td><td>2614</td><td> 525</td></tr></tbody></table></div>
+<h2>Numerical prose checks</h2><p><a href='../tabs/prose_claims.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>claim_id</th><th>estimate</th><th>published</th><th>tolerance</th><th>unit</th><th>producer</th><th>comparison</th><th>status</th><th>reference_source</th></tr></thead><tbody><tr><td>assigned_2004</td><td> 775.0000</td><td> 775.00</td><td>0.000</td><td>respondents</td><td>original survey treat==1 (60 seconds)</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>assigned_2008</td><td>1633.0000</td><td>1633.00</td><td>0.000</td><td>respondents</td><td>released wide</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>reached_last_item_2004</td><td> 614.0000</td><td> 618.00</td><td>0.000</td><td>respondents</td><td>released wide l10 nonmissing and not not-asked (-2)</td><td>equal</td><td>differs</td><td>final manuscript</td></tr>
+<tr><td>reached_last_item_2008</td><td>1511.0000</td><td>1511.00</td><td>0.000</td><td>respondents</td><td>released wide l5</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>instruction_median_0</td><td>   9.0000</td><td>   9.00</td><td>0.000</td><td>seconds</td><td>released wide t_disp</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>instruction_median_1</td><td>  22.0000</td><td>  22.00</td><td>0.000</td><td>seconds</td><td>released wide t_disp</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>instruction_median_2</td><td>  30.0000</td><td>  30.00</td><td>0.000</td><td>seconds</td><td>released wide t_disp</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>unemployment_above_30</td><td>   9.9670</td><td>   9.97</td><td>0.005</td><td>percent of nonmissing raw responses</td><td>legacy main-text rule including negative codes</td><td>equal</td><td>matches</td><td>July 29 final script comment; manuscript says about ten percent</td></tr>
+<tr><td>uninsured_at_least_50</td><td>   9.7754</td><td>   9.78</td><td>0.005</td><td>percent of nonmissing raw responses</td><td>legacy main-text rule including negative codes</td><td>equal</td><td>matches</td><td>July 29 final script comment; manuscript says about ten percent</td></tr>
+<tr><td>gas_at_least_10</td><td>   9.4639</td><td>   9.46</td><td>0.005</td><td>percent of nonmissing raw responses</td><td>legacy main-text rule including negative codes</td><td>equal</td><td>matches</td><td>July 29 final script comment; manuscript says about ten percent</td></tr>
+<tr><td>estate_correct_2004</td><td>  42.1490</td><td>  42.00</td><td>0.500</td><td>percent</td><td>released long tri_pp</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>estate_correct_2008</td><td>  45.1740</td><td>  45.00</td><td>0.500</td><td>percent</td><td>released long tri_pp</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>refusal_2004</td><td>   3.2039</td><td>   3.20</td><td>0.050</td><td>mean item refusal percent</td><td>released wide</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>refusal_2008</td><td>   1.7311</td><td>   1.70</td><td>0.050</td><td>mean item refusal percent</td><td>released wide</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>independents_2004</td><td>  23.7860</td><td>  24.00</td><td>0.500</td><td>percent of observed party IDs</td><td>released wide pid7</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>independents_2008</td><td>  16.3470</td><td>  16.00</td><td>0.500</td><td>percent of observed party IDs</td><td>released wide pid7</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>disapproving_republicans_2008</td><td>  14.6260</td><td>  15.00</td><td>0.500</td><td>percent of respondents reaching final economic item</td><td>released wide dem/approve</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>approving_democrats_2008</td><td>   2.3825</td><td>   2.00</td><td>0.500</td><td>percent of respondents reaching final economic item</td><td>released wide dem/approve</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>consistent_partisan_control_bias</td><td>  14.5960</td><td>  14.60</td><td>0.050</td><td>percentage points</td><td>Study 2 consistent partisans only</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>whole_sample_control_bias</td><td>  11.4570</td><td>  11.50</td><td>0.050</td><td>percentage points</td><td>Studies 1 and 2 pooled control</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>poverty_correct_within_one_point</td><td>   2.8286</td><td>   3.00</td><td>0.000</td><td>percent</td><td>published one-point window</td><td>less</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>pooled_bias_reduction_1</td><td>  46.9750</td><td>  40.00</td><td>0.000</td><td>percent reduction in bias</td><td>Table 1 observed responses; verifies directional magnitude</td><td>greater</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>study_2008_bias_reduction_1</td><td>  66.0780</td><td>  60.00</td><td>0.000</td><td>percent reduction in bias</td><td>Table 1 observed responses; verifies directional magnitude</td><td>greater</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>study_2008_bias_reduction_2</td><td>  61.5970</td><td>  60.00</td><td>0.000</td><td>percent reduction in bias</td><td>Table 1 observed responses; verifies directional magnitude</td><td>greater</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>pooled_predicted_bias_control</td><td>  11.7680</td><td>  11.80</td><td>0.050</td><td>percentage points</td><td>Table 2 column1 estimation-sample marginal predictions</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>pooled_predicted_bias_monetary</td><td>   6.3339</td><td>   6.30</td><td>0.050</td><td>percentage points</td><td>Table 2 column1 estimation-sample marginal predictions</td><td>equal</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>study2_predicted_bias_reduction_1</td><td>  65.2160</td><td>  60.00</td><td>0.000</td><td>percent reduction in bias</td><td>Table 2 column2a estimation-sample marginal predictions</td><td>greater</td><td>matches</td><td>final manuscript</td></tr>
+<tr><td>study2_predicted_bias_reduction_2</td><td>  60.5850</td><td>  60.00</td><td>0.000</td><td>percent reduction in bias</td><td>Table 2 column2a estimation-sample marginal predictions</td><td>greater</td><td>matches</td><td>final manuscript</td></tr></tbody></table></div>
+<h2>Significance claims and reported precision</h2><p><a href='../tabs/prose_significance.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>claim_id</th><th>exact_effect</th><th>bootstrap_standard_error</th><th>bootstrap_p_one_sided</th><th>delta_standard_error</th><th>delta_p_one_sided</th><th>prose_p_threshold</th><th>table_standard_error</th><th>table_significance_marker</th><th>minimum_p_from_rounded_table_se</th><th>maximum_p_from_rounded_table_se</th><th>sampling_frame</th><th>interpretation</th><th>table_rounding_incompatible_with_prose</th></tr></thead><tbody><tr><td>pooled_congenial_significance</td><td>-0.047692</td><td>0.016495</td><td>0.0019183</td><td>0.016032</td><td>0.0014658</td><td>0.001</td><td>0.016</td><td>**</td><td>0.0010459</td><td>0.0019238</td><td>full long file; rclass wrapper assumption</td><td>One-sided normal test; reconstructed bootstrap draws differ from original Stata draws</td><td>TRUE</td></tr>
+<tr><td>study_2008_congenial_significance</td><td>-0.033914</td><td>0.020108</td><td>0.0458400</td><td>0.020474</td><td>0.0488190</td><td>0.050</td><td>0.021</td><td>+</td><td>0.0490300</td><td>0.0573540</td><td>full long file; rclass wrapper assumption</td><td>One-sided normal test; reconstructed bootstrap draws differ from original Stata draws</td><td>FALSE</td></tr></tbody></table></div>
+<h2>Verified code corrections</h2><p><a href='../tabs/corrections.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>finding</th><th>quantity</th><th>original_value</th><th>comparison_value</th><th>interpretation</th></tr></thead><tbody><tr><td>study_2004_completion_definition</td><td>Respondents reaching the last economic item</td><td>618.00000</td><td>614.0000000</td><td>Four retained records code the final item as not asked; estimation sample remains unchanged</td></tr>
+<tr><td>iia_test_order</td><td>Omitted response category -1</td><td>  1.70410</td><td> -1.7041000</td><td>Reversed model order; neither covariance difference supports chi-square inference</td></tr>
+<tr><td>iia_test_order</td><td>Omitted response category 0</td><td>  0.58285</td><td> -0.5828500</td><td>Reversed model order; neither covariance difference supports chi-square inference</td></tr>
+<tr><td>iia_test_order</td><td>Omitted response category 1</td><td>-21.25100</td><td> 21.2510000</td><td>Reversed model order; neither covariance difference supports chi-square inference</td></tr>
+<tr><td>pooled_significance_threshold</td><td>Claimed p-value threshold versus minimum p-value allowed by SE rounding</td><td>  0.00100</td><td>  0.0010459</td><td>Prose p &lt; .001 is incompatible with exact effect and published SE; evidence remains below .01</td></tr></tbody></table></div>
+<h2>Integration accuracy</h2><p><a href='../tabs/model_quadrature.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>model</th><th>max_parameter_difference</th><th>objective_difference</th></tr></thead><tbody><tr><td>table_2_1</td><td>4.6922e-08</td><td>-2.7285e-12</td></tr>
+<tr><td>table_2_2a</td><td>3.0073e-07</td><td>-2.4465e-10</td></tr>
+<tr><td>table_2_2b</td><td>6.5326e-08</td><td>-1.1823e-11</td></tr>
+<tr><td>table_2_3a</td><td>1.0175e-07</td><td>-1.4552e-11</td></tr>
+<tr><td>table_2_3b</td><td>2.9325e-08</td><td>-8.1855e-12</td></tr>
+<tr><td>table_3_1</td><td>1.1800e-07</td><td>-4.7294e-11</td></tr>
+<tr><td>table_3_2</td><td>4.2367e-08</td><td>-4.0018e-11</td></tr>
+<tr><td>table_4</td><td>7.7854e-15</td><td>-2.7285e-12</td></tr>
+<tr><td>table_b1_60</td><td>2.4293e-07</td><td>-1.1823e-11</td></tr>
+<tr><td>table_b1_45</td><td>2.3454e-07</td><td>-2.8149e-10</td></tr>
+<tr><td>table_b1_40</td><td>1.1382e-07</td><td>-3.9108e-11</td></tr>
+<tr><td>table_b1_35</td><td>1.2282e-07</td><td>-2.7740e-11</td></tr>
+<tr><td>table_b2_pooled_po</td><td>8.4200e-07</td><td>-3.5470e-11</td></tr>
+<tr><td>table_b2_study_two_po</td><td>2.3271e-07</td><td>-7.2760e-11</td></tr>
+<tr><td>table_b2_consistent_po</td><td>2.2118e-09</td><td>-5.9117e-12</td></tr>
+<tr><td>table_b2_pooled_10</td><td>3.3867e-08</td><td> 9.0949e-13</td></tr>
+<tr><td>table_b2_study_two_10</td><td>3.2242e-09</td><td>-4.5475e-13</td></tr>
+<tr><td>table_b2_consistent_10</td><td>8.3264e-07</td><td>-7.9808e-10</td></tr>
+<tr><td>table_b2_pooled_23</td><td>1.1223e-07</td><td>-1.7280e-11</td></tr>
+<tr><td>table_b2_study_two_23</td><td>9.7796e-08</td><td>-1.7280e-11</td></tr>
+<tr><td>table_b2_consistent_23</td><td>1.6829e-10</td><td>-1.3642e-12</td></tr></tbody></table></div>
+<h2>MCMC diagnostics</h2><p><a href='../tabs/jags_diagnostics.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>parameter</th><th>mean</th><th>standard_deviation</th><th>lower_95</th><th>lower_90</th><th>upper_90</th><th>upper_95</th><th>effective_size</th><th>monte_carlo_se</th><th>r_hat</th><th>r_hat_upper</th><th>study</th></tr></thead><tbody><tr><td>beta[1]</td><td>-0.1261900</td><td>0.0590560</td><td>-0.2442000</td><td>-0.225010</td><td>-0.03095300</td><td>-0.0115060</td><td>2065.70</td><td>1.2994e-03</td><td>0.99988</td><td>1.0000</td><td>pooled</td></tr>
+<tr><td>beta[2]</td><td>-0.1637300</td><td>0.1290800</td><td>-0.4222000</td><td>-0.381360</td><td> 0.04385300</td><td> 0.0807550</td><td> 804.51</td><td>4.5507e-03</td><td>1.00310</td><td>1.0097</td><td>pooled</td></tr>
+<tr><td>beta[3]</td><td>-0.0619490</td><td>0.1267000</td><td>-0.3122700</td><td>-0.271390</td><td> 0.14943000</td><td> 0.1890900</td><td> 756.40</td><td>4.6068e-03</td><td>1.00740</td><td>1.0232</td><td>pooled</td></tr>
+<tr><td>beta[4]</td><td>-0.2252200</td><td>0.1222900</td><td>-0.4642900</td><td>-0.422290</td><td>-0.02388700</td><td> 0.0156090</td><td> 728.41</td><td>4.5312e-03</td><td>1.00140</td><td>1.0045</td><td>pooled</td></tr>
+<tr><td>beta[5]</td><td>-0.5117600</td><td>0.1237200</td><td>-0.7552500</td><td>-0.717270</td><td>-0.30856000</td><td>-0.2700300</td><td> 717.65</td><td>4.6184e-03</td><td>1.00290</td><td>1.0070</td><td>pooled</td></tr>
+<tr><td>beta[6]</td><td>-0.3707000</td><td>0.1245000</td><td>-0.6103200</td><td>-0.576190</td><td>-0.16586000</td><td>-0.1268600</td><td> 806.75</td><td>4.3833e-03</td><td>1.00350</td><td>1.0106</td><td>pooled</td></tr>
+<tr><td>beta[7]</td><td> 0.0671740</td><td>0.1203100</td><td>-0.1648400</td><td>-0.131420</td><td> 0.26341000</td><td> 0.2990000</td><td> 784.83</td><td>4.2946e-03</td><td>1.00200</td><td>1.0059</td><td>pooled</td></tr>
+<tr><td>beta[8]</td><td>-0.6960500</td><td>0.1178100</td><td>-0.9287600</td><td>-0.886910</td><td>-0.50556000</td><td>-0.4698000</td><td> 783.42</td><td>4.2091e-03</td><td>1.00880</td><td>1.0273</td><td>pooled</td></tr>
+<tr><td>beta[9]</td><td>-0.2776800</td><td>0.1249900</td><td>-0.5238600</td><td>-0.484240</td><td>-0.07260700</td><td>-0.0350660</td><td> 729.59</td><td>4.6273e-03</td><td>1.00990</td><td>1.0307</td><td>pooled</td></tr>
+<tr><td>beta[10]</td><td>-0.0098427</td><td>0.1236300</td><td>-0.2525300</td><td>-0.214560</td><td> 0.18826000</td><td> 0.2278800</td><td> 676.48</td><td>4.7532e-03</td><td>1.00740</td><td>1.0200</td><td>pooled</td></tr>
+<tr><td>probability_control_congenial</td><td> 0.3880100</td><td>0.0096737</td><td> 0.3689500</td><td> 0.372340</td><td> 0.40404000</td><td> 0.4071300</td><td>2951.20</td><td>1.7807e-04</td><td>1.00030</td><td>1.0011</td><td>pooled</td></tr>
+<tr><td>probability_control_correct</td><td> 0.3414200</td><td>0.0071430</td><td> 0.3275500</td><td> 0.329890</td><td> 0.35316000</td><td> 0.3555200</td><td>6844.90</td><td>8.6337e-05</td><td>1.00040</td><td>1.0017</td><td>pooled</td></tr>
+<tr><td>probability_control_uncongenial</td><td> 0.2705700</td><td>0.0085817</td><td> 0.2535400</td><td> 0.256620</td><td> 0.28490000</td><td> 0.2878000</td><td>3642.30</td><td>1.4219e-04</td><td>1.00010</td><td>1.0006</td><td>pooled</td></tr>
+<tr><td>probability_monetary_congenial</td><td> 0.3591000</td><td>0.0097897</td><td> 0.3400600</td><td> 0.342970</td><td> 0.37513000</td><td> 0.3781600</td><td>3671.30</td><td>1.6157e-04</td><td>1.00020</td><td>1.0007</td><td>pooled</td></tr>
+<tr><td>probability_monetary_correct</td><td> 0.3451600</td><td>0.0072011</td><td> 0.3311900</td><td> 0.333500</td><td> 0.35686000</td><td> 0.3595200</td><td>6518.40</td><td>8.9192e-05</td><td>1.00040</td><td>1.0015</td><td>pooled</td></tr>
+<tr><td>probability_monetary_uncongenial</td><td> 0.2957400</td><td>0.0090051</td><td> 0.2778200</td><td> 0.280720</td><td> 0.31074000</td><td> 0.3135100</td><td>3909.20</td><td>1.4403e-04</td><td>1.00030</td><td>1.0012</td><td>pooled</td></tr>
+<tr><td>sigma</td><td> 0.1934900</td><td>0.0933410</td><td> 0.0152450</td><td> 0.030763</td><td> 0.33749000</td><td> 0.3593900</td><td>1821.30</td><td>2.1872e-03</td><td>1.00170</td><td>1.0059</td><td>pooled</td></tr>
+<tr><td>tau[1]</td><td>-1.2391000</td><td>0.0940840</td><td>-1.4195000</td><td>-1.394600</td><td>-1.08600000</td><td>-1.0580000</td><td> 512.17</td><td>4.1573e-03</td><td>1.00650</td><td>1.0199</td><td>pooled</td></tr>
+<tr><td>tau[2]</td><td> 0.2455600</td><td>0.0913220</td><td> 0.0692400</td><td> 0.093228</td><td> 0.39318000</td><td> 0.4208200</td><td> 485.75</td><td>4.1435e-03</td><td>1.00640</td><td>1.0196</td><td>pooled</td></tr>
+<tr><td>beta[1]</td><td>-0.1523800</td><td>0.0789170</td><td>-0.3073200</td><td>-0.282890</td><td>-0.02071500</td><td> 0.0035515</td><td>1227.70</td><td>2.2523e-03</td><td>1.00120</td><td>1.0035</td><td>study_2</td></tr>
+<tr><td>beta[2]</td><td>-0.1389000</td><td>0.0838030</td><td>-0.3013500</td><td>-0.276460</td><td>-0.00093165</td><td> 0.0285990</td><td>1289.30</td><td>2.3339e-03</td><td>1.00170</td><td>1.0047</td><td>study_2</td></tr>
+<tr><td>beta[3]</td><td>-0.0377140</td><td>0.1041100</td><td>-0.2425800</td><td>-0.208680</td><td> 0.13354000</td><td> 0.1660800</td><td>1098.50</td><td>3.1413e-03</td><td>1.00400</td><td>1.0130</td><td>study_2</td></tr>
+<tr><td>beta[4]</td><td> 0.2037300</td><td>0.1007900</td><td> 0.0049961</td><td> 0.034933</td><td> 0.37131000</td><td> 0.3992800</td><td> 935.99</td><td>3.2945e-03</td><td>1.00540</td><td>1.0161</td><td>study_2</td></tr>
+<tr><td>beta[5]</td><td> 0.0691580</td><td>0.1011400</td><td>-0.1241800</td><td>-0.096389</td><td> 0.23813000</td><td> 0.2728600</td><td> 921.31</td><td>3.3322e-03</td><td>1.00340</td><td>1.0111</td><td>study_2</td></tr>
+<tr><td>beta[6]</td><td>-0.2207000</td><td>0.0997180</td><td>-0.4157200</td><td>-0.384240</td><td>-0.05588800</td><td>-0.0243760</td><td> 959.33</td><td>3.2195e-03</td><td>1.00440</td><td>1.0136</td><td>study_2</td></tr>
+<tr><td>probability_accuracy_appeal_congenial</td><td> 0.3464600</td><td>0.0124090</td><td> 0.3226900</td><td> 0.326470</td><td> 0.36674000</td><td> 0.3707900</td><td>2482.00</td><td>2.4908e-04</td><td>0.99997</td><td>1.0002</td><td>study_2</td></tr>
+<tr><td>probability_accuracy_appeal_correct</td><td> 0.3413700</td><td>0.0081901</td><td> 0.3252700</td><td> 0.328200</td><td> 0.35510000</td><td> 0.3576200</td><td>4630.20</td><td>1.2036e-04</td><td>0.99980</td><td>1.0001</td><td>study_2</td></tr>
+<tr><td>probability_accuracy_appeal_uncongenial</td><td> 0.3121800</td><td>0.0118570</td><td> 0.2888700</td><td> 0.292970</td><td> 0.33181000</td><td> 0.3355100</td><td>2831.30</td><td>2.2283e-04</td><td>1.00020</td><td>1.0006</td><td>study_2</td></tr>
+<tr><td>probability_control_congenial</td><td> 0.3810700</td><td>0.0138350</td><td> 0.3541400</td><td> 0.358440</td><td> 0.40370000</td><td> 0.4081800</td><td>1439.50</td><td>3.6464e-04</td><td>1.00170</td><td>1.0051</td><td>study_2</td></tr>
+<tr><td>probability_control_correct</td><td> 0.3379500</td><td>0.0082453</td><td> 0.3220200</td><td> 0.324520</td><td> 0.35171000</td><td> 0.3544000</td><td>4442.50</td><td>1.2371e-04</td><td>0.99986</td><td>1.0003</td><td>study_2</td></tr>
+<tr><td>probability_control_uncongenial</td><td> 0.2809800</td><td>0.0122200</td><td> 0.2572900</td><td> 0.260980</td><td> 0.30096000</td><td> 0.3050000</td><td>1420.60</td><td>3.2421e-04</td><td>1.00160</td><td>1.0050</td><td>study_2</td></tr>
+<tr><td>probability_monetary_congenial</td><td> 0.3494200</td><td>0.0136640</td><td> 0.3229000</td><td> 0.327350</td><td> 0.37207000</td><td> 0.3761600</td><td>2316.50</td><td>2.8389e-04</td><td>1.00030</td><td>1.0009</td><td>study_2</td></tr>
+<tr><td>probability_monetary_correct</td><td> 0.3411600</td><td>0.0082172</td><td> 0.3250100</td><td> 0.328150</td><td> 0.35486000</td><td> 0.3575100</td><td>4705.00</td><td>1.1980e-04</td><td>0.99991</td><td>1.0003</td><td>study_2</td></tr>
+<tr><td>probability_monetary_uncongenial</td><td> 0.3094200</td><td>0.0129150</td><td> 0.2841100</td><td> 0.288400</td><td> 0.33065000</td><td> 0.3349500</td><td>2682.10</td><td>2.4937e-04</td><td>1.00010</td><td>1.0007</td><td>study_2</td></tr>
+<tr><td>sigma</td><td> 0.1686200</td><td>0.0924430</td><td> 0.0106980</td><td> 0.020059</td><td> 0.32053000</td><td> 0.3458000</td><td>1740.70</td><td>2.2157e-03</td><td>1.00000</td><td>1.0003</td><td>study_2</td></tr>
+<tr><td>tau[1]</td><td>-0.9509200</td><td>0.0889870</td><td>-1.1274000</td><td>-1.099100</td><td>-0.80392000</td><td>-0.7776000</td><td> 692.81</td><td>3.3808e-03</td><td>1.00360</td><td>1.0118</td><td>study_2</td></tr>
+<tr><td>tau[2]</td><td> 0.4949800</td><td>0.0878930</td><td> 0.3236300</td><td> 0.351780</td><td> 0.63933000</td><td> 0.6674400</td><td> 683.06</td><td>3.3630e-03</td><td>1.00340</td><td>1.0111</td><td>study_2</td></tr></tbody></table></div>
+<h2>Bayesian estimates and archived summaries</h2><p><a href='../tabs/jags_released_comparison.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>study</th><th>condition</th><th>outcome</th><th>released_mean</th><th>reproduced_mean</th><th>difference</th><th>reproduced_monte_carlo_se</th><th>released_lower_95</th><th>reproduced_lower_95</th><th>released_upper_95</th><th>reproduced_upper_95</th></tr></thead><tbody><tr><td>pooled</td><td>control</td><td>uncongenial</td><td>0.27025</td><td>0.27057</td><td> 3.2154e-04</td><td>0.00014219</td><td>0.25350</td><td>0.25354</td><td>0.28744</td><td>0.28780</td></tr>
+<tr><td>pooled</td><td>control</td><td>congenial</td><td>0.38830</td><td>0.38801</td><td>-2.9284e-04</td><td>0.00017807</td><td>0.36917</td><td>0.36895</td><td>0.40729</td><td>0.40713</td></tr>
+<tr><td>pooled</td><td>monetary</td><td>uncongenial</td><td>0.29589</td><td>0.29574</td><td>-1.5035e-04</td><td>0.00014403</td><td>0.27848</td><td>0.27782</td><td>0.31334</td><td>0.31351</td></tr>
+<tr><td>pooled</td><td>monetary</td><td>congenial</td><td>0.35884</td><td>0.35910</td><td> 2.5860e-04</td><td>0.00016157</td><td>0.33952</td><td>0.34006</td><td>0.37923</td><td>0.37816</td></tr>
+<tr><td>study_2</td><td>control</td><td>uncongenial</td><td>0.28090</td><td>0.28098</td><td> 8.2785e-05</td><td>0.00032421</td><td>0.25982</td><td>0.25729</td><td>0.30600</td><td>0.30500</td></tr>
+<tr><td>study_2</td><td>control</td><td>congenial</td><td>0.38092</td><td>0.38107</td><td> 1.5108e-04</td><td>0.00036464</td><td>0.35451</td><td>0.35414</td><td>0.40556</td><td>0.40818</td></tr>
+<tr><td>study_2</td><td>accuracy_appeal</td><td>uncongenial</td><td>0.31188</td><td>0.31218</td><td> 2.9948e-04</td><td>0.00022283</td><td>0.29056</td><td>0.28887</td><td>0.33470</td><td>0.33551</td></tr>
+<tr><td>study_2</td><td>accuracy_appeal</td><td>congenial</td><td>0.34656</td><td>0.34646</td><td>-9.8862e-05</td><td>0.00024908</td><td>0.32299</td><td>0.32269</td><td>0.37027</td><td>0.37079</td></tr>
+<tr><td>study_2</td><td>monetary</td><td>uncongenial</td><td>0.30862</td><td>0.30942</td><td> 7.9889e-04</td><td>0.00024937</td><td>0.28497</td><td>0.28411</td><td>0.33427</td><td>0.33495</td></tr>
+<tr><td>study_2</td><td>monetary</td><td>congenial</td><td>0.35003</td><td>0.34942</td><td>-6.1069e-04</td><td>0.00028389</td><td>0.32296</td><td>0.32290</td><td>0.37863</td><td>0.37616</td></tr></tbody></table></div>
+<h2>Figure 1 prediction-target comparison</h2><p><a href='../tabs/figure_1_rerun.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>study</th><th>condition</th><th>outcome</th><th>estimate_pct</th><th>parameter</th><th>mean</th><th>standard_deviation</th><th>lower_95</th><th>lower_90</th><th>upper_90</th><th>upper_95</th><th>effective_size</th><th>monte_carlo_se</th><th>r_hat</th><th>r_hat_upper</th><th>observations</th><th>respondents</th><th>lower_pct</th><th>upper_pct</th><th>conditional_mean_pct</th><th>conditional_minus_marginal_pp</th><th>marginal_mean_pct</th></tr></thead><tbody><tr><td>pooled</td><td>control</td><td>congenial</td><td>38.801</td><td>probability_control_congenial</td><td>0.38801</td><td>0.0096737</td><td>0.36895</td><td>0.37234</td><td>0.40404</td><td>0.40713</td><td>2951.2</td><td>0.00017807</td><td>1.00030</td><td>1.0011</td><td>4324</td><td>878</td><td>36.895</td><td>40.713</td><td>38.801</td><td> 0.00113630</td><td>38.799</td></tr>
+<tr><td>pooled</td><td>control</td><td>uncongenial</td><td>27.057</td><td>probability_control_uncongenial</td><td>0.27057</td><td>0.0085817</td><td>0.25354</td><td>0.25662</td><td>0.28490</td><td>0.28780</td><td>3642.3</td><td>0.00014219</td><td>1.00010</td><td>1.0006</td><td>4324</td><td>878</td><td>25.354</td><td>28.780</td><td>27.057</td><td> 0.02581700</td><td>27.031</td></tr>
+<tr><td>pooled</td><td>monetary</td><td>congenial</td><td>35.910</td><td>probability_monetary_congenial</td><td>0.35910</td><td>0.0097897</td><td>0.34006</td><td>0.34297</td><td>0.37513</td><td>0.37816</td><td>3671.3</td><td>0.00016157</td><td>1.00020</td><td>1.0007</td><td>4324</td><td>878</td><td>34.006</td><td>37.816</td><td>35.910</td><td> 0.01624400</td><td>35.894</td></tr>
+<tr><td>pooled</td><td>monetary</td><td>uncongenial</td><td>29.574</td><td>probability_monetary_uncongenial</td><td>0.29574</td><td>0.0090051</td><td>0.27782</td><td>0.28072</td><td>0.31074</td><td>0.31351</td><td>3909.2</td><td>0.00014403</td><td>1.00030</td><td>1.0012</td><td>4324</td><td>878</td><td>27.782</td><td>31.351</td><td>29.574</td><td> 0.01386000</td><td>29.560</td></tr>
+<tr><td>study_2</td><td>accuracy_appeal</td><td>congenial</td><td>34.646</td><td>probability_accuracy_appeal_congenial</td><td>0.34646</td><td>0.0124090</td><td>0.32269</td><td>0.32647</td><td>0.36674</td><td>0.37079</td><td>2482.0</td><td>0.00024908</td><td>0.99997</td><td>1.0002</td><td>3276</td><td>660</td><td>32.269</td><td>37.079</td><td>34.646</td><td>-0.00187150</td><td>34.648</td></tr>
+<tr><td>study_2</td><td>accuracy_appeal</td><td>uncongenial</td><td>31.218</td><td>probability_accuracy_appeal_uncongenial</td><td>0.31218</td><td>0.0118570</td><td>0.28887</td><td>0.29297</td><td>0.33181</td><td>0.33551</td><td>2831.3</td><td>0.00022283</td><td>1.00020</td><td>1.0006</td><td>3276</td><td>660</td><td>28.887</td><td>33.551</td><td>31.218</td><td> 0.03655200</td><td>31.181</td></tr>
+<tr><td>study_2</td><td>control</td><td>congenial</td><td>38.107</td><td>probability_control_congenial</td><td>0.38107</td><td>0.0138350</td><td>0.35414</td><td>0.35844</td><td>0.40370</td><td>0.40818</td><td>1439.5</td><td>0.00036464</td><td>1.00170</td><td>1.0051</td><td>3276</td><td>660</td><td>35.414</td><td>40.818</td><td>38.107</td><td> 0.04298300</td><td>38.064</td></tr>
+<tr><td>study_2</td><td>control</td><td>uncongenial</td><td>28.098</td><td>probability_control_uncongenial</td><td>0.28098</td><td>0.0122200</td><td>0.25729</td><td>0.26098</td><td>0.30096</td><td>0.30500</td><td>1420.6</td><td>0.00032421</td><td>1.00160</td><td>1.0050</td><td>3276</td><td>660</td><td>25.729</td><td>30.500</td><td>28.098</td><td> 0.00061319</td><td>28.098</td></tr>
+<tr><td>study_2</td><td>monetary</td><td>congenial</td><td>34.942</td><td>probability_monetary_congenial</td><td>0.34942</td><td>0.0136640</td><td>0.32290</td><td>0.32735</td><td>0.37207</td><td>0.37616</td><td>2316.5</td><td>0.00028389</td><td>1.00030</td><td>1.0009</td><td>3276</td><td>660</td><td>32.290</td><td>37.616</td><td>34.942</td><td> 0.05652100</td><td>34.885</td></tr>
+<tr><td>study_2</td><td>monetary</td><td>uncongenial</td><td>30.942</td><td>probability_monetary_uncongenial</td><td>0.30942</td><td>0.0129150</td><td>0.28411</td><td>0.28840</td><td>0.33065</td><td>0.33495</td><td>2682.1</td><td>0.00024937</td><td>1.00010</td><td>1.0007</td><td>3276</td><td>660</td><td>28.411</td><td>33.495</td><td>30.942</td><td>-0.01509000</td><td>30.957</td></tr></tbody></table></div>
+<h2>MCMC run settings</h2><p><a href='../tabs/jags_run_settings.csv'>Download CSV</a></p><div class='scroll'><table><thead><tr><th>study</th><th>chains</th><th>adaptation</th><th>burn_in</th><th>sampling_iterations_per_chain</th><th>total_sampling_iterations</th><th>thin</th><th>parameterization</th><th>seed</th><th>input_digest</th><th>continuation_count</th><th>continuation_details</th></tr></thead><tbody><tr><td>pooled</td><td>4</td><td>5000</td><td>10000</td><td>17500</td><td>70000</td><td>10</td><td>noncentered</td><td>123460</td><td>e7d3d41a7fff3e6382f2e5a6d79e69bfc1341a19c5e9234a457475b1d50375bd</td><td>1</td><td>5000 sampling iterations per chain; adaptation: 1001,1001,1001,1001</td></tr>
+<tr><td>study_2</td><td>4</td><td>5000</td><td>10000</td><td>12500</td><td>50000</td><td>10</td><td>noncentered</td><td>123460</td><td>cb2d43a5ca9aa31e12629f9607c6a2a6a5deff07421b3189a74e55dc4226c3ff</td><td>0</td><td>NA</td></tr></tbody></table></div>
+<h2>Figure 1: historical construction</h2><img src='../figs/figure_1_historical.png' alt='Historical Figure 1'>
+<p>Points are reestimated; intervals are literal historical endpoints. Their provenance is audited separately.</p>
+<h2>Figure 1: conditional posterior estimates</h2>
+<img src='../figs/figure_1_rerun.png' alt='Conditional posterior Figure 1'>
+<p>Posterior means and intervals refer to the same conditional probabilities.
+These differ from the historical marginal points.</p>
+<h2>Additional figures</h2><ul>
+<li><a href='../figs/figure_2a.pdf'>Figure 2a: knowledge and response categories</a></li>
+<li><a href='../figs/figure_2b.pdf'>Figure 2b: modeled response probabilities</a></li>
+<li><a href='../figs/figure_2c.pdf'>Figure 2c: knowledge and partisan bias</a></li>
+<li><a href='../figs/figure_2d.pdf'>Figure 2d: modeled partisan bias</a></li>
+<li><a href='../figs/figure_a1.pdf'>Figure A1: knowledge distributions</a></li>
+</ul>
+</html>

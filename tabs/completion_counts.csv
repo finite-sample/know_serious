@@ -1,0 +1,6 @@
+study_year,treatment_arm,respondents,completed,dropped_out_after_randomization
+2004,0,312,NA,3
+2008,0,503,473,2
+2008,1,571,547,5
+2004,2,306,NA,4
+2008,2,516,491,1
